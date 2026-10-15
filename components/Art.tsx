@@ -1,32 +1,46 @@
 // Ilustraciones SVG de la demo original.
 import type { Product } from '@/lib/site';
 
-function chord(cx: number, cy: number, r: number, offs: number[]) {
-  return offs
-    .map((o) => {
-      const h = Math.sqrt(r * r - o * o);
-      return `M${cx + o} ${(cy - h).toFixed(1)}V${(cy + h).toFixed(1)}M${(cx - h).toFixed(1)} ${cy + o}H${(cx + h).toFixed(1)}`;
-    })
-    .join('');
-}
+const JAR = (<><rect x="42" y="10" width="36" height="12" rx="3" /><rect x="34" y="22" width="52" height="60" rx="10" /></>);
 
 export function ProductIcon({ kind }: { kind: Product['icon'] }) {
   let inner: React.ReactNode;
-  if (kind === 'pie') inner = (<><circle cx="60" cy="45" r="38" /><circle cx="60" cy="45" r="30" /><path d={chord(60, 45, 30, [-18, -6, 6, 18])} /></>);
-  else if (kind === 'torta') inner = (<><path d="M14 80h92" /><rect x="22" y="48" width="76" height="30" rx="5" /><rect x="34" y="24" width="52" height="24" rx="5" /><path d="M34 34c6 6 10-4 16 2s10-4 16 2 10-4 16 2" /><path d="M50 18c2-6 8-8 12-6M60 12l2 6" /></>);
-  else if (kind === 'cumple') inner = (<><path d="M14 80h92" /><rect x="26" y="46" width="68" height="32" rx="5" /><path d="M26 58c8 6 14-4 22 2s14-4 22 2 14-4 24 0" /><path d="M42 46V30M60 46V30M78 46V30" /><path d="M42 24c-3-3 0-8 0-8s3 5 0 8zM60 24c-3-3 0-8 0-8s3 5 0 8zM78 24c-3-3 0-8 0-8s3 5 0 8z" /></>);
-  else if (kind === 'alfajor') inner = (<><rect x="24" y="16" width="72" height="16" rx="8" /><rect x="24" y="38" width="72" height="16" rx="8" /><rect x="24" y="60" width="72" height="16" rx="8" /><path d="M32 24h56M32 46h56M32 68h56" strokeDasharray="2 6" /></>);
-  else if (kind === 'empanada') {
-    let d = '';
-    for (let a = 200; a <= 340; a += 20) {
-      const t = (a * Math.PI) / 180;
-      d += `M${(60 + 36 * Math.cos(t)).toFixed(1)} ${(66 + 36 * Math.sin(t)).toFixed(1)}L${(60 + 44 * Math.cos(t)).toFixed(1)} ${(66 + 44 * Math.sin(t)).toFixed(1)}`;
-    }
-    inner = (<><path d="M16 66a44 44 0 0 1 88 0z" /><path d={d} /><path d="M10 76h100" /></>);
-  } else inner = (<><rect x="42" y="10" width="36" height="12" rx="3" /><rect x="34" y="22" width="52" height="60" rx="10" /><rect x="42" y="40" width="36" height="26" rx="4" /><circle cx="60" cy="54" r="7" /><path d="M60 47c0-3 2-5 5-5" /></>);
+  if (kind === 'fresa') inner = (<>{JAR}<path d="M60 44c-9 0-13 6-11 12s6 10 11 13c5-3 9-7 11-13s-2-12-11-12z" /><path d="M53 44l7-5 7 5" /><path d="M56 52h0M64 52h0M60 58h0M56 62h0M64 62h0" strokeWidth="4" /></>);
+  else if (kind === 'aguaymanto') inner = (<>{JAR}<circle cx="60" cy="56" r="9" /><path d="M60 47c-10-6-16 2-14 10M60 47c10-6 16 2 14 10M60 47v-5" /></>);
+  else if (kind === 'durazno') inner = (<><rect x="44" y="6" width="32" height="10" rx="3" /><rect x="38" y="16" width="44" height="68" rx="9" /><path d="M46 46a9 9 0 0 1 18 0zM56 64a9 9 0 0 1 18 0z" /><path d="M38 34h44" /></>);
+  else if (kind === 'encurtido') inner = (<><rect x="44" y="6" width="32" height="10" rx="3" /><rect x="38" y="16" width="44" height="68" rx="9" /><circle cx="51" cy="34" r="5" /><circle cx="68" cy="44" r="5" /><path d="M46 58h12M62 62h12M48 72h10" /><path d="M66 70c2-8 8-12 10-18" /></>);
+  else if (kind === 'caja') inner = (<><rect x="22" y="38" width="76" height="44" rx="4" /><rect x="16" y="26" width="88" height="14" rx="3" /><path d="M60 26v56" /><path d="M60 26c-6-12-22-12-18-2 2 4 12 4 18 2zM60 26c6-12 22-12 18-2-2 4-12 4-18 2z" /></>);
+  else inner = (<>{JAR}<rect x="42" y="40" width="36" height="26" rx="4" /><circle cx="60" cy="54" r="7" /><path d="M60 47c0-3 2-5 5-5" /></>);
   return (
     <svg viewBox="0 0 120 90" aria-hidden="true">
       <g fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">{inner}</g>
+    </svg>
+  );
+}
+
+// Frascos de mermelada y conserva con tapas doradas (--crust / --crust-dark).
+function Jar({ x, y, w, h, fill }: { x: number; y: number; w: number; h: number; fill: string }) {
+  const lw = w - 16;
+  return (
+    <g>
+      <rect x={x} y={y} width={w} height={h} rx={20} style={{ fill }} />
+      <rect x={x + 10} y={y + 14} width={9} height={h - 40} rx={4.5} style={{ fill: '#fff', opacity: 0.22 }} />
+      <rect x={x + 14} y={y + h * 0.38} width={w - 28} height={h * 0.3} rx={8} style={{ fill: 'var(--bg)' }} />
+      <path d={`M${x + 26} ${y + h * 0.5}H${x + w - 26}M${x + 32} ${y + h * 0.58}H${x + w - 32}`} style={{ stroke: 'var(--crust-dark)', strokeWidth: 5, strokeLinecap: 'round' }} />
+      <rect x={x + 8} y={y - 30} width={lw} height={34} rx={7} style={{ fill: 'var(--crust)' }} />
+      <path d={`M${x + 16} ${y - 18}H${x + 8 + lw - 8}M${x + 16} ${y - 8}H${x + 8 + lw - 8}`} style={{ stroke: 'var(--crust-dark)', strokeWidth: 4, strokeLinecap: 'round' }} />
+    </g>
+  );
+}
+
+export function JarsArt() {
+  return (
+    <svg viewBox="0 0 400 400" aria-hidden="true">
+      <circle cx="200" cy="200" r="196" style={{ fill: 'var(--surface-2)' }} />
+      <ellipse cx="200" cy="324" rx="150" ry="14" style={{ fill: 'var(--line)' }} />
+      <Jar x={62} y={192} w={104} h={132} fill="var(--filling)" />
+      <Jar x={238} y={212} w={100} h={112} fill="var(--leaf)" />
+      <Jar x={142} y={150} w={116} h={174} fill="var(--apple)" />
     </svg>
   );
 }

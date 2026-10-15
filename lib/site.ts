@@ -2,7 +2,7 @@
 
 export const BUSINESS = {
   name: 'El Puqui',
-  tagline: 'Pastelería artesanal de manzana en Mala, Cañete.',
+  tagline: 'Mermeladas y conservas artesanales en Mala, Cañete.',
   address: 'Calle Real 214, Mala (dirección de ejemplo)',
   hours: 'Martes a domingo, de 8:00 a. m. a 8:00 p. m.',
 };
@@ -15,18 +15,19 @@ export type Product = {
   price: number;
   unit: string;
   desc: string;
-  icon: 'pie' | 'torta' | 'cumple' | 'alfajor' | 'empanada' | 'frasco';
+  icon: 'frasco' | 'fresa' | 'aguaymanto' | 'durazno' | 'encurtido' | 'caja';
   from?: boolean;
 };
 
 // La foto de cada producto es ./imagenes/<id>.jpg (por ejemplo ./imagenes/pie.jpg).
+// Precios de ejemplo: cámbialos por los reales.
 export const PRODUCTS: Product[] = [
-  { id: 'pie', name: 'Pie de manzana delicia', price: 45, unit: 'entero, 8 porciones', desc: 'Masa quebrada de mantequilla, manzana delicia del valle y un toque de canela. El que más piden.', icon: 'pie' },
-  { id: 'torta-canela', name: 'Torta de manzana y canela', price: 55, unit: 'molde de 22 cm', desc: 'Bizcocho húmedo con trozos de manzana, nueces y cobertura de caramelo.', icon: 'torta' },
-  { id: 'cumple', name: 'Torta de cumpleaños personalizada', price: 90, unit: 'desde, para 15 personas', from: true, desc: 'Tú eliges el sabor, el relleno y el mensaje. Pídela con dos días de anticipación.', icon: 'cumple' },
-  { id: 'alfajores', name: 'Alfajores de maicena', price: 18, unit: 'caja de 12', desc: 'Rellenos de manjar blanco y con coco rallado. Ideales para regalar.', icon: 'alfajor' },
-  { id: 'empanadas', name: 'Empanadas de manzana', price: 15, unit: 'paquete de 6', desc: 'Hojaldre dorado relleno de compota de manzana casera.', icon: 'empanada' },
-  { id: 'mermelada', name: 'Mermelada de manzana', price: 14, unit: 'frasco de 350 g', desc: 'Hecha en tandas pequeñas, sin conservantes. Va muy bien con queso fresco.', icon: 'frasco' },
+  { id: 'mermelada-manzana', name: 'Mermelada de manzana delicia', price: 14, unit: 'frasco de 350 g', desc: 'Con la manzana del valle de Mala y un toque de canela. La que más piden.', icon: 'frasco' },
+  { id: 'mermelada-fresa', name: 'Mermelada de fresa', price: 15, unit: 'frasco de 350 g', desc: 'Fresa entera cocida a fuego lento, con trozos de fruta. Ideal para el desayuno.', icon: 'fresa' },
+  { id: 'mermelada-aguaymanto', name: 'Mermelada de aguaymanto', price: 16, unit: 'frasco de 350 g', desc: 'Dulce y ácida a la vez. Va muy bien con queso fresco o yogur.', icon: 'aguaymanto' },
+  { id: 'duraznos-almibar', name: 'Duraznos en almíbar', price: 18, unit: 'frasco de 600 g', desc: 'Mitades de durazno en almíbar ligero. Para postres o solos, bien fríos.', icon: 'durazno' },
+  { id: 'encurtido', name: 'Encurtido de verduras', price: 13, unit: 'frasco de 500 g', desc: 'Cebolla, zanahoria, vainita y ají amarillo en vinagre. Acompaña cualquier plato.', icon: 'encurtido' },
+  { id: 'caja-regalo', name: 'Caja de regalo artesanal', price: 40, unit: 'desde, 3 frascos a elección', from: true, desc: 'Arma tu caja con tus sabores favoritos. Pídela con dos días de anticipación.', icon: 'caja' },
 ];
 
 export const PLACES = { portada: 'Botón de la portada', carta: 'Botón de cada producto', flotante: 'Botón flotante' } as const;

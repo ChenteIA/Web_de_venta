@@ -1,4 +1,4 @@
-import { PieArt, ProductIcon } from '@/components/Art';
+import { JarsArt, PieArt, ProductIcon } from '@/components/Art';
 import CopyButton from '@/components/CopyButton';
 import Header, { DemoStrip } from '@/components/Header';
 import ReviewsGallery, { type PublicReview } from '@/components/ReviewsGallery';
@@ -56,14 +56,14 @@ export default async function Home() {
         <section className="hero">
           <div className="wrap">
             <div>
-              <h1>Pie de manzana delicia, horneado en Mala cada mañana.</h1>
-              <p className="lede">Tortas, pies y dulces hechos con la manzana del valle. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.</p>
+              <h1>Mermeladas y conservas artesanales, hechas en Mala con fruta del valle.</h1>
+              <p className="lede">Frascos preparados en tandas pequeñas y sin conservantes. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.</p>
               <div className="actions">
                 <WaLink product="general" place="portada">Pedir por WhatsApp</WaLink>
                 <a className="btn btn-ghost" href="#carta">Ver la carta</a>
               </div>
               <div className="facts">
-                <div><b>Pedidos con un día de anticipación</b><span>Las tortas de cumpleaños, con dos.</span></div>
+                <div><b>Pedidos con un día de anticipación</b><span>Las cajas de regalo, con dos.</span></div>
                 <div><b>Recojo o delivery</b><span>En Mala y San Antonio.</span></div>
                 <div><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
               </div>
@@ -81,7 +81,7 @@ export default async function Home() {
                 />
               </div>
             ) : (
-              <div className="pie-art" role="img" aria-label="Ilustración de un pie de manzana con masa enrejada"><PieArt /></div>
+              <div className="pie-art" role="img" aria-label="Ilustración de frascos de mermelada y conserva"><JarsArt /></div>
             )}
           </div>
         </section>
