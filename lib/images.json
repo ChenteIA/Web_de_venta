@@ -13,6 +13,20 @@
       }
     ]
   },
+  "portadaAncha": {
+    "width": 1376,
+    "height": 768,
+    "srcs": [
+      {
+        "w": 960,
+        "src": "/img/portada-ancha-960.webp"
+      },
+      {
+        "w": 1376,
+        "src": "/img/portada-ancha-1376.webp"
+      }
+    ]
+  },
   "logo": {
     "width": 812,
     "height": 812,

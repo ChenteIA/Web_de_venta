@@ -1,7 +1,7 @@
 import data from './images.json';
 
 export type ImgSet = { width: number; height: number; srcs: { w: number; src: string }[] };
-type Manifest = { portada: ImgSet | null; logo: ImgSet | null; favicon: boolean; products: Record<string, ImgSet> };
+type Manifest = { portada: ImgSet | null; portadaAncha?: ImgSet | null; logo: ImgSet | null; favicon: boolean; products: Record<string, ImgSet> };
 
 export const IMAGES = data as Manifest;
 

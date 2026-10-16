@@ -1,5 +1,6 @@
 // Convierte las fotos de ./imagenes a WebP en varios tamaños y genera lib/images.json.
-//   portada.jpg  → portada
+//   portada.jpg        → portada (vertical: celular)
+//   portada-ancha.jpg  → portada a pantalla completa en computadora (horizontal 16:9)
 //   logo.png     → logo del encabezado + favicon
 //   <id>.jpg     → foto del producto con ese id (ver lib/site.ts)
 // Si falta una imagen, la web usa la ilustración SVG de la demo.
@@ -14,7 +15,7 @@ const OUT = path.join(ROOT, 'public', 'img');
 const MANIFEST = path.join(ROOT, 'lib', 'images.json');
 const EXT = /\.(jpe?g|png|webp|avif)$/i;
 
-const manifest = { portada: null, logo: null, favicon: false, products: {} };
+const manifest = { portada: null, portadaAncha: null, logo: null, favicon: false, products: {} };
 
 async function variants(file, name, widths, quality = 78) {
   const img = sharp(file).rotate();
@@ -44,7 +45,9 @@ async function main() {
   for (const f of files) {
     const file = path.join(SRC, f);
     const base = path.basename(f, path.extname(f)).toLowerCase();
-    if (base === 'portada') {
+    if (base === 'portada-ancha') {
+      manifest.portadaAncha = await variants(file, 'portada-ancha', [960, 1440, 1920], 76);
+    } else if (base === 'portada') {
       manifest.portada = await variants(file, 'portada', [640, 960, 1440], 74);
     } else if (base === 'logo') {
       manifest.logo = await variants(file, 'logo', [64, 128], 90);

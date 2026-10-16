@@ -398,3 +398,37 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 
 /* La portada ya cierra con su propio espacio: la carta no suma otro encima */
 .hero + section.band { padding-top: 0; }
+
+/* ============ PORTADA A PANTALLA COMPLETA (computadora, con portada-ancha.jpg) ============ */
+/* La foto es oscura en ambos temas, así que el texto encima usa colores fijos claros. */
+:root { --on-photo: #F8F2EE; --on-photo-muted: rgba(248, 242, 238, 0.78); --on-photo-line: rgba(248, 242, 238, 0.22); --photo-shade: 18, 11, 8; }
+.hero-photo picture { display: contents; }
+@media (min-width: 821px) {
+  .hero-wide { position: relative; isolation: isolate; overflow: hidden; color: var(--on-photo); }
+  .hero-wide .wrap { grid-template-columns: minmax(0, 580px); align-content: center; min-height: clamp(620px, 82svh, 800px); padding-block: 88px; }
+  .hero-wide .hero-photo {
+    position: absolute; inset: 0; z-index: -1; max-height: none; aspect-ratio: auto; border-radius: 0; background: rgb(var(--photo-shade));
+  }
+  .hero-wide .hero-photo img { object-position: 72% 50%; }
+  /* Degradado para que el texto se lea sobre la pared */
+  .hero-wide .hero-photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(var(--photo-shade), 0.72) 0%, rgba(var(--photo-shade), 0.45) 38%, rgba(var(--photo-shade), 0) 62%),
+                linear-gradient(0deg, rgba(var(--photo-shade), 0.35) 0%, rgba(var(--photo-shade), 0) 30%);
+  }
+  .hero-wide h1 { color: var(--on-photo); }
+  .hero-wide .lede, .hero-wide .facts span { color: var(--on-photo-muted); }
+  .hero-wide .facts { border-top-color: var(--on-photo-line); }
+  .hero-wide .facts .fi { color: var(--on-photo); }
+  .hero-wide .btn-ghost { color: var(--on-photo); border-color: var(--on-photo); }
+  /* El texto se dibuja sobre la foto: necesita un poco de contraste extra */
+  .hero-wide h1, .hero-wide .lede { text-shadow: 0 1px 24px rgba(var(--photo-shade), 0.35); }
+  .hero-wide + section.band { padding-top: var(--section); }
+}
+@media (min-width: 821px) and (hover: hover) and (pointer: fine) {
+  .hero-wide .btn-ghost:hover { background: rgba(248, 242, 238, 0.12); }
+}
+@media (min-width: 821px) and (max-width: 1199px) {
+  .hero-wide h1 { font-size: clamp(42px, 5.2vw, 60px); }
+  .hero-wide .hero-photo img { object-position: 88% 50%; }
+}

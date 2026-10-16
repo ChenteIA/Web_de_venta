@@ -44,6 +44,9 @@ async function loadReviews(): Promise<PublicReview[]> {
 export default async function Home() {
   const reviews = await loadReviews();
   const portada = IMAGES.portada;
+  const ancha = IMAGES.portadaAncha;
+  // En el celular se usa la vertical; si solo existe la ancha, también sirve recortada.
+  const movil = portada || ancha;
 
   return (
     <>
@@ -55,9 +58,9 @@ export default async function Home() {
       </Header>
 
       <main id="pub">
-        <section className="hero">
+        <section className={ancha ? 'hero hero-wide' : 'hero'}>
           <div className="wrap">
-            <div>
+            <div className="hero-copy">
               <h1>Mermeladas y conservas artesanales, hechas en Ica con fruta del valle.</h1>
               <p className="lede">Frascos preparados en tandas pequeñas y sin conservantes. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.</p>
               <div className="actions">
@@ -71,17 +74,21 @@ export default async function Home() {
                 <div><Icon name="wallet" className="fi" /><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
               </div>
             </div>
-            {portada ? (
+            {movil ? (
               <div className="hero-photo">
-                <img
-                  src={largest(portada)}
-                  srcSet={srcSet(portada)}
-                  sizes="(max-width: 820px) 92vw, 520px"
-                  width={portada.width}
-                  height={portada.height}
-                  alt={`Productos de ${BUSINESS.name}`}
-                  fetchPriority="high"
-                />
+                {/* Una sola imagen: el navegador descarga solo la versión que muestra */}
+                <picture>
+                  {ancha && <source media="(min-width: 821px)" srcSet={srcSet(ancha)} sizes="100vw" width={ancha.width} height={ancha.height} />}
+                  <img
+                    src={largest(movil)}
+                    srcSet={srcSet(movil)}
+                    sizes={ancha ? '100vw' : '(max-width: 820px) 100vw, 560px'}
+                    width={movil.width}
+                    height={movil.height}
+                    alt={`Productos de ${BUSINESS.name}`}
+                    fetchPriority="high"
+                  />
+                </picture>
               </div>
             ) : (
               <div className="pie-art" role="img" aria-label="Ilustración de frascos de mermelada y conserva"><JarsArt /></div>
