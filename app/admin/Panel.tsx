@@ -172,7 +172,7 @@ export default function Panel() {
   const conv = pClicks.length ? pSales.length / pClicks.length : 0;
   const prevConv = prevClicks ? prevSalesL.length / prevClicks : 0;
   const clickById = useMemo(() => new Map(clicks.map((c) => [c.id, c])), [clicks]);
-  const pn = (id: string | null | undefined) => prodName(id, products);
+  const pn = (id: string | null | undefined) => prodName(id, products, !prMissing);
   const findP = (id: string | null | undefined) => products.find((p) => p.id === id) || null;
   const units = pSales.reduce((a, s) => a + s.qty, 0);
   const prevUnits = prevSalesL.reduce((a, s) => a + s.qty, 0);
@@ -445,13 +445,14 @@ export default function Panel() {
   const chartBox = useRef<HTMLDivElement>(null);
   const [cw, setCw] = useState(640);
   const [tip, setTip] = useState<{ i: number } | null>(null);
+  const [showTable, setShowTable] = useState(false);
   useEffect(() => {
     const el = chartBox.current;
     if (!el || !window.ResizeObserver) return;
     const ro = new ResizeObserver(() => setCw(el.clientWidth || 640));
     ro.observe(el);
     return () => ro.disconnect();
-  }, [loaded]);
+  }, [loaded, showTable, tab]);
 
   const days = useMemo(() => {
     let count = 7;
@@ -465,10 +466,10 @@ export default function Panel() {
   }, [range, clicks, sales, t]);
 
   const chartData = useMemo(() => {
-    const cBy: Record<string, number> = {}, sBy: Record<string, number> = {};
+    const cBy: Record<string, number> = {}, sBy: Record<string, number> = {}, mBy: Record<string, number> = {};
     clicks.forEach((c) => { cBy[c.day] = (cBy[c.day] || 0) + 1; });
-    sales.forEach((s) => { sBy[s.day] = (sBy[s.day] || 0) + 1; });
-    return days.map((d) => ({ day: d, c: cBy[d] || 0, s: sBy[d] || 0 }));
+    sales.forEach((s) => { sBy[s.day] = (sBy[s.day] || 0) + 1; mBy[s.day] = (mBy[s.day] || 0) + s.amount; });
+    return days.map((d) => ({ day: d, c: cBy[d] || 0, s: sBy[d] || 0, m: mBy[d] || 0 }));
   }, [days, clicks, sales]);
 
   function renderChart() {
@@ -540,11 +541,6 @@ export default function Panel() {
           <h1>Panel del negocio</h1>
           <p>Cuántas personas tocaron el botón de WhatsApp y cuántas terminaron comprando.</p>
         </div>
-        {(tab === 'resumen' || tab === 'ventas') && <div className="seg" role="group" aria-label="Periodo">
-          {([['1', 'Hoy'], ['7', '7 días'], ['30', '30 días'], ['all', 'Todo']] as [Range, string][]).map(([v, l]) => (
-            <button key={v} type="button" aria-pressed={range === v} onClick={() => setRange(v)}>{l}</button>
-          ))}
-        </div>}
       </div>
 
       <nav className="tabs" aria-label="Secciones del panel">
@@ -554,9 +550,13 @@ export default function Panel() {
       </nav>
 
       <div className="toolbar">
-        <button type="button" className="btn btn-sm btn-ghost" onClick={load}><Icon name="refresh" />Actualizar</button>
+        {(tab === 'resumen' || tab === 'ventas') && <div className="seg" role="group" aria-label="Periodo">
+          {([['1', 'Hoy'], ['7', '7 días'], ['30', '30 días'], ['all', 'Todo']] as [Range, string][]).map(([v, l]) => (
+            <button key={v} type="button" aria-pressed={range === v} onClick={() => setRange(v)}>{l}</button>
+          ))}
+        </div>}
         <span className="spacer" />
-        {tab === 'resumen' && <button type="button" className="btn btn-sm btn-ghost" onClick={generateDemo} disabled={busy === 'demo'}><Icon name="stars2" />Generar datos de ejemplo</button>}
+        <button type="button" className="btn btn-sm btn-ghost" onClick={load} aria-label="Actualizar datos"><Icon name="refresh" /><span className="vt-label">Actualizar</span></button>
       </div>
 
       {(tab === 'resumen' || tab === 'ventas') && (demoC > 0 || demoS > 0) && (
@@ -582,9 +582,9 @@ export default function Panel() {
             <Kpi label="Clics a WhatsApp" value={pClicks.length} delta={delta(pClicks.length, prevClicks)} />
             <Kpi label="Ventas registradas" value={pSales.length} delta={delta(pSales.length, prevSalesL.length)} />
             <Kpi label="Unidades vendidas" value={units} delta={delta(units, prevUnits)} />
-            <Kpi label="Monto vendido" value={money(amount)} delta={delta(amount, prevAmount)} />
+            <Kpi label="Monto vendido" value={soles(Math.round(amount * 100) / 100)} delta={delta(amount, prevAmount)} />
             <Kpi label="Conversión" value={pct(pSales.length, pClicks.length)} delta={n ? delta(conv, prevConv) : 'Ventas por cada 100 clics'} />
-            <Kpi label="Ticket promedio" value={pSales.length ? money(ticket) : '—'} delta={n ? delta(ticket, prevTicket) : 'Monto por venta'} />
+            <Kpi label="Ticket promedio" value={pSales.length ? soles(Math.round(ticket * 100) / 100) : '—'} delta={n ? delta(ticket, prevTicket) : 'Monto por venta'} />
           </>
         )}
       </div>
@@ -592,9 +592,22 @@ export default function Panel() {
       <div className="card" style={{ marginBottom: 16 }}>
         <div className="card-head">
           <div><h2>Clics y ventas por día</h2><p className="sub">{range === '1' ? 'Últimos 7 días, para comparar hoy con la semana.' : `${days.length} días, del ${dayShort(days[0])} al ${dayShort(days[days.length - 1])}.`}</p></div>
-          <Legend />
+          <div className="chart-tools"><Legend /><button type="button" className="linkbtn" aria-pressed={showTable} onClick={() => setShowTable(!showTable)}>{showTable ? 'Ver gráfico' : 'Ver como tabla'}</button></div>
         </div>
-        <div className="chart" ref={chartBox}>{renderChart()}</div>
+        {showTable ? (
+          <div className="table-wrap">
+            <table>
+              <thead><tr><th>Día</th><th className="r">Clics</th><th className="r">Ventas</th><th className="r">Monto</th></tr></thead>
+              <tbody>
+                {[...chartData].reverse().map((d) => (
+                  <tr key={d.day}><td>{dayLong(d.day)}</td><td className="r">{d.c}</td><td className="r">{d.s}</td><td className="r">{money(d.m)}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="chart" ref={chartBox}>{renderChart()}</div>
+        )}
       </div>
 
       <div className="grid2">
@@ -606,7 +619,7 @@ export default function Panel() {
                 {byProduct.map((r) => (
                   <div className="row" key={r.id}>
                     <span>{pn(r.id)}</span>
-                    <span className="num">{r.c} / {r.s}</span>
+                    <span className="num">{r.c} {r.c === 1 ? 'clic' : 'clics'} · {r.s} {r.s === 1 ? 'venta' : 'ventas'}</span>
                     <div className="track thin"><div className="fill" style={{ width: `${(r.c / prodMax) * 100}%` }} /></div>
                     <div className="track thin"><div className="fill s" style={{ width: `${(r.s / prodMax) * 100}%` }} /></div>
                   </div>
@@ -645,7 +658,7 @@ export default function Panel() {
             </div>
           </div>
           <div className="card">
-            <div className="card-head"><div><h2>A qué hora escriben</h2><p className="sub">Clics y ventas por hora del día, de 7 a. m. a 10 p. m. (hora de Lima).</p></div></div>
+            <div className="card-head"><div><h2>A qué hora escriben</h2><p className="sub">Clics y ventas por hora del día, de 7 a. m. a 10 p. m. (hora de Lima).</p></div><Legend /></div>
             <div className="hours duo" role="img" aria-label={'Clics por hora: ' + HOURS.map((h) => `${h}h ${hourC[h] || 0}`).join(', ')}>
               {HOURS.map((h) => (
                 <div key={h} title={`${h}:00, ${hourC[h] || 0} clics, ${hourS[h] || 0} ventas`}>
@@ -659,6 +672,10 @@ export default function Panel() {
         </div>
       </div>
 
+      <div className="demo-tools">
+        <button type="button" className="btn btn-sm btn-ghost" onClick={generateDemo} disabled={busy === 'demo'}><Icon name="stars2" />Generar datos de ejemplo</button>
+        <span className="hint">Para probar el panel antes de tener ventas reales. Se borran con un botón.</span>
+      </div>
       </>}
 
       {tab === 'ventas' && <>

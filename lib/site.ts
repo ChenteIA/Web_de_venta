@@ -39,12 +39,15 @@ export const PRODUCTS: Product[] = [
 export const PLACES = { portada: 'Botón de la portada', carta: 'Botón del producto', flotante: 'Botón flotante o de contacto' } as const;
 export type Place = keyof typeof PLACES;
 
-export function prodName(id: string | null | undefined, list: Product[] = PRODUCTS) {
+export function prodName(id: string | null | undefined, list: Product[] = PRODUCTS, markDeleted = false) {
   const p = list.find((x) => x.id === id);
   if (p) return p.name;
   if (id === 'general') return 'Consulta general';
   if (id === 'otro') return 'Otro producto';
-  return id || 'Otro';
+  if (!id) return 'Otro';
+  // Producto que ya no está en la carta: su código pasado a nombre legible.
+  const human = id.replace(/-+/g, ' ').replace(/^./, (c) => c.toUpperCase());
+  return markDeleted ? `${human} (eliminado)` : human;
 }
 
 // S/ 5 · S/ 5.50

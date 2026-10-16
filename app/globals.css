@@ -139,7 +139,7 @@ dialog.lightbox .close { display: block; margin: 12px auto 0; }
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: var(--gap); margin-bottom: 16px; }
 .kpi { border-radius: var(--r); padding: 20px; display: flex; flex-direction: column; gap: 6px; background: var(--surface); }
 .kpi .label { font-size: 13px; color: var(--muted); font-weight: var(--w-medium); letter-spacing: 0.01em; }
-.kpi .value { font-family: var(--f-display); font-size: 34px; line-height: 1.05; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
+.kpi .value { font-family: var(--f-body); font-weight: var(--w-strong); font-size: clamp(26px, 3vw, 32px); line-height: 1.1; letter-spacing: -0.01em; white-space: nowrap; }
 .kpi .delta { font-size: 13px; color: var(--muted); }
 .kpi .delta b { color: var(--ink); }
 .card { border-radius: var(--r); padding: var(--card-pad); background: var(--surface); min-width: 0; }
@@ -216,6 +216,14 @@ form.f { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,
   .tabs button { padding: 0 12px; font-size: 14px; }
   .tabs button svg { display: none; }
 }
+
+.toolbar .seg { flex-wrap: nowrap; }
+.chart-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.demo-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 8px; }
+.panel .grid2 { align-items: start; }
+.panel td .linkbtn { color: var(--muted); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .panel td .linkbtn:hover { color: var(--apple); text-decoration: underline; } }
+@media (max-width: 520px) { .toolbar .btn .vt-label { display: none; } .toolbar .btn { width: 40px; padding: 0; } }
 
 /* Productos del panel */
 .pr-form { background: var(--surface-2); border-radius: var(--r); padding: 20px; margin-bottom: 20px; }
