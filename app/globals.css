@@ -428,14 +428,14 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 .copy-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
 /* Pie: la última foto a sangre, con el nombre a todo lo ancho */
-.final { position: relative; isolation: isolate; min-height: 88svh; display: flex; flex-direction: column; justify-content: space-between; color: #F8F2EE; background: #1d130f; overflow: hidden;
+.final { position: relative; isolation: isolate; min-height: clamp(380px, 58svh, 520px); display: flex; flex-direction: column; justify-content: space-between; color: #F8F2EE; background: #1d130f; overflow: hidden;
   padding-block: 28px calc(28px + env(safe-area-inset-bottom, 0px)); padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px)); }
 .final-photo { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; filter: brightness(0.5); }
 .final-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-size: 16px; }
 .final-top nav { display: flex; flex-direction: column; gap: 6px; }
 .final-top a { color: #F8F2EE; text-underline-offset: 4px; }
 .final-top p { max-width: 30ch; }
-.wordmark { font-family: var(--f-display); font-size: clamp(64px, 19vw, 300px); line-height: 0.82; letter-spacing: -0.035em; max-width: none !important; white-space: nowrap; }
+.wordmark { font-family: var(--f-display); font-size: clamp(56px, 11vw, 168px); line-height: 0.82; letter-spacing: -0.035em; max-width: none !important; white-space: nowrap; }
 .legal { font-size: var(--t-small); margin-top: 18px; }
 
 /* Botón flotante: plano, sin sombra */
@@ -471,7 +471,8 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .itinerary { padding: 56px clamp(24px, 3.4vw, 56px) 64px; }
   .cells { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .final { padding: 40px 48px 36px; }
-  .final-photo { object-position: 50% 82%; }
+  .final { min-height: clamp(420px, 56svh, 560px); }
+  .final-photo { object-position: 50% 62%; }
 }
 @media (min-width: 760px) {
   /* El encabezado usa los mismos bordes que la página, no una columna centrada */
