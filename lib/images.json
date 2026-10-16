@@ -1,15 +1,15 @@
 {
   "portada": {
-    "width": 767,
-    "height": 1375,
+    "width": 768,
+    "height": 1376,
     "srcs": [
       {
         "w": 640,
         "src": "/img/portada-640.webp"
       },
       {
-        "w": 767,
-        "src": "/img/portada-767.webp"
+        "w": 768,
+        "src": "/img/portada-768.webp"
       }
     ]
   },

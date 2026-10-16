@@ -45,8 +45,25 @@ export default async function Home() {
   const reviews = await loadReviews();
   const portada = IMAGES.portada;
   const ancha = IMAGES.portadaAncha;
-  // En el celular se usa la vertical; si solo existe la ancha, también sirve recortada.
-  const movil = portada || ancha;
+
+  const heroText = (
+    <>
+      <h1>Mermeladas y conservas artesanales, hechas en Ica con fruta del valle.</h1>
+      <p className="lede">Frascos preparados en tandas pequeñas y sin conservantes. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.</p>
+      <div className="actions">
+        <WaLink product="general" place="portada">Pedir por WhatsApp</WaLink>
+        <a className="btn btn-ghost" href="#carta">Ver la carta</a>
+      </div>
+    </>
+  );
+  const heroFacts = (
+    <div className="facts">
+      <div><Icon name="calendar" className="fi" /><b>Pedidos con un día de anticipación</b><span>Las cajas de regalo, con dos.</span></div>
+      <div><Icon name="truck" className="fi" /><b>Recojo o delivery</b><span>En la ciudad de Ica.</span></div>
+      <div><Icon name="clock" className="fi" /><b>Atendemos 24/7</b><span>Escríbenos a cualquier hora.</span></div>
+      <div><Icon name="wallet" className="fi" /><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
+    </div>
+  );
 
   return (
     <>
@@ -58,43 +75,43 @@ export default async function Home() {
       </Header>
 
       <main id="pub">
-        <section className={ancha ? 'hero hero-wide' : 'hero'}>
-          <div className="wrap">
-            <div className="hero-copy">
-              <h1>Mermeladas y conservas artesanales, hechas en Ica con fruta del valle.</h1>
-              <p className="lede">Frascos preparados en tandas pequeñas y sin conservantes. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.</p>
-              <div className="actions">
-                <WaLink product="general" place="portada">Pedir por WhatsApp</WaLink>
-                <a className="btn btn-ghost" href="#carta">Ver la carta</a>
-              </div>
-              <div className="facts">
-                <div><Icon name="calendar" className="fi" /><b>Pedidos con un día de anticipación</b><span>Las cajas de regalo, con dos.</span></div>
-                <div><Icon name="truck" className="fi" /><b>Recojo o delivery</b><span>En la ciudad de Ica.</span></div>
-                <div><Icon name="clock" className="fi" /><b>Atendemos 24/7</b><span>Escríbenos a cualquier hora.</span></div>
-                <div><Icon name="wallet" className="fi" /><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
-              </div>
-            </div>
-            {movil ? (
+        {portada || ancha ? (
+          /* Portada fotográfica: la foto a todo lo ancho con el texto encima.
+             Computadora: portada-ancha.jpg (horizontal). Celular: portada.jpg (vertical). */
+          <section className="hero hero-wide">
+            <div className="hero-stage">
               <div className="hero-photo">
                 {/* Una sola imagen: el navegador descarga solo la versión que muestra */}
                 <picture>
-                  {ancha && <source media="(min-width: 821px)" srcSet={srcSet(ancha)} sizes="100vw" width={ancha.width} height={ancha.height} />}
+                  {ancha && portada && <source media="(min-width: 821px)" srcSet={srcSet(ancha)} sizes="100vw" width={ancha.width} height={ancha.height} />}
                   <img
-                    src={largest(movil)}
-                    srcSet={srcSet(movil)}
-                    sizes={ancha ? '100vw' : '(max-width: 820px) 100vw, 560px'}
-                    width={movil.width}
-                    height={movil.height}
-                    alt={`Productos de ${BUSINESS.name}`}
+                    src={largest((portada || ancha)!)}
+                    srcSet={srcSet((portada || ancha)!)}
+                    sizes="100vw"
+                    width={(portada || ancha)!.width}
+                    height={(portada || ancha)!.height}
+                    alt={`Frascos de mermelada y conservas de ${BUSINESS.name} sobre una mesa de madera`}
                     fetchPriority="high"
                   />
                 </picture>
               </div>
-            ) : (
+              <div className="wrap hero-copy">
+                {heroText}
+              </div>
+            </div>
+            <div className="wrap hero-facts">{heroFacts}</div>
+          </section>
+        ) : (
+          <section className="hero">
+            <div className="wrap">
+              <div>
+                {heroText}
+                {heroFacts}
+              </div>
               <div className="pie-art" role="img" aria-label="Ilustración de frascos de mermelada y conserva"><JarsArt /></div>
-            )}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
 
         <section className="band alt" id="carta">
           <div className="wrap">

@@ -128,18 +128,9 @@ button { cursor: pointer; }
 .hero .facts .fi { display: block; width: 22px; height: 22px; color: var(--ink); margin-bottom: 10px; }
 .pie-art { width: 100%; max-width: 460px; justify-self: center; aspect-ratio: 1; }
 .pie-art svg { width: 100%; height: 100%; display: block; }
-.hero-photo { width: 100%; justify-self: end; aspect-ratio: 4 / 5; max-height: 640px; border-radius: var(--r); overflow: hidden; background: var(--surface-2); }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; display: block; }
 @media (max-width: 820px) {
   .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 0 var(--section); gap: 32px; }
   .pie-art { max-width: 300px; grid-row: 1; margin-top: 32px; }
-  /* Foto a todo lo ancho en el celular */
-  .hero-photo {
-    grid-row: 1; justify-self: stretch; aspect-ratio: 4 / 3; max-height: none; border-radius: 0;
-    margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
-    margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
-    width: auto;
-  }
   .hero .lede { font-size: 17px; margin-top: 20px; }
 }
 @media (max-width: 420px) { .hero .actions .btn { padding: 0 18px; } }
@@ -399,36 +390,60 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 /* La portada ya cierra con su propio espacio: la carta no suma otro encima */
 .hero + section.band { padding-top: 0; }
 
-/* ============ PORTADA A PANTALLA COMPLETA (computadora, con portada-ancha.jpg) ============ */
-/* La foto es oscura en ambos temas, así que el texto encima usa colores fijos claros. */
-:root { --on-photo: #F8F2EE; --on-photo-muted: rgba(248, 242, 238, 0.78); --on-photo-line: rgba(248, 242, 238, 0.22); --photo-shade: 18, 11, 8; }
+/* ============ PORTADA FOTOGRÁFICA (foto a todo lo ancho con el texto encima) ============ */
+/* Computadora: portada-ancha.jpg; celular: portada.jpg. La foto es oscura en ambos temas,
+   así que el texto encima usa colores claros fijos. */
+:root { --on-photo: #F8F2EE; --on-photo-muted: rgba(248, 242, 238, 0.8); --on-photo-line: rgba(248, 242, 238, 0.22); --photo-shade: 18, 11, 8; }
+.hero-wide { position: relative; isolation: isolate; }
+.hero-wide .wrap { display: block; padding-block: 0; }
+.hero-stage { position: relative; }
+.hero-photo { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: rgb(var(--photo-shade)); }
 .hero-photo picture { display: contents; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-photo::after { content: ""; position: absolute; inset: 0; }
+.hero-wide .hero-copy h1 { color: var(--on-photo); text-shadow: 0 1px 24px rgba(var(--photo-shade), 0.35); }
+.hero-wide .hero-copy .lede { color: var(--on-photo-muted); text-shadow: 0 1px 16px rgba(var(--photo-shade), 0.45); }
+.hero-wide .hero-copy .btn-ghost { color: var(--on-photo); border-color: var(--on-photo); }
+@media (hover: hover) and (pointer: fine) { .hero-wide .hero-copy .btn-ghost:hover { background: rgba(248, 242, 238, 0.12); } }
+
+/* Celular: la foto llena la pantalla; el texto va arriba, sobre la pared; los frascos asoman abajo.
+   Los cuatro datos van debajo de la foto para no tapar los frascos. */
+@media (max-width: 820px) {
+  .hero-stage { min-height: min(calc(100svh - 116px), 780px); }
+  .hero-wide .hero-copy { padding-block: 36px 40px; }
+  .hero-wide h1 { font-size: clamp(34px, 9.4vw, 44px); line-height: 1.06; }
+  .hero-wide .lede { font-size: 16px; margin-top: 16px; }
+  .hero-wide .actions { margin-top: 24px; }
+  .hero-photo img { object-position: 50% 100%; }
+  .hero-photo::after { background: linear-gradient(180deg, rgba(var(--photo-shade), 0.55) 0%, rgba(var(--photo-shade), 0.3) 42%, rgba(var(--photo-shade), 0) 60%); }
+  .hero-wide .hero-facts { padding-block: 32px var(--section); }
+  .hero-wide .facts { margin-top: 0; padding-top: 0; border-top: 0; }
+}
+
+/* Computadora: la foto cubre toda la portada, incluidos los datos */
 @media (min-width: 821px) {
-  .hero-wide { position: relative; isolation: isolate; overflow: hidden; color: var(--on-photo); }
-  .hero-wide .wrap { grid-template-columns: minmax(0, 580px); align-content: center; min-height: clamp(620px, 82svh, 800px); padding-block: 88px; }
-  .hero-wide .hero-photo {
-    position: absolute; inset: 0; z-index: -1; max-height: none; aspect-ratio: auto; border-radius: 0; background: rgb(var(--photo-shade));
-  }
-  .hero-wide .hero-photo img { object-position: 72% 50%; }
-  /* Degradado para que el texto se lea sobre la pared */
-  .hero-wide .hero-photo::after {
-    content: ""; position: absolute; inset: 0;
+  .hero-wide { color: var(--on-photo); display: flex; flex-direction: column; justify-content: center; min-height: clamp(620px, 82svh, 800px); padding-block: 88px; }
+  .hero-stage { position: static; }
+  /* En un flex en columna, el margin:auto del .wrap lo encogería y centraría: que ocupe todo el ancho */
+  .hero-wide > .wrap { width: 100%; }
+  .hero-wide .hero-copy > *, .hero-wide .hero-facts > * { max-width: 580px; }
+  .hero-photo img { object-position: 72% 50%; }
+  .hero-photo::after {
     background: linear-gradient(90deg, rgba(var(--photo-shade), 0.72) 0%, rgba(var(--photo-shade), 0.45) 38%, rgba(var(--photo-shade), 0) 62%),
                 linear-gradient(0deg, rgba(var(--photo-shade), 0.35) 0%, rgba(var(--photo-shade), 0) 30%);
   }
-  .hero-wide h1 { color: var(--on-photo); }
-  .hero-wide .lede, .hero-wide .facts span { color: var(--on-photo-muted); }
+  .hero-wide .facts span { color: var(--on-photo-muted); }
   .hero-wide .facts { border-top-color: var(--on-photo-line); }
   .hero-wide .facts .fi { color: var(--on-photo); }
-  .hero-wide .btn-ghost { color: var(--on-photo); border-color: var(--on-photo); }
-  /* El texto se dibuja sobre la foto: necesita un poco de contraste extra */
-  .hero-wide h1, .hero-wide .lede { text-shadow: 0 1px 24px rgba(var(--photo-shade), 0.35); }
   .hero-wide + section.band { padding-top: var(--section); }
-}
-@media (min-width: 821px) and (hover: hover) and (pointer: fine) {
-  .hero-wide .btn-ghost:hover { background: rgba(248, 242, 238, 0.12); }
 }
 @media (min-width: 821px) and (max-width: 1199px) {
   .hero-wide h1 { font-size: clamp(42px, 5.2vw, 60px); }
-  .hero-wide .hero-photo img { object-position: 88% 50%; }
+  .hero-photo img { object-position: 88% 50%; }
+}
+/* Celulares pequeños: los dos botones caben en una fila y no bajan sobre los frascos */
+@media (max-width: 380px) {
+  .hero .actions { gap: 8px; }
+  .hero .actions .btn { padding: 0 14px; font-size: 15px; gap: 6px; }
+  .hero .actions .btn svg { width: 18px; height: 18px; }
 }
