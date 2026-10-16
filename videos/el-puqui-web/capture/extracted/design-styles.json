@@ -1,0 +1,188 @@
+{
+  "typography": [
+    {
+      "role": "display",
+      "fontFamily": "Gloock",
+      "fontSize": "72px",
+      "fontWeight": "400",
+      "lineHeight": "74.88px",
+      "letterSpacing": "0.36px",
+      "color": "#F8F2EE",
+      "sampleText": "Mermeladas y conservas artesanales, hechas en Ica con fruta "
+    },
+    {
+      "role": "heading",
+      "fontFamily": "Gloock",
+      "fontSize": "46px",
+      "fontWeight": "400",
+      "lineHeight": "50.6px",
+      "letterSpacing": "0.46px",
+      "color": "#2B1B18",
+      "sampleText": "La carta"
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Figtree",
+      "fontSize": "20px",
+      "fontWeight": "560",
+      "lineHeight": "26px",
+      "letterSpacing": "normal",
+      "color": "#2B1B18",
+      "sampleText": "Mermelada de manzana delicia"
+    },
+    {
+      "role": "body",
+      "fontFamily": "Figtree",
+      "fontSize": "18px",
+      "fontWeight": "400",
+      "lineHeight": "27px",
+      "letterSpacing": "normal",
+      "color": "#F8F2EE",
+      "sampleText": "Frascos preparados en tandas pequeñas y sin conservantes. El"
+    },
+    {
+      "role": "link",
+      "fontFamily": "Figtree",
+      "fontSize": "15px",
+      "fontWeight": "500",
+      "lineHeight": "22.5px",
+      "letterSpacing": "normal",
+      "color": "#2B1B18",
+      "sampleText": "La carta"
+    }
+  ],
+  "spacing": {
+    "observed": [
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      20,
+      24,
+      32,
+      40,
+      56,
+      72
+    ],
+    "baseUnit": 8
+  },
+  "radius": [
+    "999px"
+  ],
+  "shadows": [
+    {
+      "value": "rgba(43, 27, 24, 0.18) 0px 8px 24px 0px",
+      "count": 1
+    }
+  ],
+  "buttons": [
+    {
+      "label": "button",
+      "background": "#F2E7E2",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#2B1B18",
+      "padding": "0px",
+      "borderRadius": "999px",
+      "border": "0px none rgb(43, 27, 24)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "40px"
+    },
+    {
+      "label": "Pedir por WhatsApp",
+      "background": "#2E6B3B",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#FFFFFF",
+      "padding": "0px 24px",
+      "borderRadius": "999px",
+      "border": "0px none rgb(255, 255, 255)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "500",
+      "height": "48px"
+    },
+    {
+      "label": "Ver la carta",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#F8F2EE",
+      "padding": "0px 24px",
+      "borderRadius": "999px",
+      "border": "1px solid rgb(248, 242, 238)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "500",
+      "height": "48px"
+    },
+    {
+      "label": "Copiar",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#2B1B18",
+      "padding": "0px 14px",
+      "borderRadius": "999px",
+      "border": "1px solid rgb(43, 27, 24)",
+      "boxShadow": "none",
+      "fontSize": "13px",
+      "fontWeight": "500",
+      "height": "36px"
+    }
+  ],
+  "cards": [
+    {
+      "label": "card",
+      "background": "#FAF4F1",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#2B1B18",
+      "padding": "0px",
+      "borderRadius": "12px",
+      "border": "0px none rgb(43, 27, 24)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "523px"
+    }
+  ],
+  "nav": {
+    "label": "navigation",
+    "background": "color(srgb 1 1 1 / 0.82)",
+    "backgroundImage": "",
+    "backdropFilter": "saturate(1.4) blur(16px)",
+    "color": "#2B1B18",
+    "padding": "0px",
+    "borderRadius": "0px",
+    "border": "",
+    "boxShadow": "none",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "height": "65px"
+  },
+  "chips": [],
+  "statCells": [],
+  "tabs": [],
+  "backgrounds": [
+    {
+      "value": "linear-gradient(90deg, rgba(18, 11, 8, 0.72) 0%, rgba(18, 11, 8, 0.45) 38%, rgba(18, 11, 8, 0) 62%), linear-gradient(0deg, rgba(18, 11, 8, 0.35) 0%, rgba(18, 11, 8, 0) 30%)",
+      "area": 1978080
+    }
+  ],
+  "glass": [
+    {
+      "backdropFilter": "saturate(1.4) blur(16px)",
+      "background": "color(srgb 1 1 1 / 0.82)",
+      "border": "",
+      "borderRadius": "0px",
+      "boxShadow": "",
+      "area": 124800
+    }
+  ]
+}

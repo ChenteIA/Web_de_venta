@@ -1,0 +1,102 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
+    #w04-bg { position: absolute; inset: 0; background: #FFFFFF; }
+    #w04-page { position: absolute; left: 0; top: 0; width: 1080px; height: 17613px; }
+    #w04-page img { display: block; width: 1080px; height: 17613px; }
+    #w04-head { position: absolute; left: 0; top: 0; width: 1080px; height: 195px; }
+    #w04-fab { position: absolute; left: 858px; top: 1698px; width: 168px; height: 168px; }
+    .w04-chip { position: absolute; left: 50%; top: 226px; transform: translateX(-50%); padding: 22px 44px; border-radius: 999px; background: #631117; color: #FAF4F1; font-size: 44px; font-weight: 600; white-space: nowrap; }
+    .w04-chip b { font-family: "Gloock", serif; font-weight: 400; color: #F3B7BC; margin-right: 14px; }
+    #w04-ring { position: absolute; left: 480px; top: 1512px; width: 120px; height: 120px; border-radius: 50%; border: 8px solid rgba(43, 27, 24, 0.45); }
+    #w04-press { position: absolute; left: 120px; top: 1500px; width: 840px; height: 144px; border-radius: 999px; background: rgba(18, 11, 8, 0.25); }
+    #w04-chat { position: absolute; inset: 0; background: color-mix(in srgb, #FAF4F1 80%, #F3B7BC); }
+    #w04-ch { position: absolute; left: 0; right: 0; top: 0; height: 230px; background: #631117; color: #FAF4F1; display: flex; align-items: center; gap: 30px; padding: 40px 44px 0; }
+    #w04-ch .w04-av { width: 124px; height: 124px; border-radius: 50%; background: #FAF4F1; display: flex; align-items: center; justify-content: center; }
+    #w04-ch .w04-av img { width: 96px; height: 96px; }
+    #w04-ch b { display: block; font-size: 58px; font-weight: 600; line-height: 1.1; }
+    #w04-ch span { display: block; font-size: 38px; color: #F3B7BC; }
+    .w04-b { position: absolute; padding: 30px 36px 0; font-size: 44px; line-height: 58px; white-space: nowrap; }
+    .w04-b .w04-meta { height: 40px; display: flex; justify-content: flex-end; align-items: center; gap: 8px; font-size: 28px; opacity: 0.75; }
+    .w04-me { right: 40px; top: 290px; height: 302px; background: #2E6B3B; color: #FAF4F1; border-radius: 40px 40px 12px 40px; }
+    .w04-them { left: 40px; top: 622px; height: 186px; background: #FAF4F1; border: 2px solid rgba(43, 27, 24, 0.1); border-radius: 40px 40px 40px 12px; }
+    #w04-dots { position: absolute; left: 40px; top: 622px; width: 180px; height: 110px; background: #FAF4F1; border: 2px solid rgba(43, 27, 24, 0.1); border-radius: 40px 40px 40px 12px; display: flex; align-items: center; justify-content: center; gap: 16px; }
+    #w04-dots i { display: block; width: 22px; height: 22px; border-radius: 50%; background: #6E5A55; }
+    #w04-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 330px; display: flex; align-items: flex-start; gap: 24px; padding: 40px 40px 0; }
+    #w04-field { flex: 1; height: 250px; border-radius: 48px; background: #FAF4F1; border: 4px solid #2E6B3B; padding: 24px 34px; font-size: 42px; line-height: 52px; position: relative; white-space: nowrap; }
+    #w04-ph { position: absolute; left: 36px; top: 96px; color: #6E5A55; opacity: 0; }
+    #w04-send { width: 136px; height: 136px; border-radius: 50%; background: #2E6B3B; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 56px; }
+    #w04-tag { position: absolute; left: 50%; top: 1440px; transform: translateX(-50%); padding: 16px 34px; border-radius: 999px; background: #A61D27; color: #FAF4F1; font-size: 38px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="04-whatsapp" data-width="1080" data-height="1920" data-duration="8.6">
+    <div id="w04-bg" class="clip" data-start="0" data-duration="8.6" data-track-index="0"></div>
+    <div id="w04-page"><img src="assets/page-full.jpg" alt="La web de El Puqui en el celular"></div>
+    <img id="w04-head" src="assets/header.png" alt="">
+    <img id="w04-fab" src="assets/fab.png" alt="">
+    <div id="w04-c3" class="w04-chip"><b>3</b>Toca y pide</div>
+    <div id="w04-press"></div>
+    <div id="w04-ring"></div>
+    <div id="w04-chat">
+      <div id="w04-ch"><div class="w04-av"><img src="assets/logo.png" alt=""></div><div><b>El Puqui</b><span>en línea</span></div></div>
+      <div id="w04-m1" class="w04-b w04-me">Hola El Puqui, quiero pedir:<br>Mermelada de fresa (S/ 15).<br>¿Para qué fecha lo tienen<br>disponible?<div class="w04-meta">10:42<svg viewBox="0 0 24 14" width="34" height="20" aria-hidden="true"><path d="M1 7l4 4 8-9M9 11l2 1 9-11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div id="w04-dots"><i></i><i></i><i></i></div>
+      <div id="w04-m2" class="w04-b w04-them">¡Claro! Lo tenemos para mañana.<br>¿Recojo o delivery?<div class="w04-meta">10:43</div></div>
+      <div id="w04-bar"><div id="w04-field"><span id="w04-ph">Mensaje</span><span id="w04-txt">Hola El Puqui, quiero pedir:<br>Mermelada de fresa (S/ 15).<br>¿Para qué fecha lo tienen<br>disponible?</span></div><div id="w04-send"><svg viewBox="0 0 24 24" width="62" height="62" aria-hidden="true"><path d="M3 11.5 21 3l-6.5 18-3-7.5L3 11.5z" fill="#FAF4F1"/></svg></div></div>
+      <div id="w04-tag">Ya va escrito</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      const page = document.getElementById("w04-page");
+      const head = document.getElementById("w04-head");
+      const view = { s: 4571 };
+      function apply() {
+        page.style.transform = "translateY(" + (-view.s) + "px)";
+        head.style.transform = "translateY(" + Math.max(0, 156 - view.s) + "px)";
+      }
+      apply();
+      function scrollTo(target, t, dur, ease) {
+        tl.to(view, { s: target, duration: dur, ease: ease || "power2.inOut", onUpdate: apply }, t);
+      }
+
+      function pop(sel, t, origin) {
+        tl.fromTo(sel, { opacity: 0, y: 24, scale: 0.96, transformOrigin: origin }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }, t);
+      }
+      // Escena 1 (0.0–1.4s): la tarjeta de fresa en la web + etiqueta
+      tl.fromTo("#w04-c3", { opacity: 0, y: 30, xPercent: -50 }, { opacity: 1, y: 0, xPercent: -50, duration: 0.45, ease: "power3.out" }, 0.4);
+      // Escena 2 (1.4–2.0s): toque en "Pedir por WhatsApp"
+      tl.fromTo("#w04-ring", { opacity: 0.9, scale: 0.3 }, { opacity: 0, scale: 2.4, duration: 0.6, ease: "power2.out" }, 1.4);
+      tl.fromTo("#w04-press", { opacity: 0 }, { opacity: 1, duration: 0.08 }, 1.4);
+      tl.to("#w04-press", { opacity: 0, duration: 0.2 }, 1.62);
+      // Escena 3 (2.0–4.4s): se abre el chat con el mensaje ya escrito
+      tl.to("#w04-c3", { opacity: 0, duration: 0.25, ease: "power2.out" }, 1.9);
+      tl.fromTo("#w04-chat", { y: 1920 }, { y: 0, duration: 0.6, ease: "power3.out" }, 2.0);
+      tl.fromTo("#w04-tag", { opacity: 0, y: 20, xPercent: -50 }, { opacity: 1, y: 0, xPercent: -50, duration: 0.4, ease: "power3.out" }, 2.9);
+      // Escena 4 (4.4–8.0s): enviar, escribiendo… y respuesta
+      tl.fromTo("#w04-send", { scale: 1 }, { scale: 0.86, duration: 0.1, ease: "power2.out" }, 4.3);
+      tl.to("#w04-send", { scale: 1, duration: 0.2, ease: "power3.out" }, 4.4);
+      tl.to(["#w04-txt", "#w04-tag"], { opacity: 0, duration: 0.12 }, 4.42);
+      tl.to("#w04-ph", { opacity: 1, duration: 0.12 }, 4.45);
+      tl.to("#w04-field", { borderColor: "rgba(43, 27, 24, 0)", duration: 0.2 }, 4.45);
+      pop("#w04-m1", 4.45, "100% 100%");
+      tl.fromTo("#w04-dots", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, 5.0);
+      const dots = document.querySelectorAll("#w04-dots i");
+      for (let t = 5.1; t < 5.85; t += 0.45) {
+        dots.forEach(function (d, i) {
+          tl.fromTo(d, { opacity: 0.3 }, { opacity: 1, duration: 0.15, ease: "power1.out" }, t + i * 0.12);
+          tl.to(d, { opacity: 0.3, duration: 0.15, ease: "power1.in" }, t + i * 0.12 + 0.15);
+        });
+      }
+      tl.set("#w04-dots", { opacity: 0 }, 6.0);
+      pop("#w04-m2", 6.0, "0% 100%");
+      tl.to({}, { duration: 0.01 }, 7.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["04-whatsapp"] = tl;
+    })();
+  </script>
+</template>

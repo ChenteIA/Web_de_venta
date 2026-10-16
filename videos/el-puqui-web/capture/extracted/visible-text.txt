@@ -1,0 +1,61 @@
+[div] Demo de ChenteIA. El Puqui es un negocio ficticio y el número de WhatsApp es de prueba.
+[b] El Puqui
+[a] La carta
+[a] Cómo pedir
+[h1] Mermeladas y conservas artesanales, hechas en Ica con fruta del valle.
+[p] Frascos preparados en tandas pequeñas y sin conservantes. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.
+[a] Pedir por WhatsApp
+[a] Ver la carta
+[b] Pedidos con un día de anticipación
+[span] Las cajas de regalo, con dos.
+[b] Recojo o delivery
+[span] En la ciudad de Ica.
+[b] Atendemos 24/7
+[span] Escríbenos a cualquier hora.
+[b] Pago al confirmar
+[span] Yape, Plin o efectivo.
+[h2] La carta
+[p] Precios en soles. Cada botón abre WhatsApp con tu pedido ya escrito.
+[h3] Mermelada de manzana delicia
+[span] frasco de 350 g
+[p] Con manzana delicia del valle y un toque de canela. La que más piden.
+[a] Pedir por WhatsApp
+[h3] Mermelada de fresa
+[span] frasco de 350 g
+[p] Fresa entera cocida a fuego lento, con trozos de fruta. Ideal para el desayuno.
+[a] Pedir por WhatsApp
+[h3] Mermelada de aguaymanto
+[span] frasco de 350 g
+[p] Dulce y ácida a la vez. Va muy bien con queso fresco o yogur.
+[a] Pedir por WhatsApp
+[h3] Duraznos en almíbar
+[span] frasco de 600 g
+[p] Mitades de durazno en almíbar ligero. Para postres o solos, bien fríos.
+[a] Pedir por WhatsApp
+[h3] Encurtido de verduras
+[span] frasco de 500 g
+[p] Cebolla, zanahoria, vainita y ají amarillo en vinagre. Acompaña cualquier plato.
+[a] Pedir por WhatsApp
+[h3] Caja de regalo artesanal
+[span] desde, 3 frascos a elección
+[p] Arma tu caja con tus sabores favoritos. Pídela con dos días de anticipación.
+[a] Pedir por WhatsApp
+[h2] Cómo pedir
+[b] Elige y toca el botón
+[span] Se abre WhatsApp con el producto y el precio. Solo agrega la fecha que lo necesitas.
+[b] Confirmamos y pagas
+[span] Te respondemos con la disponibilidad. Pagas con Yape, Plin o en efectivo al recoger.
+[b] Recoges o te lo llevamos
+[span] Recojo en el local o delivery en Ica, a la hora que acordemos.
+[h2] Lo que nos escriben
+[p] Capturas reales de los mensajes que nos mandan nuestros clientes por WhatsApp.
+[b] Pronto compartiremos lo que nos escriben
+[span] Si ya probaste algo nuestro, cuéntanos por WhatsApp.
+[b] El Puqui
+[p] Mermeladas y conservas artesanales en Ica.
+[h3] Dónde estamos
+[p] Ica, Perú (dirección de ejemplo)
+[p] Abierto 24/7, todos los días del año.
+[h3] WhatsApp
+[span] +51 900 000 000
+[span] Escríbenos
