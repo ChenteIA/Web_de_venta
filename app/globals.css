@@ -394,3 +394,6 @@ footer.site h3 svg { width: 18px; height: 18px; color: var(--crust); flex-shrink
 
 /* Portada: los frascos están en la parte baja de la foto; el recorte la sigue en cualquier formato */
 .hero-photo img { object-position: 50% 78%; }
+
+/* Tarjetas con y sin foto miden lo mismo, así las filas de la carta quedan alineadas */
+.item .art { height: auto; aspect-ratio: 4 / 3; }

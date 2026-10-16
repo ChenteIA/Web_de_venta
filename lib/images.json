@@ -29,6 +29,34 @@
   },
   "favicon": true,
   "products": {
+    "caja-regalo": {
+      "width": 1200,
+      "height": 896,
+      "srcs": [
+        {
+          "w": 400,
+          "src": "/img/productos/caja-regalo-400.webp"
+        },
+        {
+          "w": 800,
+          "src": "/img/productos/caja-regalo-800.webp"
+        }
+      ]
+    },
+    "encurtido": {
+      "width": 1200,
+      "height": 896,
+      "srcs": [
+        {
+          "w": 400,
+          "src": "/img/productos/encurtido-400.webp"
+        },
+        {
+          "w": 800,
+          "src": "/img/productos/encurtido-800.webp"
+        }
+      ]
+    },
     "mermelada-aguaymanto": {
       "width": 1200,
       "height": 896,
