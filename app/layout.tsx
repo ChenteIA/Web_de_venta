@@ -5,7 +5,8 @@ import { BUSINESS } from '@/lib/site';
 import './globals.css';
 
 const gloock = Gloock({ weight: '400', subsets: ['latin'], variable: '--font-gloock', display: 'swap' });
-const figtree = Figtree({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-figtree', display: 'swap' });
+// Figtree variable: permite pesos intermedios (500, 560) en vez de saltar de 400 a 700.
+const figtree = Figtree({ subsets: ['latin'], variable: '--font-figtree', display: 'swap' });
 
 export const metadata: Metadata = {
   title: BUSINESS.name,
@@ -22,7 +23,7 @@ export const viewport: Viewport = {
   interactiveWidget: 'resizes-content',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
-    { media: '(prefers-color-scheme: dark)', color: '#191210' },
+    { media: '(prefers-color-scheme: dark)', color: '#171210' },
   ],
 };
 

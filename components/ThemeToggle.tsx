@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Icon from './icons';
 
-const BAR = { light: '#FFFFFF', dark: '#191210' };
+const BAR = { light: '#FFFFFF', dark: '#171210' };
 
 // La barra de estado del celular toma el color del encabezado del tema activo.
 function syncThemeColor() {
