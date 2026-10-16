@@ -4,7 +4,6 @@ import ReviewsGallery, { type PublicReview } from '@/components/ReviewsGallery';
 import WaLink from '@/components/WaLink';
 import Reveal from '@/components/Reveal';
 import WaTracker from '@/components/WaTracker';
-import Icon from '@/components/icons';
 import OrderPicker from '@/components/OrderPicker';
 import StageSync from '@/components/StageSync';
 import { IMAGES, largest, srcSet, type ImgSet } from '@/lib/images';
@@ -188,9 +187,9 @@ export default async function Home() {
               <CopyButton text={waDisplay()} label="Copiar número" />
             </div>
             <dl className="contact-facts">
-              <div data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><dt><Icon name="map-point" />Dónde</dt><dd>{BUSINESS.address}. Recojo o delivery en la ciudad.</dd></div>
-              <div data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><dt><Icon name="clock" />Horario</dt><dd>Atendemos 24/7, todos los días.</dd></div>
-              <div data-reveal="" style={{ '--i': 3 } as React.CSSProperties}><dt><Icon name="wallet" />Pago</dt><dd>Yape, Plin o efectivo.</dd></div>
+              <div data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><dt>Dónde</dt><dd>{BUSINESS.address}. Recojo o delivery en la ciudad.</dd></div>
+              <div data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><dt>Horario</dt><dd>Atendemos 24/7, todos los días.</dd></div>
+              <div data-reveal="" style={{ '--i': 3 } as React.CSSProperties}><dt>Pago</dt><dd>Yape, Plin o efectivo.</dd></div>
             </dl>
           </div>
         </section>

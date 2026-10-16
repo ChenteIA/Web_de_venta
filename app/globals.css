@@ -421,11 +421,10 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 .contact-actions button { display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: var(--r-pill); border: 0; background: var(--c-ink); color: var(--c-bg); font-size: 16px; font-weight: var(--w-medium); transition: transform 160ms var(--ease-out), background-color 150ms ease; }
 .contact-actions button svg { width: 18px; height: 18px; flex-shrink: 0; }
 .contact-actions button:active { transform: scale(0.97); }
-.contact-facts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 12px 0 0; }
-.contact-facts > div { background: var(--c-tile); border-radius: var(--r); padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.contact-facts dt { display: flex; align-items: center; gap: 8px; font-weight: var(--w-strong); font-size: 17px; }
-.contact-facts dt svg { width: 20px; height: 20px; color: var(--crust); flex-shrink: 0; }
-.contact-facts dd { margin: 0; color: var(--c-soft); font-size: 17px; line-height: 1.45; }
+.contact-facts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin: 16px 0 0; }
+.contact-facts > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.contact-facts dt { color: var(--c-soft); font-size: var(--t-lead); }
+.contact-facts dd { margin: 0; color: var(--c-ink); font-size: var(--t-lead); line-height: 1.4; }
 .copy-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
 /* Pie: la última foto a sangre, con el nombre a todo lo ancho */
@@ -480,7 +479,7 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   /* Contacto: título a la izquierda, número a todo lo ancho, datos en tres columnas */
   .contact-inner { padding: 72px 48px 56px; gap: 32px; }
   .awning-thin { height: 20px; }
-  .contact-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+  .contact-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
   .contact-actions { display: flex; gap: 10px; }
   .contact-actions > * { padding-inline: 22px; }
   .card-body { padding-inline: clamp(24px, 4vw, 48px); }
