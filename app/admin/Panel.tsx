@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { BUSINESS, PLACES, PRODUCTS, prod, prodName, type Place } from '@/lib/site';
+import { BUSINESS, PLACES, PRODUCTS, prodName, soles, type Place, type Product } from '@/lib/site';
+import { normalize, PRODUCT_COLS, PRODUCTS_BUCKET, productPhoto } from '@/lib/products';
 import Icon from '@/components/icons';
 import { supabaseBrowser } from '@/lib/supabase/client';
 import { REVIEWS_BUCKET } from '@/lib/supabase/config';
@@ -10,6 +11,9 @@ type Click = { id: string; product: string; place: Place; ts: string; day: strin
 type Sale = { id: string; product: string; qty: number; amount: number; day: string; click_id: string | null; ts: string; demo: boolean };
 type Review = { id: string; image_path: string; customer: string | null; product: string | null; day: string; ts: string; visible: boolean; url?: string };
 type Range = '1' | '7' | '30' | 'all';
+type Tab = 'resumen' | 'ventas' | 'productos' | 'resenas';
+const TABS: [Tab, string, 'chart' | 'bag' | 'box' | 'gallery'][] = [['resumen', 'Resumen', 'chart'], ['ventas', 'Ventas', 'bag'], ['productos', 'Productos', 'box'], ['resenas', 'Reseñas', 'gallery']];
+type Draft = { id: string; isNew: boolean; name: string; price: string; unit: string; description: string; active: boolean; sort: string; photo_path: string | null };
 
 const HOURS = Array.from({ length: 16 }, (_, i) => i + 7); // 7 a. m. a 10 p. m.
 const PAGE = 1000;
@@ -42,13 +46,14 @@ function download(filename: string, text: string) {
   a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
+const slugify = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
 const slug = BUSINESS.name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-// Reduce una captura a WebP de máx. 1080 px de ancho antes de subirla.
-async function toWebp(file: File): Promise<Blob> {
+// Reduce una imagen a WebP de máx. `max` px de ancho antes de subirla.
+async function toWebp(file: File, max = 1080): Promise<Blob> {
   try {
     const bmp = await createImageBitmap(file);
-    const scale = Math.min(1, 1080 / bmp.width);
+    const scale = Math.min(1, max / bmp.width);
     const canvas = document.createElement('canvas');
     canvas.width = Math.round(bmp.width * scale);
     canvas.height = Math.round(bmp.height * scale);
@@ -95,6 +100,9 @@ export default function Panel() {
   const [clicks, setClicks] = useState<Click[]>([]);
   const [sales, setSales] = useState<Sale[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [prMissing, setPrMissing] = useState(false);
+  const [tab, setTab] = useState<Tab>('resumen');
   const [loaded, setLoaded] = useState(false);
   const [range, setRange] = useState<Range>('7');
   const [status, setStatus] = useState('');
@@ -104,11 +112,15 @@ export default function Panel() {
 
   const load = useCallback(async () => {
     try {
-      const [c, s, r] = await Promise.all([
+      const [c, s, r, pr] = await Promise.all([
         fetchAll<Click>('clicks', 'id, product, place, ts, day, hour, sold, demo'),
         fetchAll<Sale>('sales', 'id, product, qty, amount, day, click_id, ts, demo'),
         fetchAll<Review>('reviews', 'id, image_path, customer, product, day, ts, visible'),
+        sb.from('products').select(PRODUCT_COLS).order('sort').order('name'),
       ]);
+      // Si la tabla de productos aún no existe (esquema sin actualizar), se usa la lista del código.
+      setProducts(pr.error ? PRODUCTS : normalize(pr.data || []));
+      setPrMissing(Boolean(pr.error));
       setClicks(c);
       setSales(s.map((x) => ({ ...x, amount: Number(x.amount) })));
       if (r.length) {
@@ -122,6 +134,15 @@ export default function Panel() {
       setLoadError('No se pudieron cargar los datos. Revisa tu conexión y toca "Actualizar".');
     }
   }, [sb]);
+
+  useEffect(() => {
+    const h = window.location.hash.slice(1);
+    if (TABS.some(([k]) => k === h)) setTab(h as Tab);
+  }, []);
+  function goTab(k: Tab) {
+    setTab(k);
+    try { history.replaceState(null, '', '#' + k); } catch {}
+  }
 
   useEffect(() => {
     load();
@@ -151,6 +172,10 @@ export default function Panel() {
   const conv = pClicks.length ? pSales.length / pClicks.length : 0;
   const prevConv = prevClicks ? prevSalesL.length / prevClicks : 0;
   const clickById = useMemo(() => new Map(clicks.map((c) => [c.id, c])), [clicks]);
+  const pn = (id: string | null | undefined) => prodName(id, products);
+  const findP = (id: string | null | undefined) => products.find((p) => p.id === id) || null;
+  const units = pSales.reduce((a, s) => a + s.qty, 0);
+  const prevUnits = prevSalesL.reduce((a, s) => a + s.qty, 0);
 
   function delta(cur: number, prev: number): React.ReactNode {
     if (!n) return '';
@@ -162,9 +187,9 @@ export default function Panel() {
   }
 
   /* ---------- Formulario de venta ---------- */
-  const [fProduct, setFProduct] = useState(PRODUCTS[0].id);
+  const [fProduct, setFProduct] = useState('');
   const [fQty, setFQty] = useState(1);
-  const [fAmount, setFAmount] = useState(String(PRODUCTS[0].price));
+  const [fAmount, setFAmount] = useState('');
   const [amountTouched, setAmountTouched] = useState(false);
   const [fDay, setFDay] = useState(t);
   const [fClick, setFClick] = useState<string | null>(null);
@@ -172,16 +197,24 @@ export default function Panel() {
   const saleCard = useRef<HTMLDivElement>(null);
   const qtyRef = useRef<HTMLInputElement>(null);
 
+  // Al cargar los productos, el formulario empieza con el primero visible.
+  useEffect(() => {
+    if (!products.length || products.some((p) => p.id === fProduct) || fProduct === 'otro') return;
+    const first = products.find((p) => p.active !== false) || products[0];
+    setFProduct(first.id);
+    if (!amountTouched) setFAmount(String(first.price * Math.max(1, fQty || 1)));
+  }, [products, fProduct, fQty, amountTouched]);
+
   function autoAmount(product: string, qty: number, touched = amountTouched) {
     if (touched) return;
-    const p = prod(product);
+    const p = findP(product);
     setFAmount(p ? String(p.price * Math.max(1, qty || 1)) : '');
   }
   function linkClick(id: string) {
     const c = clickById.get(id);
     if (!c) return;
     setFClick(c.id);
-    const product = prod(c.product) ? c.product : fProduct;
+    const product = findP(c.product) ? c.product : fProduct;
     setFProduct(product);
     setFDay(c.day);
     setFQty(1);
@@ -205,7 +238,7 @@ export default function Panel() {
       setSaleStatus(error.code === '23505' ? 'Ese clic ya tiene una venta registrada.' : 'No se pudo guardar la venta. Revisa tu conexión e inténtalo otra vez.');
       return;
     }
-    setSaleStatus(`Venta guardada: ${prodName(row.product)}, ${money(row.amount)}.`);
+    setSaleStatus(`Venta guardada: ${pn(row.product)}, ${money(row.amount)}.`);
     setFQty(1);
     setFClick(null);
     setAmountTouched(false);
@@ -226,7 +259,8 @@ export default function Panel() {
   async function generateDemo() {
     setBusy('demo');
     setStatus('Generando datos de ejemplo…');
-    const weights = PRODUCTS.map(() => 1);
+    const catalog = products.filter((p) => p.active !== false).length ? products.filter((p) => p.active !== false) : PRODUCTS;
+    const weights = catalog.map(() => 1);
     const pick = <T,>(arr: T[], ws: number[]) => { let r = Math.random() * ws.reduce((a, b) => a + b, 0); for (let i = 0; i < arr.length; i++) { r -= ws[i]; if (r <= 0) return arr[i]; } return arr[arr.length - 1]; };
     const nowHour = new Date(Date.now() - 5 * 3600e3).getUTCHours();
     const rows: { product: string; place: Place; ts: string; demo: boolean }[] = [];
@@ -239,7 +273,7 @@ export default function Panel() {
         if (i === 0 && hour > nowHour) continue;
         const min = Math.floor(Math.random() * 60);
         const place = pick<Place>(['portada', 'carta', 'flotante'], [2, 6, 3]);
-        const product = place === 'carta' ? pick(PRODUCTS.map((p) => p.id), weights) : Math.random() < 0.6 ? 'general' : pick(PRODUCTS.map((p) => p.id), weights);
+        const product = place === 'carta' ? pick(catalog.map((p) => p.id), weights) : Math.random() < 0.6 ? 'general' : pick(catalog.map((p) => p.id), weights);
         rows.push({ product, place, ts: `${day}T${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}:00-05:00`, demo: true });
       }
     }
@@ -248,12 +282,12 @@ export default function Panel() {
     const saleRows = data
       .filter(() => Math.random() < 0.32)
       .map((c) => {
-        const p = prod(c.product) || pick(PRODUCTS, weights);
+        const p = catalog.find((x) => x.id === c.product) || pick(catalog, weights);
         const qty = Math.random() < 0.8 ? 1 : 2;
         return { product: p.id, qty, amount: p.price * qty, day: c.day, click_id: c.id, demo: true };
       });
     const direct = Array.from({ length: 6 }, () => {
-      const p = pick(PRODUCTS, weights);
+      const p = pick(catalog, weights);
       return { product: p.id, qty: 1, amount: p.price, day: dayAdd(t, -Math.floor(Math.random() * 30)), click_id: null, demo: true };
     });
     const { error: e2 } = await sb.from('sales').insert([...saleRows, ...direct]);
@@ -274,11 +308,11 @@ export default function Panel() {
 
   /* ---------- Exportar ---------- */
   function exportSales() {
-    const rows = [['fecha', 'producto', 'cantidad', 'monto_soles', 'origen', 'ejemplo'], ...sales.map((s) => [s.day, prodName(s.product), s.qty, s.amount.toFixed(2), s.click_id ? 'clic' : 'directa', s.demo ? 'si' : 'no'])];
+    const rows = [['fecha', 'producto', 'cantidad', 'monto_soles', 'origen', 'ejemplo'], ...sales.map((s) => [s.day, pn(s.product), s.qty, s.amount.toFixed(2), s.click_id ? 'clic' : 'directa', s.demo ? 'si' : 'no'])];
     download(`ventas-${slug}.csv`, csv(rows));
   }
   function exportClicks() {
-    const rows = [['fecha', 'hora', 'producto', 'boton', 'venta_registrada', 'ejemplo'], ...clicks.map((c) => [c.day, timeOf(c.ts), prodName(c.product), PLACES[c.place] || c.place, c.sold ? 'si' : 'no', c.demo ? 'si' : 'no'])];
+    const rows = [['fecha', 'hora', 'producto', 'boton', 'venta_registrada', 'ejemplo'], ...clicks.map((c) => [c.day, timeOf(c.ts), pn(c.product), PLACES[c.place] || c.place, c.sold ? 'si' : 'no', c.demo ? 'si' : 'no'])];
     download(`clics-whatsapp-${slug}.csv`, csv(rows));
   }
 
@@ -324,6 +358,86 @@ export default function Panel() {
     setConfirm('');
     const { error } = await sb.from('reviews').delete().eq('id', r.id);
     if (!error) await sb.storage.from(REVIEWS_BUCKET).remove([r.image_path]);
+    load();
+  }
+
+  /* ---------- Productos ---------- */
+  const [draft, setDraft] = useState<Draft | null>(null);
+  const [prStatus, setPrStatus] = useState('');
+  const photoInput = useRef<HTMLInputElement>(null);
+  const draftBox = useRef<HTMLDivElement>(null);
+
+  function startEdit(p: Product | null) {
+    setPrStatus('');
+    setDraft(p
+      ? { id: p.id, isNew: false, name: p.name, price: String(p.price), unit: p.unit, description: p.description, active: p.active !== false, sort: String(p.sort ?? 0), photo_path: p.photo_path ?? null }
+      : { id: '', isNew: true, name: '', price: '', unit: '', description: '', active: true, sort: String(products.reduce((m, x) => Math.max(m, x.sort ?? 0), 0) + 1), photo_path: null });
+    requestAnimationFrame(() => draftBox.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+  // Foto que se verá: la subida (si sigue) o, si no hay, la de la web para ese código.
+  const draftPhoto = draft ? productPhoto({ id: draft.id, name: draft.name, price: 0, unit: '', description: '', photo_path: draft.photo_path }) : null;
+
+  async function saveProduct(e: React.FormEvent) {
+    e.preventDefault();
+    if (!draft) return;
+    const name = draft.name.trim();
+    const price = Math.round(Number(draft.price) * 100) / 100;
+    if (!name) { setPrStatus('Escribe el nombre del producto.'); return; }
+    if (!(price > 0)) { setPrStatus('Escribe un precio mayor que cero, por ejemplo 5 o 5.50.'); return; }
+    let id = draft.id;
+    if (draft.isNew) {
+      const base = slugify(name) || 'producto';
+      id = base === 'general' || base === 'otro' ? base + '-1' : base;
+      for (let k = 2; products.some((p) => p.id === id); k++) id = `${base.slice(0, 36)}-${k}`;
+    }
+    const before = findP(id);
+    setBusy('pr');
+    setPrStatus('Guardando…');
+    let photo_path = draft.photo_path;
+    let uploaded: string | null = null;
+    const file = photoInput.current?.files?.[0];
+    if (file) {
+      try {
+        const blob = await toWebp(file, 1400);
+        const ext = blob.type === 'image/webp' ? 'webp' : blob.type === 'image/png' ? 'png' : 'jpg';
+        const path = `${id}/${crypto.randomUUID()}.${ext}`;
+        const up = await sb.storage.from(PRODUCTS_BUCKET).upload(path, blob, { contentType: blob.type || 'image/jpeg', upsert: false });
+        if (up.error) throw up.error;
+        uploaded = path;
+        photo_path = path;
+      } catch {
+        setBusy('');
+        setPrStatus('No se pudo subir la foto. Usa una imagen PNG, JPG o WEBP de menos de 5 MB.');
+        return;
+      }
+    }
+    const row = { name: name.slice(0, 60), price, unit: draft.unit.trim().slice(0, 40), description: draft.description.trim().slice(0, 240), active: draft.active, sort: Math.round(Number(draft.sort) || 0), photo_path };
+    const res = draft.isNew ? await sb.from('products').insert({ id, ...row }) : await sb.from('products').update(row).eq('id', id);
+    if (res.error) {
+      if (uploaded) await sb.storage.from(PRODUCTS_BUCKET).remove([uploaded]);
+      setBusy('');
+      setPrStatus('No se pudo guardar. Revisa los datos y tu conexión, e inténtalo otra vez.');
+      return;
+    }
+    // La foto anterior ya no se usa: se borra del almacenamiento.
+    if (before?.photo_path && before.photo_path !== photo_path) await sb.storage.from(PRODUCTS_BUCKET).remove([before.photo_path]);
+    setBusy('');
+    setDraft(null);
+    if (photoInput.current) photoInput.current.value = '';
+    setPrStatus(`${draft.isNew ? 'Producto agregado' : 'Cambios guardados'}: ${row.name}, ${soles(row.price)}. ${row.active ? 'Ya se ve así en la web.' : 'Está oculto: no aparece en la web.'}`);
+    load();
+  }
+  async function toggleProduct(p: Product) {
+    const { error } = await sb.from('products').update({ active: p.active === false }).eq('id', p.id);
+    setPrStatus(error ? 'No se pudo cambiar. Inténtalo otra vez.' : p.active === false ? `${p.name} vuelve a aparecer en la web.` : `${p.name} ya no aparece en la web.`);
+    load();
+  }
+  async function deleteProduct(p: Product) {
+    setConfirm('');
+    const { error } = await sb.from('products').delete().eq('id', p.id);
+    if (!error && p.photo_path) await sb.storage.from(PRODUCTS_BUCKET).remove([p.photo_path]);
+    setPrStatus(error ? 'No se pudo eliminar. Inténtalo otra vez.' : `Producto eliminado: ${p.name}. Sus ventas y clics pasados se conservan.`);
+    if (draft?.id === p.id) setDraft(null);
     load();
   }
 
@@ -426,20 +540,26 @@ export default function Panel() {
           <h1>Panel del negocio</h1>
           <p>Cuántas personas tocaron el botón de WhatsApp y cuántas terminaron comprando.</p>
         </div>
-        <div className="seg" role="group" aria-label="Periodo">
+        {(tab === 'resumen' || tab === 'ventas') && <div className="seg" role="group" aria-label="Periodo">
           {([['1', 'Hoy'], ['7', '7 días'], ['30', '30 días'], ['all', 'Todo']] as [Range, string][]).map(([v, l]) => (
             <button key={v} type="button" aria-pressed={range === v} onClick={() => setRange(v)}>{l}</button>
           ))}
-        </div>
+        </div>}
       </div>
+
+      <nav className="tabs" aria-label="Secciones del panel">
+        {TABS.map(([k, l, ic]) => (
+          <button key={k} type="button" aria-current={tab === k ? 'page' : undefined} onClick={() => goTab(k)}><Icon name={ic} />{l}</button>
+        ))}
+      </nav>
 
       <div className="toolbar">
         <button type="button" className="btn btn-sm btn-ghost" onClick={load}><Icon name="refresh" />Actualizar</button>
         <span className="spacer" />
-        <button type="button" className="btn btn-sm btn-ghost" onClick={generateDemo} disabled={busy === 'demo'}><Icon name="stars2" />Generar datos de ejemplo</button>
+        {tab === 'resumen' && <button type="button" className="btn btn-sm btn-ghost" onClick={generateDemo} disabled={busy === 'demo'}><Icon name="stars2" />Generar datos de ejemplo</button>}
       </div>
 
-      {(demoC > 0 || demoS > 0) && (
+      {(tab === 'resumen' || tab === 'ventas') && (demoC > 0 || demoS > 0) && (
         <div className="notice">
           <span><span className="tag demo">Ejemplo</span> Estás viendo {demoC} clics y {demoS} ventas de ejemplo. Bórralos antes de usar el panel con un negocio real.</span>
           <span>
@@ -453,6 +573,7 @@ export default function Panel() {
       )}
       <p className="status" role="status">{loadError || status}</p>
 
+      {tab === 'resumen' && <>
       <div className="kpis">
         {!loaded ? (
           <div className="kpi"><span className="label">Cargando datos…</span><span className="value">&nbsp;</span></div>
@@ -460,6 +581,7 @@ export default function Panel() {
           <>
             <Kpi label="Clics a WhatsApp" value={pClicks.length} delta={delta(pClicks.length, prevClicks)} />
             <Kpi label="Ventas registradas" value={pSales.length} delta={delta(pSales.length, prevSalesL.length)} />
+            <Kpi label="Unidades vendidas" value={units} delta={delta(units, prevUnits)} />
             <Kpi label="Monto vendido" value={money(amount)} delta={delta(amount, prevAmount)} />
             <Kpi label="Conversión" value={pct(pSales.length, pClicks.length)} delta={n ? delta(conv, prevConv) : 'Ventas por cada 100 clics'} />
             <Kpi label="Ticket promedio" value={pSales.length ? money(ticket) : '—'} delta={n ? delta(ticket, prevTicket) : 'Monto por venta'} />
@@ -483,7 +605,7 @@ export default function Panel() {
               <div className="bars-h" style={{ marginBottom: 18 }}>
                 {byProduct.map((r) => (
                   <div className="row" key={r.id}>
-                    <span>{prodName(r.id)}</span>
+                    <span>{pn(r.id)}</span>
                     <span className="num">{r.c} / {r.s}</span>
                     <div className="track thin"><div className="fill" style={{ width: `${(r.c / prodMax) * 100}%` }} /></div>
                     <div className="track thin"><div className="fill s" style={{ width: `${(r.s / prodMax) * 100}%` }} /></div>
@@ -495,7 +617,7 @@ export default function Panel() {
                   <thead><tr><th>Producto</th><th className="r">Clics</th><th className="r">Ventas</th><th className="r">Unid.</th><th className="r">Monto</th><th className="r">Conv.</th></tr></thead>
                   <tbody>
                     {byProduct.map((r) => (
-                      <tr key={r.id}><td>{prodName(r.id)}</td><td className="r">{r.c}</td><td className="r">{r.s}</td><td className="r">{r.u}</td><td className="r">{money(r.m)}</td><td className="r">{r.id === 'general' || !r.c ? '—' : pct(r.s, r.c)}</td></tr>
+                      <tr key={r.id}><td>{pn(r.id)}</td><td className="r">{r.c}</td><td className="r">{r.s}</td><td className="r">{r.u}</td><td className="r">{money(r.m)}</td><td className="r">{r.id === 'general' || !r.c ? '—' : pct(r.s, r.c)}</td></tr>
                     ))}
                   </tbody>
                 </table>
@@ -537,17 +659,20 @@ export default function Panel() {
         </div>
       </div>
 
+      </>}
+
+      {tab === 'ventas' && <>
       <div className="grid2">
         <div className="card" ref={saleCard}>
           <div className="card-head"><div><h2>Registrar una venta</h2><p className="sub">
             {fClick && clickById.get(fClick)
-              ? `Vinculada al clic del ${dayShort(clickById.get(fClick)!.day)}, ${timeOf(clickById.get(fClick)!.ts)} (${prodName(clickById.get(fClick)!.product)}).`
+              ? `Vinculada al clic del ${dayShort(clickById.get(fClick)!.day)}, ${timeOf(clickById.get(fClick)!.ts)} (${pn(clickById.get(fClick)!.product)}).`
               : 'Cuando un pedido por WhatsApp se concreta, anótalo aquí. También sirve para ventas directas.'}
           </p></div></div>
           <form className="f" onSubmit={saveSale} autoComplete="off">
             <label className="field wide">Producto
               <select value={fProduct} onChange={(e) => { setFProduct(e.target.value); autoAmount(e.target.value, fQty); }}>
-                {PRODUCTS.map((p) => <option key={p.id} value={p.id}>{p.name} (S/ {p.price})</option>)}
+                {products.map((p) => <option key={p.id} value={p.id}>{p.name} ({soles(p.price)}){p.active === false ? ' · oculto' : ''}</option>)}
                 <option value="otro">Otro producto</option>
               </select>
             </label>
@@ -570,7 +695,7 @@ export default function Panel() {
               clicks.slice(0, 8).map((c) => (
                 <div className="li" key={c.id}>
                   <div>
-                    <div>{prodName(c.product)}{c.demo && <> <span className="tag demo">Ejemplo</span></>}</div>
+                    <div>{pn(c.product)}{c.demo && <> <span className="tag demo">Ejemplo</span></>}</div>
                     <div className="meta">{dayShort(c.day)}, {timeOf(c.ts)}, {(PLACES[c.place] || c.place).toLowerCase()}</div>
                   </div>
                   {c.sold ? <span className="tag ok">Venta registrada</span> : <button type="button" className="btn btn-sm btn-ghost" onClick={() => linkClick(c.id)}>Registrar venta</button>}
@@ -598,7 +723,7 @@ export default function Panel() {
                   {salesList.map((s) => (
                     <tr key={s.id}>
                       <td>{dayShort(s.day)}</td>
-                      <td>{prodName(s.product)}{s.demo && <> <span className="tag demo">Ejemplo</span></>}</td>
+                      <td>{pn(s.product)}{s.demo && <> <span className="tag demo">Ejemplo</span></>}</td>
                       <td className="r">{s.qty}</td>
                       <td className="r">{money(s.amount)}</td>
                       <td>{s.click_id ? 'Desde un clic' : 'Venta directa'}</td>
@@ -620,6 +745,77 @@ export default function Panel() {
         </div>
       </div>
 
+      </>}
+
+      {tab === 'productos' && (
+      <div className="card">
+        <div className="card-head">
+          <div><h2>Productos</h2><p className="sub">Lo que ves aquí es lo que aparece en la web. Los cambios de precio, foto o texto se ven al instante.</p></div>
+          {!draft && <button type="button" className="btn btn-sm btn-dark" onClick={() => startEdit(null)} disabled={prMissing}><Icon name="add-circle" />Agregar producto</button>}
+        </div>
+        {prMissing && <div className="notice">Para editar productos desde aquí, vuelve a ejecutar <b>supabase/schema.sql</b> en el SQL Editor de Supabase (agrega la tabla de productos). Mientras tanto la web usa la lista del código.</div>}
+        <p className="status" role="status">{prStatus}</p>
+        <div ref={draftBox}>
+          {draft && (
+            <form className="f pr-form" onSubmit={saveProduct} autoComplete="off">
+              <h3 className="field wide pr-title">{draft.isNew ? 'Nuevo producto' : `Editar: ${findP(draft.id)?.name || draft.name}`}</h3>
+              <label className="field wide">Nombre<input id="pr-name" value={draft.name} maxLength={60} required placeholder="Ej.: Chicha morada" onChange={(e) => setDraft({ ...draft, name: e.target.value })} /></label>
+              <label className="field">Precio (S/)<input id="pr-price" type="number" inputMode="decimal" min={0.1} step="0.1" value={draft.price} required placeholder="5" onChange={(e) => setDraft({ ...draft, price: e.target.value })} /></label>
+              <label className="field">Presentación<input id="pr-unit" value={draft.unit} maxLength={40} placeholder="botella de 500 ml" onChange={(e) => setDraft({ ...draft, unit: e.target.value })} /><span className="hint">Va en el mensaje: &quot;3 botellas de…&quot;</span></label>
+              <label className="field wide">Descripción<textarea id="pr-desc" value={draft.description} maxLength={240} rows={3} placeholder="Cómo es, con qué se prepara, cómo se toma." onChange={(e) => setDraft({ ...draft, description: e.target.value })} /><span className="hint">{draft.description.length} de 240 caracteres</span></label>
+              <div className="field wide">Foto
+                <div className="pr-photo">
+                  {draftPhoto ? <img src={draftPhoto.src} alt="Foto actual" /> : <span className="pr-nophoto">Sin foto</span>}
+                  <div className="pr-photo-actions">
+                    <input id="pr-file" ref={photoInput} type="file" accept="image/png,image/jpeg,image/webp" />
+                    <span className="hint">Horizontal o cuadrada. Se ajusta sola a 1400 px.{draft.photo_path ? '' : ' Si no subes una, se usa la foto de la web (si existe).'}</span>
+                    {draft.photo_path && <button type="button" className="linkbtn" onClick={() => setDraft({ ...draft, photo_path: null })}>Quitar la foto subida</button>}
+                  </div>
+                </div>
+              </div>
+              <label className="field">Orden<input id="pr-sort" type="number" step={1} value={draft.sort} onChange={(e) => setDraft({ ...draft, sort: e.target.value })} /><span className="hint">Los números menores aparecen primero.</span></label>
+              <label className="field pr-check"><input id="pr-active" type="checkbox" checked={draft.active} onChange={(e) => setDraft({ ...draft, active: e.target.checked })} />Visible en la web</label>
+              <div className="field wide" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
+                <button type="submit" className="btn btn-dark btn-sm" disabled={busy === 'pr'}>{draft.isNew ? 'Agregar producto' : 'Guardar cambios'}</button>
+                <button type="button" className="btn btn-sm btn-ghost" onClick={() => { setDraft(null); setPrStatus(''); }}>Cancelar</button>
+              </div>
+            </form>
+          )}
+        </div>
+        <div className="pr-list">
+          {!products.length ? (
+            <p className="sub">Aún no hay productos. Agrega el primero.</p>
+          ) : (
+            products.map((p) => {
+              const ph = productPhoto(p);
+              return (
+                <div className={'pr-row' + (p.active === false ? ' off' : '')} key={p.id}>
+                  <div className="pr-thumb">{ph ? <img src={ph.src} alt="" loading="lazy" /> : <span>Sin foto</span>}</div>
+                  <div className="pr-info">
+                    <b>{p.name}</b>
+                    <span className="num">{soles(p.price)}{p.unit ? ` · ${p.unit}` : ''}</span>
+                    {p.active === false && <span className="tag">Oculto en la web</span>}
+                  </div>
+                  <div className="acts">
+                    {confirm === 'pr:' + p.id ? (
+                      <span className="confirm">¿Eliminar {p.name}? <button type="button" onClick={() => deleteProduct(p)}>Sí, eliminar</button><button type="button" onClick={() => setConfirm('')}>No</button></span>
+                    ) : (
+                      <>
+                        <button type="button" onClick={() => startEdit(p)} disabled={prMissing}><Icon name="pen" />Editar</button>
+                        <button type="button" onClick={() => toggleProduct(p)} disabled={prMissing}><Icon name={p.active === false ? 'eye' : 'eye-closed'} />{p.active === false ? 'Mostrar' : 'Ocultar'}</button>
+                        <button type="button" onClick={() => setConfirm('pr:' + p.id)} disabled={prMissing}><Icon name="trash2" />Eliminar</button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+      )}
+
+      {tab === 'resenas' && (
       <div className="card">
         <div className="card-head"><div><h2>Reseñas de WhatsApp</h2><p className="sub">Sube capturas de los mensajes de clientes contentos. Aparecen en la web al instante.</p></div></div>
         <form className="f" ref={rvForm} onSubmit={uploadReviews} autoComplete="off">
@@ -628,7 +824,7 @@ export default function Panel() {
           <label className="field">Producto
             <select name="product" defaultValue="general">
               <option value="general">Sin producto específico</option>
-              {PRODUCTS.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+              {products.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
             </select>
           </label>
           <div className="field wide" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
@@ -643,7 +839,7 @@ export default function Panel() {
             reviews.map((r) => (
               <figure key={r.id}>
                 {r.url ? <img className={r.visible ? '' : 'off'} src={r.url} alt={`Captura de ${r.customer || 'cliente'}`} loading="lazy" /> : <div className="empty">Imagen no disponible</div>}
-                <span>{r.customer || 'Sin nombre'}{r.product && r.product !== 'general' ? ', ' + prodName(r.product) : ''}{r.visible ? '' : ' (oculta)'}</span>
+                <span>{r.customer || 'Sin nombre'}{r.product && r.product !== 'general' ? ', ' + pn(r.product) : ''}{r.visible ? '' : ' (oculta)'}</span>
                 <span className="acts">
                   {confirm === 'rv:' + r.id ? (
                     <span className="confirm">¿Eliminar? <button type="button" onClick={() => deleteReview(r)}>Sí</button><button type="button" onClick={() => setConfirm('')}>No</button></span>
@@ -659,6 +855,7 @@ export default function Panel() {
           )}
         </div>
       </div>
+      )}
     </main>
   );
 }

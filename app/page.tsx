@@ -7,7 +7,9 @@ import WaTracker from '@/components/WaTracker';
 import OrderPicker from '@/components/OrderPicker';
 import StageSync from '@/components/StageSync';
 import { IMAGES, largest, srcSet, type ImgSet } from '@/lib/images';
-import { BUSINESS, isPresale, LAUNCH, PRODUCTS, prodName, waDisplay, waHref } from '@/lib/site';
+import { productPhoto, type ProductPhoto } from '@/lib/products';
+import { loadProducts } from '@/lib/products-server';
+import { BUSINESS, isPresale, LAUNCH, prodName, soles, unitParts, waDisplay, waHref, type Product } from '@/lib/site';
 import { hasSupabase, REVIEWS_BUCKET } from '@/lib/supabase/config';
 import { supabaseAnon } from '@/lib/supabase/server';
 import { dayShort } from '@/lib/time';
@@ -15,7 +17,7 @@ import { dayShort } from '@/lib/time';
 // Las reseñas cambian desde el panel: se leen en cada visita.
 export const dynamic = 'force-dynamic';
 
-async function loadReviews(): Promise<PublicReview[]> {
+async function loadReviews(products: Product[]): Promise<PublicReview[]> {
   if (!hasSupabase) return [];
   try {
     const sb = supabaseAnon();
@@ -34,7 +36,7 @@ async function loadReviews(): Promise<PublicReview[]> {
         id: r.id,
         url: urls.get(r.image_path) as string,
         who: r.customer || 'Cliente',
-        caption: (r.product && r.product !== 'general' ? ', ' + prodName(r.product) : '') + (r.day ? ', ' + dayShort(r.day) : ''),
+        caption: (r.product && r.product !== 'general' ? ', ' + prodName(r.product, products) : '') + (r.day ? ', ' + dayShort(r.day) : ''),
       }));
   } catch {
     return [];
@@ -59,14 +61,22 @@ function Photo({ set, alt, sizes, className, eager }: { set: ImgSet | null | und
   );
 }
 
+// Foto de un producto: la subida desde el panel (URL pública) o la optimizada en el build.
+function ProductImg({ photo, alt, sizes, className }: { photo: ProductPhoto | null; alt: string; sizes: string; className?: string }) {
+  if (!photo) return null;
+  return <img className={className} src={photo.src} srcSet={photo.srcSet} sizes={photo.srcSet ? sizes : undefined} width={photo.width} height={photo.height} alt={alt} loading="lazy" decoding="async" />;
+}
+
 // Franja de toldo: barras rojas y de papel, hechas con bloques (sin degradados).
 const STRIPES = Array.from({ length: 72 });
 
 export default async function Home() {
-  const reviews = await loadReviews();
+  const products = await loadProducts();
+  const reviews = await loadReviews(products);
   const soon = isPresale();
-  const chicha = PRODUCTS[0];
-  const fotoChicha = IMAGES.products[chicha.id];
+  const first = products[0];
+  const firstPhoto = first ? productPhoto(first) : null;
+  const navLabel = products.length === 1 ? 'La chicha' : 'Productos';
   const portada = IMAGES.portada;
   const ancha = IMAGES.portadaAncha;
   const logo = IMAGES.logo;
@@ -74,7 +84,7 @@ export default async function Home() {
   return (
     <>
       <Header>
-        <a href="#chicha">La chicha</a>
+        <a href="#chicha">{navLabel}</a>
         <a href="#como-pedir">Cómo pedir</a>
         <a href="#contacto">Contacto</a>
       </Header>
@@ -85,7 +95,7 @@ export default async function Home() {
           <div className="stage">
             <div className="stage-frame">
               <div className="layer on" data-layer="0"><Photo set={portada} alt={`Dos botellas y un vaso de chicha de maní ${BUSINESS.name} con maníes`} sizes="(min-width: 760px) 50vw, 100vw" eager /></div>
-              <div className="layer" data-layer="1"><Photo set={fotoChicha} alt="Botella de chicha de maní de medio litro junto a un vaso servido" sizes="(min-width: 760px) 50vw, 100vw" /></div>
+              <div className="layer" data-layer="1"><ProductImg photo={firstPhoto} alt={first ? first.name : ""} sizes="(min-width: 760px) 50vw, 100vw" /></div>
               <div className="layer" data-layer="2"><Photo set={ancha} alt="Botellas de chicha de maní, un vaso y maníes tostados sobre una mesa de madera" sizes="(min-width: 760px) 50vw, 100vw" /></div>
             </div>
           </div>
@@ -103,26 +113,41 @@ export default async function Home() {
                 </p>
                 <WaLink product="general" place="portada">{soon ? 'Separar mi botella' : 'Pedir por WhatsApp'}</WaLink>
                 <nav className="card-links" aria-label="En esta página">
-                  <a href="#chicha">La chicha</a>
+                  <a href="#chicha">{navLabel}</a>
                   <a href="#como-pedir">Cómo pedir</a>
                   <a href="#contacto">Contacto</a>
                 </nav>
               </div>
             </section>
 
-            <section className="plate" id="chicha" data-stage="1" aria-labelledby="h-chicha">
-              <div className="plate-photo" data-reveal="">
-                <Photo set={fotoChicha} alt="Botella de chicha de maní con etiqueta de papel y un vaso servido" sizes="(min-width: 760px) 40vw, 92vw" />
-              </div>
-              <div className="plate-text">
-                <h2 id="h-chicha" data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>{chicha.name}</h2>
-                <p className="price" data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><b className="num">S/ {chicha.price}</b> la {chicha.unit}</p>
-                <p className="desc" data-reveal="" style={{ '--i': 3 } as React.CSSProperties}>{chicha.desc}</p>
-                <div data-reveal="" style={{ '--i': 4 } as React.CSSProperties}>
-                  <OrderPicker productId={chicha.id} price={chicha.price} presale={soon} />
-                </div>
-              </div>
-            </section>
+            <div id="chicha" className="products">
+              {products.length ? products.map((p) => {
+                const u = unitParts(p.unit || 'unidad');
+                return (
+                  <section className="plate" key={p.id} data-stage="1" aria-labelledby={`h-${p.id}`}>
+                    <div className="plate-photo" data-reveal="">
+                      <ProductImg photo={productPhoto(p)} alt={p.name} sizes="(min-width: 760px) 40vw, 92vw" />
+                    </div>
+                    <div className="plate-text">
+                      <h2 id={`h-${p.id}`} data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>{p.name}</h2>
+                      <p className="price" data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><b className="num">{soles(p.price)}</b>{p.unit ? ` ${u.fem ? 'la' : 'el'} ${p.unit}` : ''}</p>
+                      {p.description && <p className="desc" data-reveal="" style={{ '--i': 3 } as React.CSSProperties}>{p.description}</p>}
+                      <div data-reveal="" style={{ '--i': 4 } as React.CSSProperties}>
+                        <OrderPicker product={p} presale={soon} />
+                      </div>
+                    </div>
+                    
+                  </section>
+                );
+              }) : (
+                <section className="plate" data-stage="1">
+                  <div className="plate-text">
+                    <h2>Pronto, nuevos productos</h2>
+                    <p className="desc">Escríbenos por WhatsApp y te contamos qué tenemos hoy.</p>
+                  </div>
+                </section>
+              )}
+            </div>
 
             <section className="itinerary" id="como-pedir" data-stage="2" aria-labelledby="h-como">
               <div className="itin-head">
@@ -198,7 +223,7 @@ export default async function Home() {
           <Photo set={IMAGES.cierre || ancha} alt={IMAGES.cierre ? "El oasis de Huacachina, rodeado de dunas, en Ica" : ""} sizes="100vw" className="final-photo" />
           <div className="final-top" data-reveal="">
             <nav aria-label="Pie de página">
-              <a href="#chicha">La chicha</a>
+              <a href="#chicha">{navLabel}</a>
               <a href="#como-pedir">Cómo pedir</a>
               <a href="#resenas">Reseñas</a>
             </nav>

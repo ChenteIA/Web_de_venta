@@ -7,13 +7,14 @@ export default function SignOut() {
     <button
       type="button"
       className="view-toggle"
+      aria-label="Cerrar sesión"
       onClick={async () => {
         await supabaseBrowser().auth.signOut();
         window.location.assign('/admin/login');
       }}
     >
       <Icon name="logout" />
-      Cerrar sesión
+      <span className="vt-label">Cerrar sesión</span>
     </button>
   );
 }

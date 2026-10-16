@@ -3,7 +3,11 @@
 Web de **San Luyo** (Ica), hecha por **ChenteIA**. Prueba de venta de chicha de maní en botella de medio litro, desde el lunes 19 de octubre de 2026. WhatsApp: +51 910 897 377.
 
 - `/` → web pública: portada, la chicha con su precio, "Cómo pedir", reseñas con capturas de WhatsApp y botón flotante. Cada clic a WhatsApp se guarda (producto, botón, fecha, día y hora de Lima).
-- `/admin` → panel del dueño (login de Supabase). No hay ningún enlace a él desde la web pública.
+- `/admin` → panel del dueño (login de Supabase; solo las cuentas en la tabla `admins`). No hay ningún enlace a él desde la web pública. Pestañas:
+  - **Resumen:** clics a WhatsApp, ventas, unidades vendidas, monto, conversión y ticket promedio; gráficos por día, producto, botón y hora.
+  - **Ventas:** registrar ventas (también desde un clic), últimos clics, tabla de ventas y descarga en CSV.
+  - **Productos:** cambiar precio, nombre, presentación, descripción y foto; agregar productos nuevos; ocultarlos o eliminarlos. La web los muestra al instante.
+  - **Reseñas:** subir capturas de WhatsApp de clientes contentos, mostrarlas, ocultarlas o eliminarlas.
 
 **Stack:** Next.js 16 (App Router) · Supabase (Postgres + Auth + Storage) · Vercel.
 
@@ -15,7 +19,8 @@ Web de **San Luyo** (Ica), hecha por **ChenteIA**. Prueba de venta de chicha de 
 | `app/api/click/route.ts` | Guarda cada clic a WhatsApp |
 | `app/admin/` | Login y panel |
 | `proxy.ts` | Protege `/admin` (sin sesión → `/admin/login`) |
-| `lib/site.ts` | **Nombre, productos, precios y textos del negocio** |
+| `lib/site.ts` | **Nombre, textos del negocio** y la lista de productos de respaldo |
+| `lib/products.ts` | Productos desde Supabase (tabla `products`, fotos en el bucket público `productos`) |
 | `supabase/schema.sql` | SQL completo: tablas, triggers, RLS y Storage |
 | `scripts/optimize-images.mjs` | Convierte `./imagenes` a WebP responsivo |
 | `imagenes/` | Fotos originales (ver `imagenes/LEEME.md`) |
@@ -100,5 +105,5 @@ Uso: `<Icon name="calendar" />`. Toma el color del texto. La botella y los maní
 - **Ventas:** registrar una venta desde un clic lo marca como vendido, y eliminarla lo desmarca (trigger). Un clic solo admite una venta.
 - **Datos de ejemplo:** se guardan con `demo = true` y se borran con un botón sin tocar los datos reales.
 - **Preventa:** `LAUNCH` en `lib/site.ts` (lunes 19 de octubre de 2026). Antes de ese día la web está en preventa: aviso "Preventa · Entregas desde el lunes 19", botones "Separar mi botella" y mensaje de WhatsApp para separar. Desde ese día pasa sola a venta normal ("Pedir por WhatsApp").
-- **Precio:** S/ 5 es un precio de ejemplo. Cámbialo en `PRODUCTS` (`lib/site.ts`).
+- **Productos y precios:** se editan en `/admin` → Productos (S/ 5 es un precio de ejemplo). Si actualizas desde una versión anterior, vuelve a ejecutar `supabase/schema.sql` en el SQL Editor: agrega la tabla `products` y el bucket `productos` sin tocar tus datos. Si la base no responde, la web usa la lista de respaldo de `lib/site.ts`.
 - **Demo anterior:** las fotos de El Puqui están en `imagenes/archivo-el-puqui/` y los videos en `videos/`.

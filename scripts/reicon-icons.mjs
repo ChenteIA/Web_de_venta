@@ -15,6 +15,7 @@ const ICONS = [
   'map-point', 'clock', 'copy',                   // pie de página
   'refresh', 'stars2', 'download2', 'upload2',    // panel
   'eye', 'eye-closed', 'trash2', 'logout', 'arrow-right-up',
+  'pen', 'add-circle', 'chart', 'box', 'bag', 'gallery',  // pestañas y productos del panel
 ];
 const BRANDS = { whatsapp: 'WhatsApp' };
 
@@ -32,7 +33,9 @@ const out = {};
 for (const name of ICONS) {
   const icon = all[name];
   if (!icon) throw new Error(`No existe el icono "${name}" en Reicon`);
-  out[name] = { viewBox: '0 0 24 24', body: icon.weights.Outline.code.trim() };
+  // Las formas solo de contorno (stroke sin fill) no deben heredar el relleno del <svg>.
+  const body = icon.weights.Outline.code.trim().replace(/<(path|circle|rect|ellipse|line|polyline|polygon)\b(?![^>]*\bfill=)(?=[^>]*\bstroke=)/g, '<$1 fill="none"');
+  out[name] = { viewBox: '0 0 24 24', body };
 }
 for (const [key, brandName] of Object.entries(BRANDS)) {
   const b = (Array.isArray(brands) ? brands : Object.values(brands)).find((x) => x.name === brandName);

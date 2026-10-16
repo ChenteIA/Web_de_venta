@@ -132,6 +132,38 @@ create table if not exists public.reviews (
 create index if not exists reviews_ts_idx on public.reviews (ts desc);
 
 -- ---------------------------------------------------------------------
+-- 4b. Productos (los edita el admin desde el panel; la web muestra los visibles)
+-- ---------------------------------------------------------------------
+create table if not exists public.products (
+  id          text primary key check (id ~ '^[a-z0-9-]{1,40}$' and id <> 'general' and id <> 'otro'),
+  name        text not null check (char_length(name) between 1 and 60),
+  price       numeric(10, 2) not null check (price > 0 and price < 100000),
+  unit        text not null default '' check (char_length(unit) <= 40),
+  description text not null default '' check (char_length(description) <= 240),
+  photo_path  text null check (photo_path is null or char_length(photo_path) <= 120),
+  active      boolean not null default true,
+  sort        integer not null default 0,
+  updated_at  timestamptz not null default now()
+);
+create index if not exists products_sort_idx on public.products (sort, name);
+
+create or replace function public.products_touch()
+returns trigger
+language plpgsql
+set search_path = ''
+as $$ begin new.updated_at := now(); return new; end; $$;
+drop trigger if exists products_touch on public.products;
+create trigger products_touch
+  before update on public.products
+  for each row execute function public.products_touch();
+
+-- Producto inicial (solo si la tabla está vacía)
+insert into public.products (id, name, price, unit, description, sort)
+select 'chicha-mani', 'Chicha de maní', 5, 'botella de 500 ml',
+       'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.', 0
+where not exists (select 1 from public.products);
+
+-- ---------------------------------------------------------------------
 -- 5. Permisos de tabla + RLS
 -- ---------------------------------------------------------------------
 grant usage on schema public to anon, authenticated;
@@ -140,10 +172,13 @@ grant select, update, delete         on public.clicks  to authenticated;
 grant select, insert, update, delete on public.sales   to authenticated;
 grant select                         on public.reviews to anon, authenticated;
 grant insert, update, delete         on public.reviews to authenticated;
+grant select                         on public.products to anon, authenticated;
+grant insert, update, delete         on public.products to authenticated;
 
 alter table public.clicks  enable row level security;
 alter table public.sales   enable row level security;
 alter table public.reviews enable row level security;
+alter table public.products enable row level security;
 
 -- clicks: cualquiera inserta; solo el admin lee, actualiza y borra
 drop policy if exists "clicks_insert_public" on public.clicks;
@@ -201,6 +236,28 @@ create policy "reviews_delete_admin" on public.reviews
   for delete to authenticated
   using ((select public.is_admin()));
 
+-- products: todos leen los visibles; el admin lee todos y es el único que escribe
+drop policy if exists "products_select" on public.products;
+create policy "products_select" on public.products
+  for select to anon, authenticated
+  using (active or (select public.is_admin()));
+
+drop policy if exists "products_insert_admin" on public.products;
+create policy "products_insert_admin" on public.products
+  for insert to authenticated
+  with check ((select public.is_admin()));
+
+drop policy if exists "products_update_admin" on public.products;
+create policy "products_update_admin" on public.products
+  for update to authenticated
+  using ((select public.is_admin()))
+  with check ((select public.is_admin()));
+
+drop policy if exists "products_delete_admin" on public.products;
+create policy "products_delete_admin" on public.products
+  for delete to authenticated
+  using ((select public.is_admin()));
+
 -- ---------------------------------------------------------------------
 -- 6. Storage: bucket privado "reviews"
 --    Público solo puede ver las imágenes de reseñas visibles.
@@ -238,3 +295,37 @@ drop policy if exists "reviews_files_delete_admin" on storage.objects;
 create policy "reviews_files_delete_admin" on storage.objects
   for delete to authenticated
   using (bucket_id = 'reviews' and (select public.is_admin()));
+
+-- ---------------------------------------------------------------------
+-- 7. Storage: bucket público "productos" (fotos de los productos)
+--    Cualquiera puede ver las fotos; solo el admin sube, cambia o borra.
+-- ---------------------------------------------------------------------
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('productos', 'productos', true, 5242880, array['image/webp', 'image/jpeg', 'image/png'])
+on conflict (id) do update
+  set public = excluded.public,
+      file_size_limit = excluded.file_size_limit,
+      allowed_mime_types = excluded.allowed_mime_types;
+
+-- Las fotos se sirven por URL pública; esta política deja además listar y borrar archivos
+-- (Supabase pide permiso de lectura para poder eliminar).
+drop policy if exists "productos_files_read" on storage.objects;
+create policy "productos_files_read" on storage.objects
+  for select to anon, authenticated
+  using (bucket_id = 'productos');
+
+drop policy if exists "productos_files_insert_admin" on storage.objects;
+create policy "productos_files_insert_admin" on storage.objects
+  for insert to authenticated
+  with check (bucket_id = 'productos' and (select public.is_admin()));
+
+drop policy if exists "productos_files_update_admin" on storage.objects;
+create policy "productos_files_update_admin" on storage.objects
+  for update to authenticated
+  using (bucket_id = 'productos' and (select public.is_admin()))
+  with check (bucket_id = 'productos' and (select public.is_admin()));
+
+drop policy if exists "productos_files_delete_admin" on storage.objects;
+create policy "productos_files_delete_admin" on storage.objects
+  for delete to authenticated
+  using (bucket_id = 'productos' and (select public.is_admin()));

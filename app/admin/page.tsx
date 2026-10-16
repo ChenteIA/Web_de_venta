@@ -18,7 +18,7 @@ export default async function AdminPage() {
   return (
     <>
       <Header home="/admin">
-        <a className="view-toggle" href="/"><Icon name="arrow-right-up" />Ver la web</a>
+        <a className="view-toggle" href="/" aria-label="Ver la web"><Icon name="arrow-right-up" /><span className="vt-label">Ver la web</span></a>
         <SignOut />
       </Header>
       {isAdmin ? (

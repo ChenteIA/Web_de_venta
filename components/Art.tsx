@@ -1,20 +1,5 @@
 import Icon from './icons';
 // Ilustraciones SVG de San Luyo: se usan mientras no haya fotos en ./imagenes.
-import type { Product } from '@/lib/site';
-
-export function ProductIcon({ kind }: { kind: Product['icon'] }) {
-  void kind;
-  return (
-    <svg viewBox="0 0 120 90" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="52" y="4" width="16" height="8" rx="2" />
-        <path d="M54 12v10c0 6-12 9-12 18v40a4 4 0 0 0 4 4h28a4 4 0 0 0 4-4V40c0-9-12-12-12-18V12" />
-        <rect x="46" y="48" width="28" height="20" rx="3" />
-        <path d="M42 40h36" />
-      </g>
-    </svg>
-  );
-}
 
 // Maní con cáscara: dos lóbulos dorados (--crust / --crust-dark).
 function Peanut({ x, y, r = 0, s = 1 }: { x: number; y: number; r?: number; s?: number }) {

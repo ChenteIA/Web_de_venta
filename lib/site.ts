@@ -19,66 +19,74 @@ export function isPresale() {
 
 export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '51910897377').replace(/\D/g, '');
 
+// Un producto de la carta. En producción viven en la tabla "products" de Supabase (se editan desde /admin);
+// PRODUCTS es el respaldo cuando la base no está configurada o no responde.
 export type Product = {
   id: string;
   name: string;
   price: number;
-  unit: string;
-  desc: string;
-  icon: 'botella';
-  from?: boolean;
+  unit: string; // "botella de 500 ml"
+  description: string;
+  photo_path?: string | null; // foto en el bucket "productos"
+  active?: boolean;
+  sort?: number;
 };
 
-// La foto de cada producto es ./imagenes/<id>.jpg (por ejemplo ./imagenes/chicha-mani.jpg).
-// PRECIO DE EJEMPLO: cámbialo por el real.
 export const PRODUCTS: Product[] = [
-  { id: 'chicha-mani', name: 'Chicha de maní', price: 5, unit: 'botella de 500 ml', desc: 'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.', icon: 'botella' },
+  { id: 'chicha-mani', name: 'Chicha de maní', price: 5, unit: 'botella de 500 ml', description: 'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.' },
 ];
 
-export const PLACES = { portada: 'Botón de la portada', carta: 'Botón de la chicha', flotante: 'Botón flotante o de contacto' } as const;
+export const PLACES = { portada: 'Botón de la portada', carta: 'Botón del producto', flotante: 'Botón flotante o de contacto' } as const;
 export type Place = keyof typeof PLACES;
 
-export function prod(id: string | null | undefined) {
-  return PRODUCTS.find((p) => p.id === id) || null;
-}
-
-export function prodName(id: string | null | undefined) {
-  const p = prod(id);
+export function prodName(id: string | null | undefined, list: Product[] = PRODUCTS) {
+  const p = list.find((x) => x.id === id);
   if (p) return p.name;
   if (id === 'general') return 'Consulta general';
   if (id === 'otro') return 'Otro producto';
   return id || 'Otro';
 }
 
+// S/ 5 · S/ 5.50
+export function soles(n: number) {
+  return 'S/ ' + (Number.isInteger(n) ? String(n) : n.toFixed(2));
+}
+
+// "botella de 500 ml" → sustantivo "botella" (plural "botellas") y detalle "500 ml".
+export function unitParts(unit: string) {
+  const m = unit.trim().match(/^(\S+)(?:\s+de\s+(.+))?$/i);
+  const noun = m ? m[1].toLowerCase() : 'unidad';
+  const plural = /[aeiouáéó]$/.test(noun) ? noun + 's' : noun + 'es';
+  return { noun, plural, detail: m && m[2] ? m[2] : '', fem: /a$/.test(noun) || noun === 'unidad' };
+}
+export function countLabel(unit: string, n: number) {
+  const u = unitParts(unit || 'unidad');
+  return `${n} ${n === 1 ? u.noun : u.plural}`;
+}
+
 export function waHref(productId: string) {
-  const p = prod(productId);
-  if (isPresale()) {
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      p
-        ? `Hola ${BUSINESS.name}, quiero separar en preventa ${p.name.toLowerCase()} (${p.unit}, S/ ${p.price} c/u). Quiero ___ botellas para recibirlas desde ${LAUNCH.label}.`
-        : `Hola ${BUSINESS.name}, quiero separar chicha de maní en la preventa.`,
-    )}`;
-  }
-  const msg = p
-    ? `Hola ${BUSINESS.name}, quiero pedir ${p.name.toLowerCase()} (${p.unit}, S/ ${p.price}${p.from ? ' en adelante' : ' c/u'}). Quiero ___ botellas para el día ___.`
-    : `Hola ${BUSINESS.name}, quiero hacer una consulta sobre la chicha de maní.`;
+  const msg = isPresale()
+    ? `Hola ${BUSINESS.name}, quiero separar un pedido en la preventa.`
+    : `Hola ${BUSINESS.name}, quiero hacer una consulta.`;
+  void productId;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
-// Mensaje con la cantidad elegida en la web (sección "La chicha").
-export function orderText(productId: string, qty: number, presale: boolean) {
-  const p = prod(productId);
-  if (!p) return '';
+// Mensaje con la cantidad elegida en la web.
+export function orderText(p: Product, qty: number, presale: boolean) {
   const n = Math.max(1, Math.round(qty));
-  const what = n === 1 ? `1 botella de ${p.name.toLowerCase()}` : `${n} botellas de ${p.name.toLowerCase()}`;
-  const detail = `(${p.unit.replace('botella de ', '')}, S/ ${p.price} c/u = S/ ${p.price * n})`;
+  const u = unitParts(p.unit || 'unidad');
+  const what = `${countLabel(p.unit || 'unidad', n)} de ${p.name.toLowerCase()}`;
+  const price = `${soles(p.price)} c/u = ${soles(p.price * n)}`;
+  const detail = u.detail ? `(${u.detail}, ${price})` : `(${price})`;
+  const pron = (u.fem ? 'la' : 'lo') + (n === 1 ? '' : 's');
   return presale
-    ? `Hola ${BUSINESS.name}, quiero separar ${what} ${detail} para recibir${n === 1 ? 'la' : 'las'} desde ${LAUNCH.label}.`
-    : `Hola ${BUSINESS.name}, quiero pedir ${what} ${detail}. ¿Para cuándo ${n === 1 ? 'la' : 'las'} tienen?`;
+    ? `Hola ${BUSINESS.name}, quiero separar ${what} ${detail} para recibir${pron} desde ${LAUNCH.label}.`
+    : `Hola ${BUSINESS.name}, quiero pedir ${what} ${detail}. ¿Para cuándo ${pron} tienen?`;
 }
 
-export function waOrderHref(productId: string, qty: number, presale: boolean) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(orderText(productId, qty, presale))}`;
+export function waOrderHref(p: Product, qty: number, presale: boolean) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(orderText(p, qty, presale))}`;
 }
 
 // 51910897377 → +51 910 897 377
