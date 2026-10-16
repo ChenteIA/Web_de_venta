@@ -1,4 +1,5 @@
 'use client';
+import Icon from '@/components/icons';
 import { supabaseBrowser } from '@/lib/supabase/client';
 
 export default function SignOut() {
@@ -11,6 +12,7 @@ export default function SignOut() {
         window.location.assign('/admin/login');
       }}
     >
+      <Icon name="logout" />
       Cerrar sesión
     </button>
   );

@@ -367,3 +367,24 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 
 /* Al saltar a una sección (#carta, #como-pedir…), el título no queda tapado por el encabezado fijo */
 section[id] { scroll-margin-top: 64px; }
+
+/* ============ ICONOS (Reicon) ============ */
+.btn-sm svg { width: 18px; height: 18px; }
+.view-toggle { display: inline-flex; align-items: center; gap: 6px; }
+.view-toggle svg { width: 18px; height: 18px; flex-shrink: 0; }
+.theme-btn svg { width: 20px; height: 20px; }
+.theme-btn .ic-sun { display: none; }
+:root[data-theme="dark"] .theme-btn .ic-sun { display: block; }
+:root[data-theme="dark"] .theme-btn .ic-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-btn .ic-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-btn .ic-moon { display: none; }
+}
+.hero .facts .fi { display: block; width: 24px; height: 24px; color: var(--apple); margin-bottom: 8px; }
+footer.site h3 { display: flex; align-items: center; gap: 8px; }
+footer.site h3 svg { width: 18px; height: 18px; color: var(--crust); flex-shrink: 0; }
+.copy-row button { display: inline-flex; align-items: center; gap: 6px; }
+.copy-row button svg { width: 15px; height: 15px; }
+.rv-admin .acts button { display: inline-flex; align-items: center; gap: 4px; }
+.rv-admin .acts button svg { width: 14px; height: 14px; flex-shrink: 0; }
+@media (max-width: 520px) { .fab svg { width: 28px; height: 28px; } }

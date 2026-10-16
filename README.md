@@ -19,6 +19,7 @@ Demo de **ChenteIA** para negocios de Mala–Cañete. *El Puqui es un negocio fi
 | `supabase/schema.sql` | SQL completo: tablas, triggers, RLS y Storage |
 | `scripts/optimize-images.mjs` | Convierte `./imagenes` a WebP responsivo |
 | `imagenes/` | Fotos originales (ver `imagenes/LEEME.md`) |
+| `components/icons.tsx` | Iconos de [Reicon](https://reicon.dev) (MIT), generados con `scripts/reicon-icons.mjs` |
 
 ## Desarrollo local
 
@@ -79,6 +80,18 @@ git push -u origin main
 5. En Supabase → **Authentication → URL Configuration** pon tu dominio de Vercel como *Site URL* (por ejemplo `https://el-puqui.vercel.app`).
 
 > Si cambias una variable `NEXT_PUBLIC_*` en Vercel, vuelve a desplegar: esas variables se fijan en el build.
+
+## Iconos
+
+Los iconos de interfaz salen de [Reicon](https://github.com/dqev/reicon) (licencia MIT; basados en Solar Icons de 480 Design, CC BY 4.0). Solo se copian los que se usan, así la web no carga los 2 700:
+
+```bash
+git clone --depth 1 https://github.com/dqev/reicon /tmp/reicon
+# agrega el nombre del icono a ICONS en scripts/reicon-icons.mjs (búscalo en https://reicon.dev/icons)
+node scripts/reicon-icons.mjs /tmp/reicon
+```
+
+Uso: `<Icon name="calendar" />`. Toma el color del texto. Las ilustraciones de los productos (frascos, caja de regalo) siguen siendo SVG propios, porque Reicon no tiene iconos de frascos ni frutas.
 
 ## Notas
 

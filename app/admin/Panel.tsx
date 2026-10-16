@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BUSINESS, PLACES, PRODUCTS, prod, prodName, type Place } from '@/lib/site';
+import Icon from '@/components/icons';
 import { supabaseBrowser } from '@/lib/supabase/client';
 import { REVIEWS_BUCKET } from '@/lib/supabase/config';
 import { dayAdd, dayLong, dayShort, daysBetween, money, pct, timeOf, today } from '@/lib/time';
@@ -433,9 +434,9 @@ export default function Panel() {
       </div>
 
       <div className="toolbar">
-        <button type="button" className="btn btn-sm btn-ghost" onClick={load}>Actualizar</button>
+        <button type="button" className="btn btn-sm btn-ghost" onClick={load}><Icon name="refresh" />Actualizar</button>
         <span className="spacer" />
-        <button type="button" className="btn btn-sm btn-ghost" onClick={generateDemo} disabled={busy === 'demo'}>Generar datos de ejemplo</button>
+        <button type="button" className="btn btn-sm btn-ghost" onClick={generateDemo} disabled={busy === 'demo'}><Icon name="stars2" />Generar datos de ejemplo</button>
       </div>
 
       {(demoC > 0 || demoS > 0) && (
@@ -584,8 +585,8 @@ export default function Panel() {
         <div className="card-head">
           <div><h2>Ventas registradas</h2><p className="sub">{pSales.length ? `${pSales.length} ${pSales.length === 1 ? 'venta' : 'ventas'} en el periodo, por ${money(amount)}.${pSales.length > 50 ? ' Se muestran las 50 más recientes.' : ''}` : 'No hay ventas en este periodo.'}</p></div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <button type="button" className="btn btn-sm btn-ghost" onClick={exportSales} disabled={!sales.length}>Descargar ventas (CSV)</button>
-            <button type="button" className="btn btn-sm btn-ghost" onClick={exportClicks} disabled={!clicks.length}>Descargar clics (CSV)</button>
+            <button type="button" className="btn btn-sm btn-ghost" onClick={exportSales} disabled={!sales.length}><Icon name="download2" />Descargar ventas (CSV)</button>
+            <button type="button" className="btn btn-sm btn-ghost" onClick={exportClicks} disabled={!clicks.length}><Icon name="download2" />Descargar clics (CSV)</button>
           </div>
         </div>
         <div className="table-wrap">
@@ -631,7 +632,7 @@ export default function Panel() {
             </select>
           </label>
           <div className="field wide" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
-            <button type="submit" className="btn btn-dark btn-sm" disabled={busy === 'rv'}>Subir capturas</button>
+            <button type="submit" className="btn btn-dark btn-sm" disabled={busy === 'rv'}><Icon name="upload2" />Subir capturas</button>
             <span className="status" role="status">{rvStatus}</span>
           </div>
         </form>
@@ -648,8 +649,8 @@ export default function Panel() {
                     <span className="confirm">¿Eliminar? <button type="button" onClick={() => deleteReview(r)}>Sí</button><button type="button" onClick={() => setConfirm('')}>No</button></span>
                   ) : (
                     <>
-                      <button type="button" onClick={() => toggleReview(r)}>{r.visible ? 'Ocultar de la web' : 'Mostrar en la web'}</button>
-                      <button type="button" onClick={() => setConfirm('rv:' + r.id)}>Eliminar</button>
+                      <button type="button" onClick={() => toggleReview(r)}><Icon name={r.visible ? 'eye-closed' : 'eye'} />{r.visible ? 'Ocultar de la web' : 'Mostrar en la web'}</button>
+                      <button type="button" onClick={() => setConfirm('rv:' + r.id)}><Icon name="trash2" />Eliminar</button>
                     </>
                   )}
                 </span>

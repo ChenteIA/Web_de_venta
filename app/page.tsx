@@ -5,6 +5,7 @@ import ReviewsGallery, { type PublicReview } from '@/components/ReviewsGallery';
 import WaLink from '@/components/WaLink';
 import Reveal from '@/components/Reveal';
 import WaTracker from '@/components/WaTracker';
+import Icon from '@/components/icons';
 import { IMAGES, largest, srcSet } from '@/lib/images';
 import { BUSINESS, PRODUCTS, prodName, waDisplay } from '@/lib/site';
 import { hasSupabase, REVIEWS_BUCKET } from '@/lib/supabase/config';
@@ -64,9 +65,9 @@ export default async function Home() {
                 <a className="btn btn-ghost" href="#carta">Ver la carta</a>
               </div>
               <div className="facts">
-                <div><b>Pedidos con un día de anticipación</b><span>Las cajas de regalo, con dos.</span></div>
-                <div><b>Recojo o delivery</b><span>En Mala y San Antonio.</span></div>
-                <div><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
+                <div><Icon name="calendar" className="fi" /><b>Pedidos con un día de anticipación</b><span>Las cajas de regalo, con dos.</span></div>
+                <div><Icon name="truck" className="fi" /><b>Recojo o delivery</b><span>En Mala y San Antonio.</span></div>
+                <div><Icon name="wallet" className="fi" /><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
               </div>
             </div>
             {portada ? (
@@ -153,9 +154,9 @@ export default async function Home() {
           <div className="foot-art" aria-hidden="true"><PieArt plate={false} /></div>
           <div className="wrap">
             <div><b>{BUSINESS.name}</b><p>{BUSINESS.tagline}</p></div>
-            <div><h3>Dónde estamos</h3><p>{BUSINESS.address}</p></div>
-            <div><h3>Horario</h3><p>{BUSINESS.hours}</p></div>
-            <div><h3>WhatsApp</h3><div className="copy-row"><span className="num">{waDisplay()}</span><CopyButton text={waDisplay()} /></div></div>
+            <div><h3><Icon name="map-point" />Dónde estamos</h3><p>{BUSINESS.address}</p></div>
+            <div><h3><Icon name="clock" />Horario</h3><p>{BUSINESS.hours}</p></div>
+            <div><h3><Icon name="whatsapp" />WhatsApp</h3><div className="copy-row"><span className="num">{waDisplay()}</span><CopyButton text={waDisplay()} /></div></div>
           </div>
         </footer>
 
