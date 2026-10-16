@@ -1,0 +1,45 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
+    .page { position: absolute; left: 0; top: 0; width: 1080px; height: 11490px; }
+    .page img { display: block; width: 1080px; height: 11490px; }
+    .head { position: absolute; left: 0; top: 0; width: 1080px; height: 192px; }
+    .fab { position: absolute; left: 864px; top: 1704px; width: 168px; height: 168px; border-radius: 50%; }
+    .chip { position: absolute; left: 540px; top: 236px; transform: translateX(-50%); padding: 22px 46px; border-radius: 999px; background: #2B1B18; color: #FAF4F1; font-size: 46px; font-weight: 560; white-space: nowrap; }
+    #p03-bg { position: absolute; inset: 0; background: #FFFFFF; }
+    #p03-picker6 { position: absolute; left: 48px; top: 1156px; width: 984px; height: 762px; }
+    #p03-sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 900px; background: #EFE6DD; border-radius: 40px 40px 0 0; overflow: hidden; }
+    #p03-bar { display: flex; align-items: center; gap: 24px; height: 150px; padding: 0 48px; background: #2B1B18; color: #FAF4F1; }
+    #p03-bar img { width: 92px; height: 92px; }
+    #p03-bar b { display: block; font-size: 44px; font-weight: 600; }
+    #p03-bar small { display: block; font-size: 30px; color: #D9C9C2; }
+    #p03-bubble { position: absolute; right: 48px; top: 220px; width: 800px; padding: 34px 38px 26px; border-radius: 36px 36px 8px 36px; background: #2E6B3B; color: #FFFFFF; font-size: 40px; line-height: 1.38; }
+    #p03-bubble time { display: block; margin-top: 10px; text-align: right; font-size: 28px; color: #CFE6D4; }
+    #p03-note { position: absolute; left: 48px; right: 48px; bottom: 70px; text-align: center; font-size: 40px; color: #2B1B18; }
+  </style>
+  <div id="root" data-composition-id="03-producto" data-width="1080" data-height="1920" data-duration="8.0">
+    <div id="p03-bg" class="clip" data-start="0" data-duration="8" data-track-index="0"></div>
+    <div id="p03-page" class="page" style="transform: translateY(-3020px)"><img src="assets/page-full.jpg" alt="La web de San Luyo en el celular" width="1080" height="11490"></div>
+    <img id="p03-head" class="head" src="assets/header.png" alt="">
+    <img id="p03-fab" class="fab" src="assets/fab.png" alt="">
+    <img id="p03-picker6" src="assets/picker-6.png" alt="Selector con 6 botellas: S/ 30">
+    <div id="p03-chip" class="chip">Elige tus botellas</div>
+    <div id="p03-sheet">
+      <div id="p03-bar"><img src="assets/logo.png" alt=""><div><b>San Luyo</b><small>+51 910 897 377</small></div></div>
+      <p id="p03-bubble">Hola San Luyo, quiero separar 6 botellas de chicha de maní (500 ml, S/ 5 c/u = S/ 30) para recibirlas desde el lunes 19 de octubre.<time>enviado</time></p>
+      <p id="p03-note">El mensaje ya va escrito: solo lo envías.</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to({}, { duration: 0.01 }, 7.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["03-producto"] = tl;
+    })();
+  </script>
+</template>

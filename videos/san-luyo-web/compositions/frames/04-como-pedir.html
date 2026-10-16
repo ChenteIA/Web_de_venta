@@ -1,0 +1,32 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
+    .page { position: absolute; left: 0; top: 0; width: 1080px; height: 11490px; }
+    .page img { display: block; width: 1080px; height: 11490px; }
+    .head { position: absolute; left: 0; top: 0; width: 1080px; height: 192px; }
+    .fab { position: absolute; left: 864px; top: 1704px; width: 168px; height: 168px; border-radius: 50%; }
+    .chip { position: absolute; left: 540px; top: 236px; transform: translateX(-50%); padding: 22px 46px; border-radius: 999px; background: #2B1B18; color: #FAF4F1; font-size: 46px; font-weight: 560; white-space: nowrap; }
+    #c04-bg { position: absolute; inset: 0; background: #FFFFFF; }
+    #c04-hl { position: absolute; left: 108px; top: 789px; width: 864px; height: 402px; border-radius: 20px; background: rgba(226, 168, 75, 0.22); }
+  </style>
+  <div id="root" data-composition-id="04-como-pedir" data-width="1080" data-height="1920" data-duration="7.0">
+    <div id="c04-bg" class="clip" data-start="0" data-duration="7" data-track-index="0"></div>
+    <div id="c04-page" class="page" style="transform: translateY(-5340px)"><img src="assets/page-full.jpg" alt="La web de San Luyo en el celular" width="1080" height="11490"></div>
+    <img id="c04-head" class="head" src="assets/header.png" alt="">
+    <img id="c04-fab" class="fab" src="assets/fab.png" alt="">
+    <div id="c04-hl"></div>
+    <div id="c04-chip" class="chip">Así de simple</div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to({}, { duration: 0.01 }, 6.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["04-como-pedir"] = tl;
+    })();
+  </script>
+</template>

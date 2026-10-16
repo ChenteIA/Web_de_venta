@@ -1,0 +1,33 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
+    
+    #g01-bg { position: absolute; inset: 0; background: #1d130f; }
+    #g01-photo { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; object-position: 50% 100%; filter: brightness(0.82); }
+    #g01-logo { position: absolute; left: 450px; top: 250px; width: 180px; height: 180px; }
+    #g01-title { position: absolute; left: 60px; right: 60px; top: 470px; text-align: center; font-family: "Gloock", serif; font-weight: 400; font-size: 112px; line-height: 1.0; letter-spacing: -0.02em; color: #FAF4F1; }
+    #g01-title span { display: block; }
+    #g01-sub { position: absolute; left: 90px; right: 90px; top: 740px; text-align: center; font-size: 50px; line-height: 1.3; color: #F3E6DE; }
+    #g01-arrow { position: absolute; left: 510px; top: 840px; width: 60px; height: 60px; }
+  </style>
+  <div id="root" data-composition-id="01-gancho" data-width="1080" data-height="1920" data-duration="3.0">
+    <div id="g01-bg" class="clip" data-start="0" data-duration="3" data-track-index="0"></div>
+    <img id="g01-photo" src="assets/portada.jpg" alt="Dos botellas y un vaso de chicha de maní con maníes">
+    <img id="g01-logo" src="assets/logo.png" alt="Logo de San Luyo">
+    <h1 id="g01-title"><span>Chicha de maní,</span><span>hecha en Ica.</span></h1>
+    <p id="g01-sub">Ya puedes separarla desde la web.</p>
+    <svg id="g01-arrow" viewBox="0 0 24 24" fill="none" stroke="#FAF4F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to({}, { duration: 0.01 }, 2.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["01-gancho"] = tl;
+    })();
+  </script>
+</template>

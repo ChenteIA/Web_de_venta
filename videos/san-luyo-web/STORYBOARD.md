@@ -26,7 +26,7 @@ captions: skipped (sin narración; la web y las etiquetas cuentan la historia)
 - voiceover: ""
 - duration: 3s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/01-gancho.html
 - type: hook
 - persuasion: Curiosity gap
@@ -48,7 +48,7 @@ Scene 2 (1.6–3.0s): aparece "Ya puedes separarla desde la web." con una flecha
 - voiceover: ""
 - duration: 6s
 - transition_in: push-slide UP
-- status: outline
+- status: built
 - src: compositions/frames/02-entrada.html
 - type: product_intro
 - persuasion: Show-don't-tell proof
@@ -72,7 +72,7 @@ Scene 3 (4.0–6.0s): un subrayado rojo se dibuja bajo "Preventa abierta" y el b
 - voiceover: ""
 - duration: 8s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/03-producto.html
 - type: key_feature
 - persuasion: Show-don't-tell proof
@@ -96,7 +96,7 @@ Scene 3 (4.4–8.0s): anillo de toque sobre "Separar 6 botellas" (4.8s); sube un
 - voiceover: ""
 - duration: 7s
 - transition_in: crossfade
-- status: outline
+- status: built
 - src: compositions/frames/04-como-pedir.html
 - type: key_feature
 - persuasion: Friction reduction
@@ -119,7 +119,7 @@ Scene 3 (5.6–7.0s): la barra "Tu chicha, bien helada · desde el lunes 19" que
 - voiceover: ""
 - duration: 6s
 - transition_in: blur-crossfade
-- status: outline
+- status: built
 - src: compositions/frames/05-cierre.html
 - type: cta
 - persuasion: Friction reduction
