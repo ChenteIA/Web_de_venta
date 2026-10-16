@@ -84,9 +84,9 @@ export default async function Home() {
           {/* La foto que no se mueve: cambia con un fundido lento según la sección que se lee */}
           <div className="stage">
             <div className="stage-frame">
-              <div className="layer on" data-layer="0"><Photo set={portada} alt={`Dos botellas y un vaso de chicha de maní ${BUSINESS.name} con maníes`} sizes="(min-width: 961px) 50vw, 100vw" eager /></div>
-              <div className="layer" data-layer="1"><Photo set={fotoChicha} alt="Botella de chicha de maní de medio litro junto a un vaso servido" sizes="(min-width: 961px) 50vw, 100vw" /></div>
-              <div className="layer" data-layer="2"><Photo set={ancha} alt="Botellas de chicha de maní, un vaso y maníes tostados sobre una mesa de madera" sizes="(min-width: 961px) 50vw, 100vw" /></div>
+              <div className="layer on" data-layer="0"><Photo set={portada} alt={`Dos botellas y un vaso de chicha de maní ${BUSINESS.name} con maníes`} sizes="(min-width: 760px) 50vw, 100vw" eager /></div>
+              <div className="layer" data-layer="1"><Photo set={fotoChicha} alt="Botella de chicha de maní de medio litro junto a un vaso servido" sizes="(min-width: 760px) 50vw, 100vw" /></div>
+              <div className="layer" data-layer="2"><Photo set={ancha} alt="Botellas de chicha de maní, un vaso y maníes tostados sobre una mesa de madera" sizes="(min-width: 760px) 50vw, 100vw" /></div>
             </div>
           </div>
 
@@ -112,7 +112,7 @@ export default async function Home() {
 
             <section className="plate" id="chicha" data-stage="1" aria-labelledby="h-chicha">
               <div className="plate-photo" data-reveal="">
-                <Photo set={fotoChicha} alt="Botella de chicha de maní con etiqueta de papel y un vaso servido" sizes="(min-width: 961px) 40vw, 92vw" />
+                <Photo set={fotoChicha} alt="Botella de chicha de maní con etiqueta de papel y un vaso servido" sizes="(min-width: 760px) 40vw, 92vw" />
               </div>
               <div className="plate-text">
                 <h2 id="h-chicha" data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>{chicha.name}</h2>

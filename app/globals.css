@@ -350,7 +350,7 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 
 /* La chicha: plato cuadrado y texto breve */
 .plate { display: flex; flex-direction: column; gap: 28px; padding-block: var(--section) 0; }
-.plate-photo { aspect-ratio: 1; overflow: hidden; border-radius: var(--r); background: var(--surface-2); max-width: 100%; }
+.plate-photo { aspect-ratio: 1; overflow: hidden; border-radius: var(--r); background: var(--surface-2); width: 100%; max-width: 560px; }
 .plate-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 42% 50%; display: block; }
 .plate-text { display: flex; flex-direction: column; gap: 14px; padding-inline: 4px; }
 .plate h2 { font-size: var(--t-display); }
@@ -408,7 +408,7 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   margin-top: var(--section);
 }
 .sl .contact-say { font-family: var(--f-body); font-size: var(--t-lead); font-weight: var(--w-regular); letter-spacing: 0; line-height: 1.4; max-width: 30ch; }
-.contact-number { align-self: end; font-family: var(--f-display); font-size: clamp(44px, 11.5vw, 170px); line-height: 0.95; letter-spacing: -0.03em; color: var(--c-ink); text-decoration: none; white-space: nowrap; transition: color 200ms ease; }
+.contact-number { align-self: end; font-family: var(--f-display); font-size: clamp(44px, 10vw, 170px); line-height: 0.95; letter-spacing: -0.03em; color: var(--c-ink); text-decoration: none; white-space: nowrap; transition: color 200ms ease; }
 .contact-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 16px; }
 .copy-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .copy-row button { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px; border-radius: var(--r-pill); border: 0; background: #F8F2EE; color: #2B1B18; font-size: 14px; font-weight: var(--w-medium); }
@@ -438,8 +438,8 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .contact-number:hover { color: var(--crust); }
 }
 
-/* Computadora: dos columnas; la foto queda fija mientras la columna avanza */
-@media (min-width: 961px) {
+/* Computadora y tableta horizontal: dos columnas; la foto queda fija mientras la columna avanza */
+@media (min-width: 760px) {
   .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
   .stage { grid-column: 2; grid-row: 1; position: sticky; top: calc(64px + var(--gutter)); }
   .stage-frame { height: calc(100svh - 64px - 2 * var(--gutter)); }
@@ -452,19 +452,26 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .card-body { flex: 1; justify-content: center; padding: 48px 48px 40px; }
   .card-logo { width: 104px; height: 104px; }
   .stage-frame { min-height: 0; }
-  .plate, .words { padding-inline: 48px; }
-  .itinerary { padding: 56px 48px 64px; }
+  .plate, .words { padding-inline: clamp(24px, 3.4vw, 56px); }
+  .plate { padding-top: calc(var(--section) * 0.9); }
+  .words { padding-bottom: 0; }
+  .itinerary { padding: 56px clamp(24px, 3.4vw, 56px) 64px; }
   .cells { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .contact { padding-block: 48px 40px; padding-inline: 48px; }
   .final { padding: 40px 48px 36px; }
   .final-photo { object-position: 50% 82%; }
 }
-@media (min-width: 1200px) {
-  .plate, .words { padding-inline: 72px; }
-  .itinerary { padding-inline: 72px; }
+@media (min-width: 760px) {
+  /* El encabezado usa los mismos bordes que la página, no una columna centrada */
+  body:has(.sl) .top .wrap { max-width: none; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+  /* Contacto: la frase y el número juntos, sin una pantalla vacía en medio */
+  .contact { min-height: 0; grid-template-rows: auto auto auto; gap: 40px; padding-block: 88px 40px; }
+  .contact-number { align-self: start; }
+  .card-body { padding-inline: clamp(24px, 4vw, 48px); }
 }
-@media (max-width: 960px) {
-  .contact-number { white-space: normal; }
+@media (min-width: 760px) and (max-width: 1100px) {
+  .card-hero h1 { font-size: clamp(36px, 4.6vw, 48px); }
+  .cells { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 520px) {
   .itinerary { padding: 28px 14px 32px; }
