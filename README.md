@@ -99,6 +99,6 @@ Uso: `<Icon name="calendar" />`. Toma el color del texto. La botella y los maní
 - **Reseñas:** el bucket es privado. La web solo puede leer las imágenes de reseñas **visibles** (se sirven con URL firmada), y al ocultar una deja de verse al instante. Antes de subirlas, el panel las reduce a WebP de 1080 px. No subas capturas inventadas y tapa el número del cliente.
 - **Ventas:** registrar una venta desde un clic lo marca como vendido, y eliminarla lo desmarca (trigger). Un clic solo admite una venta.
 - **Datos de ejemplo:** se guardan con `demo = true` y se borran con un botón sin tocar los datos reales.
-- **Fecha de inicio:** `LAUNCH` en `lib/site.ts`. Antes de ese día la portada muestra "Empezamos el lunes 19 de octubre"; desde ese día el aviso desaparece solo.
+- **Preventa:** `LAUNCH` en `lib/site.ts` (lunes 19 de octubre de 2026). Antes de ese día la web está en preventa: aviso "Preventa · Entregas desde el lunes 19", botones "Separar mi botella" y mensaje de WhatsApp para separar. Desde ese día pasa sola a venta normal ("Pedir por WhatsApp").
 - **Precio:** S/ 5 es un precio de ejemplo. Cámbialo en `PRODUCTS` (`lib/site.ts`).
 - **Demo anterior:** las fotos de El Puqui están en `imagenes/archivo-el-puqui/` y los videos en `videos/`.

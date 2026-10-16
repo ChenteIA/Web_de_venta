@@ -7,10 +7,10 @@ import Reveal from '@/components/Reveal';
 import WaTracker from '@/components/WaTracker';
 import Icon from '@/components/icons';
 import { IMAGES, largest, srcSet } from '@/lib/images';
-import { BUSINESS, LAUNCH, PRODUCTS, prodName, waDisplay } from '@/lib/site';
+import { BUSINESS, isPresale, LAUNCH, PRODUCTS, prodName, waDisplay } from '@/lib/site';
 import { hasSupabase, REVIEWS_BUCKET } from '@/lib/supabase/config';
 import { supabaseAnon } from '@/lib/supabase/server';
-import { dayShort, today } from '@/lib/time';
+import { dayShort } from '@/lib/time';
 
 // Las reseñas cambian desde el panel: se leen en cada visita.
 export const dynamic = 'force-dynamic';
@@ -45,15 +45,20 @@ export default async function Home() {
   const reviews = await loadReviews();
   const portada = IMAGES.portada;
   const ancha = IMAGES.portadaAncha;
-  const soon = today() < LAUNCH.day;
+  const soon = isPresale();
+  const cta = soon ? 'Separar mi botella' : 'Pedir por WhatsApp';
 
   const heroText = (
     <>
-      {soon && <p className="launch">Empezamos {LAUNCH.label}. Ya puedes separar tu botella.</p>}
+      {soon && <p className="launch">Preventa · Entregas desde {LAUNCH.short}</p>}
       <h1>Chicha de maní casera, hecha en Ica.</h1>
-      <p className="lede">Botellas de medio litro, preparadas en casa en tandas pequeñas. Tócale al botón y coordinamos tu pedido por WhatsApp.</p>
+      <p className="lede">
+        {soon
+          ? `Botellas de medio litro, hechas en casa. Sepárala hoy por WhatsApp y te la entregamos desde ${LAUNCH.label}.`
+          : 'Botellas de medio litro, preparadas en casa en tandas pequeñas. Tócale al botón y coordinamos tu pedido por WhatsApp.'}
+      </p>
       <div className="actions">
-        <WaLink product="general" place="portada">Pedir por WhatsApp</WaLink>
+        <WaLink product="general" place="portada">{cta}</WaLink>
         <a className="btn btn-ghost" href="#carta">Ver la chicha</a>
       </div>
     </>
@@ -118,7 +123,7 @@ export default async function Home() {
           <div className="wrap">
             <div className="sec-head" data-reveal="">
               <h2>Nuestra chicha</h2>
-              <p>Precio en soles. El botón abre WhatsApp con tu pedido ya escrito: solo pon cuántas botellas quieres.</p>
+              <p>{soon ? 'Precio en soles. Estamos en preventa: el botón abre WhatsApp con tu separación ya escrita, solo pon cuántas botellas quieres.' : 'Precio en soles. El botón abre WhatsApp con tu pedido ya escrito: solo pon cuántas botellas quieres.'}</p>
             </div>
             <div className={PRODUCTS.length === 1 ? 'menu single' : 'menu'}>
               {PRODUCTS.map((p, idx) => {
@@ -136,7 +141,7 @@ export default async function Home() {
                       <h3>{p.name}</h3>
                       <div className="price"><b className="num">S/ {p.price}</b><span>{p.unit}</span></div>
                       <p>{p.desc}</p>
-                      <WaLink product={p.id} place="carta">Pedir por WhatsApp</WaLink>
+                      <WaLink product={p.id} place="carta">{soon ? 'Separar mi botella' : 'Pedir por WhatsApp'}</WaLink>
                     </div>
                   </article>
                 );
@@ -149,9 +154,9 @@ export default async function Home() {
           <div className="wrap">
             <div className="sec-head" data-reveal=""><h2>Cómo pedir</h2></div>
             <ol className="steps">
-              <li data-reveal="" style={{ '--i': 0 } as React.CSSProperties}><span className="n">1</span><b>Elige y toca el botón</b><span>Se abre WhatsApp con la chicha y el precio. Solo agrega cuántas botellas quieres y para cuándo.</span></li>
-              <li data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><span className="n">2</span><b>Confirmamos y pagas</b><span>Te respondemos con la disponibilidad. Pagas con Yape, Plin o en efectivo al recoger.</span></li>
-              <li data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><span className="n">3</span><b>Recoges o te lo llevamos</b><span>Recojo en el local o delivery en Ica, a la hora que acordemos.</span></li>
+              <li data-reveal="" style={{ '--i': 0 } as React.CSSProperties}><span className="n">1</span><b>{soon ? 'Separa por WhatsApp' : 'Elige y toca el botón'}</b><span>Se abre WhatsApp con la chicha y el precio. Solo agrega cuántas botellas quieres y para cuándo.</span></li>
+              <li data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><span className="n">2</span><b>{soon ? 'Confirmamos tu separación' : 'Confirmamos y pagas'}</b><span>Te respondemos con la disponibilidad. Pagas con Yape, Plin o en efectivo al recoger.</span></li>
+              <li data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><span className="n">3</span><b>Recoges o te lo llevamos</b><span>{soon ? `Desde ${LAUNCH.label}: recojo o delivery en Ica, a la hora que acordemos.` : 'Recojo en el local o delivery en Ica, a la hora que acordemos.'}</span></li>
             </ol>
           </div>
         </section>

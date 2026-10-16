@@ -1,4 +1,5 @@
 // Datos del negocio. Para cambiar textos, precios o productos, edita este archivo.
+import { today } from './time';
 
 export const BUSINESS = {
   name: 'San Luyo',
@@ -7,8 +8,14 @@ export const BUSINESS = {
   hours: 'Abierto 24/7, todos los días del año.',
 };
 
-// Día en que empiezan las ventas (hora de Lima). Antes de esa fecha la portada lo anuncia.
-export const LAUNCH = { day: '2026-10-19', label: 'el lunes 19 de octubre' };
+// Día de las primeras entregas (hora de Lima). Antes de esa fecha la web funciona como PREVENTA:
+// los botones dicen "Separar" y el mensaje de WhatsApp pide la botella para esa fecha.
+// Desde ese día la web pasa sola a venta normal.
+export const LAUNCH = { day: '2026-10-19', label: 'el lunes 19 de octubre', short: 'el lunes 19' };
+
+export function isPresale() {
+  return today() < LAUNCH.day;
+}
 
 export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '51910897377').replace(/\D/g, '');
 
@@ -45,6 +52,13 @@ export function prodName(id: string | null | undefined) {
 
 export function waHref(productId: string) {
   const p = prod(productId);
+  if (isPresale()) {
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      p
+        ? `Hola ${BUSINESS.name}, quiero separar en preventa ${p.name.toLowerCase()} (${p.unit}, S/ ${p.price} c/u). Quiero ___ botellas para recibirlas desde ${LAUNCH.label}.`
+        : `Hola ${BUSINESS.name}, quiero separar chicha de maní en la preventa.`,
+    )}`;
+  }
   const msg = p
     ? `Hola ${BUSINESS.name}, quiero pedir ${p.name.toLowerCase()} (${p.unit}, S/ ${p.price}${p.from ? ' en adelante' : ' c/u'}). Quiero ___ botellas para el día ___.`
     : `Hola ${BUSINESS.name}, quiero hacer una consulta sobre la chicha de maní.`;
