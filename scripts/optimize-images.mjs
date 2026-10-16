@@ -21,8 +21,9 @@ async function variants(file, name, widths, quality = 78) {
   const meta = await img.metadata();
   const srcW = meta.autoOrient?.width ?? meta.width;
   const srcH = meta.autoOrient?.height ?? meta.height;
-  let ws = widths.filter((w) => w <= srcW);
-  if (!ws.length) ws = [srcW];
+  // Tamaños pedidos que caben en la foto; si la foto es más chica que el mayor, también su ancho original.
+  const ws = widths.filter((w) => w <= srcW);
+  if (srcW < Math.max(...widths) && !ws.includes(srcW)) ws.push(srcW);
   const out = [];
   for (const w of ws) {
     const rel = `${name}-${w}.webp`;

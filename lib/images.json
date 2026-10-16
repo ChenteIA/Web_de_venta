@@ -1,6 +1,32 @@
 {
-  "portada": null,
-  "logo": null,
-  "favicon": false,
+  "portada": {
+    "width": 767,
+    "height": 1375,
+    "srcs": [
+      {
+        "w": 640,
+        "src": "/img/portada-640.webp"
+      },
+      {
+        "w": 767,
+        "src": "/img/portada-767.webp"
+      }
+    ]
+  },
+  "logo": {
+    "width": 812,
+    "height": 812,
+    "srcs": [
+      {
+        "w": 64,
+        "src": "/img/logo-64.webp"
+      },
+      {
+        "w": 128,
+        "src": "/img/logo-128.webp"
+      }
+    ]
+  },
+  "favicon": true,
   "products": {}
 }
