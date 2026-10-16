@@ -790,7 +790,7 @@ export default function Panel() {
                   </div>
                 </div>
               </div>
-              <label className="field">Orden<input id="pr-sort" type="number" step={1} value={draft.sort} onChange={(e) => setDraft({ ...draft, sort: e.target.value })} /><span className="hint">Los números menores aparecen primero.</span></label>
+              <label className="field">Orden<input id="pr-sort" type="number" inputMode="numeric" step={1} value={draft.sort} onChange={(e) => setDraft({ ...draft, sort: e.target.value })} /><span className="hint">Los números menores aparecen primero.</span></label>
               <label className="field pr-check"><input id="pr-active" type="checkbox" checked={draft.active} onChange={(e) => setDraft({ ...draft, active: e.target.checked })} />Visible en la web</label>
               <div className="field wide" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
                 <button type="submit" className="btn btn-dark btn-sm" disabled={busy === 'pr'}>{draft.isNew ? 'Agregar producto' : 'Guardar cambios'}</button>

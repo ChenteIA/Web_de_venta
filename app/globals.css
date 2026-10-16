@@ -112,7 +112,7 @@ button { cursor: pointer; }
 .btn:disabled { opacity: 0.55; cursor: default; }
 
 /* Lightbox */
-dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 520px); max-height: 92vh; overscroll-behavior: contain; }
+dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 520px); max-height: 92dvh; overscroll-behavior: contain; }
 dialog.lightbox::backdrop { background: rgba(20, 10, 8, 0.78); }
 dialog.lightbox img { display: block; max-width: 100%; max-height: 82vh; border-radius: var(--r); }
 dialog.lightbox .close { display: block; margin: 12px auto 0; }
@@ -200,11 +200,12 @@ form.f { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,
 .confirm { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; }
 .linkbtn { background: none; border: 0; padding: 0; min-height: 32px; color: var(--apple); font-weight: var(--w-medium); font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
 /* Pestañas del panel */
-.tabs { display: flex; gap: 6px; overflow-x: auto; margin: 0 0 20px; padding: 4px; border-radius: var(--r-pill); background: var(--surface-2); scrollbar-width: none; }
+.tabs { display: flex; gap: 6px; overflow-x: auto; margin: 0 0 20px; padding: 4px; border-radius: var(--r-pill); background: var(--surface-2); scrollbar-width: none; overscroll-behavior-x: contain; }
 .tabs::-webkit-scrollbar { display: none; }
 .tabs button { flex: 1 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 0; border-radius: var(--r-pill); background: transparent; color: var(--muted); font-size: 15px; font-weight: var(--w-medium); white-space: nowrap; transition: background-color 150ms ease, color 150ms ease; }
 .tabs button svg { width: 18px; height: 18px; }
 .tabs button[aria-current="page"] { background: var(--bg); color: var(--ink); }
+.tabs button:active { background: var(--bg); }
 
 @media (max-width: 520px) {
   .view-toggle { width: 40px; padding: 0; justify-content: center; }
@@ -348,7 +349,7 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 /* Movimiento reducido: menos y más suave — se conserva el fundido, se quita el desplazamiento */
 @media (prefers-reduced-motion: reduce) {
   .js-reveal [data-reveal] { transform: none; transition: opacity 200ms ease; transition-delay: 0ms; }
-  .btn:active, .view-toggle:active, .theme-btn:active, .seg button:active, .rv-admin .acts button:active, .copy-row button:active, .review button:active { transform: none; }
+  .btn:active, .view-toggle:active, .theme-btn:active, .seg button:active, .rv-admin .acts button:active, .copy-row button:active, .review button:active, .qtys button:active, .cell:active, .contact-actions button:active { transform: none; }
   dialog.lightbox, dialog.lightbox[open] { transform: none; }
 }
 
@@ -405,7 +406,8 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 .card-hero h1 { font-size: var(--t-display); max-width: 9.5em; }
 .card-hero .lead { font-size: var(--t-lead); line-height: 1.5; max-width: 34ch; color: var(--ink); }
 .card-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; margin-top: 8px; font-size: 16px; }
-.card-links a { color: var(--ink); text-underline-offset: 4px; padding-block: 8px; }
+.card-links a { color: var(--ink); text-underline-offset: 4px; padding-block: 8px; touch-action: manipulation; }
+.card-links a:active { color: var(--apple); }
 
 /* La chicha: plato cuadrado y texto breve */
 .plate { display: flex; flex-direction: column; gap: 28px; padding-block: var(--section) 0; }
@@ -420,7 +422,8 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 /* Lo interactivo: cuántas botellas */
 .picker { display: flex; flex-direction: column; gap: 18px; margin-top: 10px; }
 .qtys { display: flex; flex-wrap: wrap; gap: 6px 22px; }
-.qtys button { border: 0; background: none; padding: 8px 0; min-height: 44px; font-size: var(--t-lead); font-weight: var(--w-medium); color: var(--muted); text-decoration: none; transition: color 150ms ease; }
+.qtys button { border: 0; background: none; padding: 8px 0; min-height: 44px; font-size: var(--t-lead); font-weight: var(--w-medium); color: var(--muted); text-decoration: none; transition: color 150ms ease, transform 120ms var(--ease-out); }
+.qtys button:active { color: var(--ink); transform: scale(0.94); }
 .qtys button[aria-checked="true"] { color: var(--apple); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .total { font-size: var(--t-lead); }
 .total .num { font-family: var(--f-display); font-size: var(--t-head); margin-right: 6px; }
