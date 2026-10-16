@@ -57,6 +57,20 @@
         }
       ]
     },
+    "duraznos-almibar": {
+      "width": 1200,
+      "height": 896,
+      "srcs": [
+        {
+          "w": 400,
+          "src": "/img/productos/duraznos-almibar-400.webp"
+        },
+        {
+          "w": 800,
+          "src": "/img/productos/duraznos-almibar-800.webp"
+        }
+      ]
+    },
     "encurtido": {
       "width": 1200,
       "height": 896,
