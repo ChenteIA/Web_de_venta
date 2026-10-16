@@ -12,6 +12,12 @@ type Sale = { id: string; product: string; qty: number; amount: number; day: str
 type Review = { id: string; image_path: string; customer: string | null; product: string | null; day: string; ts: string; visible: boolean; url?: string };
 type Range = '1' | '7' | '30' | 'all';
 type Tab = 'resumen' | 'ventas' | 'productos' | 'resenas';
+const HEAD: Record<Tab, string> = {
+  resumen: 'Cuántas personas tocaron el botón de WhatsApp y cuántas terminaron comprando.',
+  ventas: 'Anota cada pedido que se concretó y descarga tus ventas.',
+  productos: 'Precios, fotos y textos de lo que aparece en la web.',
+  resenas: 'Capturas de clientes contentos que se muestran en la web.',
+};
 const TABS: [Tab, string, 'chart' | 'bag' | 'box' | 'gallery'][] = [['resumen', 'Resumen', 'chart'], ['ventas', 'Ventas', 'bag'], ['productos', 'Productos', 'box'], ['resenas', 'Reseñas', 'gallery']];
 type Draft = { id: string; isNew: boolean; name: string; price: string; unit: string; description: string; active: boolean; sort: string; photo_path: string | null };
 
@@ -74,6 +80,30 @@ function topRound(x: number, y: number, w: number, h: number, r: number) {
   if (h <= 0) return '';
   r = Math.min(r, w / 2, h);
   return `M${x} ${y + h}V${y + r}Q${x} ${y} ${x + r} ${y}H${x + w - r}Q${x + w} ${y} ${x + w} ${y + r}V${y + h}Z`;
+}
+
+// Selector de fotos en español: el campo nativo dice "Choose Files" según el idioma del navegador.
+function FilePick({ id, name, multiple, required, inputRef }: { id: string; name?: string; multiple?: boolean; required?: boolean; inputRef?: React.RefObject<HTMLInputElement | null> }) {
+  const [names, setNames] = useState('');
+  const own = useRef<HTMLInputElement>(null);
+  const ref = inputRef || own;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // Se vacía cuando el formulario se reinicia o cuando el panel limpia el campo después de guardar.
+    const clear = () => setTimeout(() => { if (!el.files?.length) setNames(''); });
+    el.form?.addEventListener('reset', clear);
+    el.form?.addEventListener('submit', clear);
+    return () => { el.form?.removeEventListener('reset', clear); el.form?.removeEventListener('submit', clear); };
+  }, [ref]);
+  return (
+    <div className="filepick">
+      <input id={id} ref={ref} name={name} className="sr-only" type="file" accept="image/png,image/jpeg,image/webp" multiple={multiple} required={required}
+        onChange={(e) => { const f = Array.from(e.target.files || []); setNames(f.length > 1 ? `${f.length} fotos elegidas` : f[0]?.name || ''); }} />
+      <label htmlFor={id} className="btn btn-sm btn-ghost"><Icon name="gallery" />{multiple ? 'Elegir fotos' : 'Elegir foto'}</label>
+      <span className="filepick-name">{names || 'Ninguna foto elegida'}</span>
+    </div>
+  );
 }
 
 function Legend() {
@@ -446,6 +476,7 @@ export default function Panel() {
   const [cw, setCw] = useState(640);
   const [tip, setTip] = useState<{ i: number } | null>(null);
   const [showTable, setShowTable] = useState(false);
+  const [salesShown, setSalesShown] = useState(10);
   useEffect(() => {
     const el = chartBox.current;
     if (!el || !window.ResizeObserver) return;
@@ -532,14 +563,15 @@ export default function Panel() {
   linked.forEach((c) => { hourS[c.hour] = (hourS[c.hour] || 0) + 1; });
   const hourMax = Math.max(1, ...HOURS.map((h) => Math.max(hourC[h] || 0, hourS[h] || 0)));
 
-  const salesList = [...pSales].sort((a, b) => (a.day < b.day ? 1 : a.day > b.day ? -1 : b.ts.localeCompare(a.ts))).slice(0, 50);
+  const salesSorted = [...pSales].sort((a, b) => (a.day < b.day ? 1 : a.day > b.day ? -1 : b.ts.localeCompare(a.ts)));
+  const salesList = salesSorted.slice(0, salesShown);
 
   return (
     <main className="wrap panel">
       <div className="panel-head">
         <div>
           <h1>Panel del negocio</h1>
-          <p>Cuántas personas tocaron el botón de WhatsApp y cuántas terminaron comprando.</p>
+          <p>{HEAD[tab]}</p>
         </div>
       </div>
 
@@ -549,15 +581,15 @@ export default function Panel() {
         ))}
       </nav>
 
-      <div className="toolbar">
-        {(tab === 'resumen' || tab === 'ventas') && <div className="seg" role="group" aria-label="Periodo">
+      {(tab === 'resumen' || tab === 'ventas') && <div className="toolbar">
+        <div className="seg" role="group" aria-label="Periodo">
           {([['1', 'Hoy'], ['7', '7 días'], ['30', '30 días'], ['all', 'Todo']] as [Range, string][]).map(([v, l]) => (
             <button key={v} type="button" aria-pressed={range === v} onClick={() => setRange(v)}>{l}</button>
           ))}
-        </div>}
+        </div>
         <span className="spacer" />
         <button type="button" className="btn btn-sm btn-ghost" onClick={load} aria-label="Actualizar datos"><Icon name="refresh" /><span className="vt-label">Actualizar</span></button>
-      </div>
+      </div>}
 
       {(tab === 'resumen' || tab === 'ventas') && (demoC > 0 || demoS > 0) && (
         <div className="notice">
@@ -627,10 +659,10 @@ export default function Panel() {
               </div>
               <div className="table-wrap">
                 <table id="by-product">
-                  <thead><tr><th>Producto</th><th className="r">Clics</th><th className="r">Ventas</th><th className="r">Unid.</th><th className="r">Monto</th><th className="r">Conv.</th></tr></thead>
+                  <thead><tr><th>Producto</th><th className="r opt">Clics</th><th className="r opt">Ventas</th><th className="r">Unid.</th><th className="r">Monto</th><th className="r">Conv.</th></tr></thead>
                   <tbody>
                     {byProduct.map((r) => (
-                      <tr key={r.id}><td>{pn(r.id)}</td><td className="r">{r.c}</td><td className="r">{r.s}</td><td className="r">{r.u}</td><td className="r">{money(r.m)}</td><td className="r">{r.id === 'general' || !r.c ? '—' : pct(r.s, r.c)}</td></tr>
+                      <tr key={r.id}><td>{pn(r.id)}</td><td className="r opt">{r.c}</td><td className="r opt">{r.s}</td><td className="r">{r.u}</td><td className="r">{money(r.m)}</td><td className="r">{r.id === 'general' || !r.c ? '—' : pct(r.s, r.c)}</td></tr>
                     ))}
                   </tbody>
                 </table>
@@ -715,7 +747,7 @@ export default function Panel() {
                     <div>{pn(c.product)}{c.demo && <> <span className="tag demo">Ejemplo</span></>}</div>
                     <div className="meta">{dayShort(c.day)}, {timeOf(c.ts)}, {(PLACES[c.place] || c.place).toLowerCase()}</div>
                   </div>
-                  {c.sold ? <span className="tag ok">Venta registrada</span> : <button type="button" className="btn btn-sm btn-ghost" onClick={() => linkClick(c.id)}>Registrar venta</button>}
+                  {c.sold ? <span className="tag ok">Vendido</span> : <button type="button" className="btn btn-sm btn-ghost" onClick={() => linkClick(c.id)} aria-label={`Registrar venta de este clic: ${pn(c.product)}, ${dayShort(c.day)} ${timeOf(c.ts)}`}><Icon name="add-circle" />Registrar</button>}
                 </div>
               ))
             )}
@@ -725,7 +757,7 @@ export default function Panel() {
 
       <div className="card" style={{ marginBottom: 16 }}>
         <div className="card-head">
-          <div><h2>Ventas registradas</h2><p className="sub">{pSales.length ? `${pSales.length} ${pSales.length === 1 ? 'venta' : 'ventas'} en el periodo, por ${money(amount)}.${pSales.length > 50 ? ' Se muestran las 50 más recientes.' : ''}` : 'No hay ventas en este periodo.'}</p></div>
+          <div><h2>Ventas registradas</h2><p className="sub">{pSales.length ? `${pSales.length} ${pSales.length === 1 ? 'venta' : 'ventas'} en el periodo, por ${money(amount)}.` : 'No hay ventas en este periodo.'}</p></div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <button type="button" className="btn btn-sm btn-ghost" onClick={exportSales} disabled={!sales.length}><Icon name="download2" />Descargar ventas (CSV)</button>
             <button type="button" className="btn btn-sm btn-ghost" onClick={exportClicks} disabled={!clicks.length}><Icon name="download2" />Descargar clics (CSV)</button>
@@ -735,7 +767,7 @@ export default function Panel() {
           <table>
             {salesList.length ? (
               <>
-                <thead><tr><th>Fecha</th><th>Producto</th><th className="r">Cant.</th><th className="r">Monto</th><th>Origen</th><th></th></tr></thead>
+                <thead><tr><th>Fecha</th><th>Producto</th><th className="r">Cant.</th><th className="r">Monto</th><th className="opt">Origen</th><th><span className="sr-only">Acciones</span></th></tr></thead>
                 <tbody>
                   {salesList.map((s) => (
                     <tr key={s.id}>
@@ -743,12 +775,12 @@ export default function Panel() {
                       <td>{pn(s.product)}{s.demo && <> <span className="tag demo">Ejemplo</span></>}</td>
                       <td className="r">{s.qty}</td>
                       <td className="r">{money(s.amount)}</td>
-                      <td>{s.click_id ? 'Desde un clic' : 'Venta directa'}</td>
+                      <td className="opt">{s.click_id ? 'Desde un clic' : 'Venta directa'}</td>
                       <td className="r">
                         {confirm === 'sale:' + s.id ? (
                           <span className="confirm">¿Eliminar? <button type="button" className="linkbtn" onClick={() => deleteSale(s.id)}>Sí</button><button type="button" className="linkbtn" onClick={() => setConfirm('')}>No</button></span>
                         ) : (
-                          <button type="button" className="linkbtn" onClick={() => setConfirm('sale:' + s.id)}>Eliminar</button>
+                          <button type="button" className="linkbtn del" onClick={() => setConfirm('sale:' + s.id)} aria-label={`Eliminar venta del ${dayShort(s.day)}`}><Icon name="trash2" /><span className="vt-label">Eliminar</span></button>
                         )}
                       </td>
                     </tr>
@@ -760,6 +792,11 @@ export default function Panel() {
             )}
           </table>
         </div>
+        {salesSorted.length > salesShown && (
+          <button type="button" className="btn btn-sm btn-ghost more" onClick={() => setSalesShown(salesShown + 20)}>
+            Ver {Math.min(20, salesSorted.length - salesShown)} más ({salesSorted.length - salesShown} sin mostrar)
+          </button>
+        )}
       </div>
 
       </>}
@@ -784,7 +821,7 @@ export default function Panel() {
                 <div className="pr-photo">
                   {draftPhoto ? <img src={draftPhoto.src} alt="Foto actual" /> : <span className="pr-nophoto">Sin foto</span>}
                   <div className="pr-photo-actions">
-                    <input id="pr-file" ref={photoInput} type="file" accept="image/png,image/jpeg,image/webp" />
+                    <FilePick id="pr-file" inputRef={photoInput} />
                     <span className="hint">Horizontal o cuadrada. Se ajusta sola a 1400 px.{draft.photo_path ? '' : ' Si no subes una, se usa la foto de la web (si existe).'}</span>
                     {draft.photo_path && <button type="button" className="linkbtn" onClick={() => setDraft({ ...draft, photo_path: null })}>Quitar la foto subida</button>}
                   </div>
@@ -836,7 +873,7 @@ export default function Panel() {
       <div className="card">
         <div className="card-head"><div><h2>Reseñas de WhatsApp</h2><p className="sub">Sube capturas de los mensajes de clientes contentos. Aparecen en la web al instante.</p></div></div>
         <form className="f" ref={rvForm} onSubmit={uploadReviews} autoComplete="off">
-          <label className="field wide">Capturas<input name="files" type="file" accept="image/png,image/jpeg,image/webp" multiple required style={{ padding: '8px 12px' }} /><span className="hint">Antes de subirla, tapa o recorta el número de teléfono del cliente.</span></label>
+          <div className="field wide">Capturas<FilePick id="rv-files" name="files" multiple required /><span className="hint">Antes de subirla, tapa o recorta el número de teléfono del cliente.</span></div>
           <label className="field">Nombre a mostrar<input name="customer" type="text" autoCapitalize="words" enterKeyHint="done" maxLength={40} placeholder="Ej.: María G." /></label>
           <label className="field">Producto
             <select name="product" defaultValue="general">
