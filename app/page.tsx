@@ -58,7 +58,7 @@ export default async function Home() {
         <section className="hero">
           <div className="wrap">
             <div>
-              <h1>Mermeladas y conservas artesanales, hechas en Mala con fruta del valle.</h1>
+              <h1>Mermeladas y conservas artesanales, hechas en Ica con fruta del valle.</h1>
               <p className="lede">Frascos preparados en tandas pequeñas y sin conservantes. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.</p>
               <div className="actions">
                 <WaLink product="general" place="portada">Pedir por WhatsApp</WaLink>
@@ -66,7 +66,8 @@ export default async function Home() {
               </div>
               <div className="facts">
                 <div><Icon name="calendar" className="fi" /><b>Pedidos con un día de anticipación</b><span>Las cajas de regalo, con dos.</span></div>
-                <div><Icon name="truck" className="fi" /><b>Recojo o delivery</b><span>En Mala y San Antonio.</span></div>
+                <div><Icon name="truck" className="fi" /><b>Recojo o delivery</b><span>En la ciudad de Ica.</span></div>
+                <div><Icon name="clock" className="fi" /><b>Atendemos 24/7</b><span>Escríbenos a cualquier hora.</span></div>
                 <div><Icon name="wallet" className="fi" /><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
               </div>
             </div>
@@ -125,7 +126,7 @@ export default async function Home() {
             <ol className="steps">
               <li data-reveal="" style={{ '--i': 0 } as React.CSSProperties}><span className="n">1</span><b>Elige y toca el botón</b><span>Se abre WhatsApp con el producto y el precio. Solo agrega la fecha que lo necesitas.</span></li>
               <li data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><span className="n">2</span><b>Confirmamos y pagas</b><span>Te respondemos con la disponibilidad. Pagas con Yape, Plin o en efectivo al recoger.</span></li>
-              <li data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><span className="n">3</span><b>Recoges o te lo llevamos</b><span>Recojo en el local o delivery en Mala y San Antonio, a la hora que acordemos.</span></li>
+              <li data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><span className="n">3</span><b>Recoges o te lo llevamos</b><span>Recojo en el local o delivery en Ica, a la hora que acordemos.</span></li>
             </ol>
           </div>
         </section>

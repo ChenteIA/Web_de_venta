@@ -388,3 +388,6 @@ footer.site h3 svg { width: 18px; height: 18px; color: var(--crust); flex-shrink
 .rv-admin .acts button { display: inline-flex; align-items: center; gap: 4px; }
 .rv-admin .acts button svg { width: 14px; height: 14px; flex-shrink: 0; }
 @media (max-width: 520px) { .fab svg { width: 28px; height: 28px; } }
+
+/* Cuatro datos en la portada: 2 × 2 para que ninguno quede solo en una fila */
+.hero .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }

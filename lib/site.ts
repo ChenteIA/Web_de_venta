@@ -2,9 +2,9 @@
 
 export const BUSINESS = {
   name: 'El Puqui',
-  tagline: 'Mermeladas y conservas artesanales en Mala, Cañete.',
-  address: 'Calle Real 214, Mala (dirección de ejemplo)',
-  hours: 'Martes a domingo, de 8:00 a. m. a 8:00 p. m.',
+  tagline: 'Mermeladas y conservas artesanales en Ica.',
+  address: 'Ica, Perú (dirección de ejemplo)',
+  hours: 'Abierto 24/7, todos los días del año.',
 };
 
 export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '51900000000').replace(/\D/g, '');
@@ -22,7 +22,7 @@ export type Product = {
 // La foto de cada producto es ./imagenes/<id>.jpg (por ejemplo ./imagenes/pie.jpg).
 // Precios de ejemplo: cámbialos por los reales.
 export const PRODUCTS: Product[] = [
-  { id: 'mermelada-manzana', name: 'Mermelada de manzana delicia', price: 14, unit: 'frasco de 350 g', desc: 'Con la manzana del valle de Mala y un toque de canela. La que más piden.', icon: 'frasco' },
+  { id: 'mermelada-manzana', name: 'Mermelada de manzana delicia', price: 14, unit: 'frasco de 350 g', desc: 'Con manzana delicia del valle y un toque de canela. La que más piden.', icon: 'frasco' },
   { id: 'mermelada-fresa', name: 'Mermelada de fresa', price: 15, unit: 'frasco de 350 g', desc: 'Fresa entera cocida a fuego lento, con trozos de fruta. Ideal para el desayuno.', icon: 'fresa' },
   { id: 'mermelada-aguaymanto', name: 'Mermelada de aguaymanto', price: 16, unit: 'frasco de 350 g', desc: 'Dulce y ácida a la vez. Va muy bien con queso fresco o yogur.', icon: 'aguaymanto' },
   { id: 'duraznos-almibar', name: 'Duraznos en almíbar', price: 18, unit: 'frasco de 600 g', desc: 'Mitades de durazno en almíbar ligero. Para postres o solos, bien fríos.', icon: 'durazno' },
