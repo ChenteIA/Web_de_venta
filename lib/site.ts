@@ -1,13 +1,16 @@
 // Datos del negocio. Para cambiar textos, precios o productos, edita este archivo.
 
 export const BUSINESS = {
-  name: 'El Puqui',
-  tagline: 'Mermeladas y conservas artesanales en Ica.',
-  address: 'Ica, Perú (dirección de ejemplo)',
+  name: 'San Luyo',
+  tagline: 'Chicha de maní casera, hecha en Ica.',
+  address: 'Ica, Perú',
   hours: 'Abierto 24/7, todos los días del año.',
 };
 
-export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '51900000000').replace(/\D/g, '');
+// Día en que empiezan las ventas (hora de Lima). Antes de esa fecha la portada lo anuncia.
+export const LAUNCH = { day: '2026-10-19', label: 'el lunes 19 de octubre' };
+
+export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '51910897377').replace(/\D/g, '');
 
 export type Product = {
   id: string;
@@ -15,19 +18,14 @@ export type Product = {
   price: number;
   unit: string;
   desc: string;
-  icon: 'frasco' | 'fresa' | 'aguaymanto' | 'durazno' | 'encurtido' | 'caja';
+  icon: 'botella';
   from?: boolean;
 };
 
-// La foto de cada producto es ./imagenes/<id>.jpg (por ejemplo ./imagenes/pie.jpg).
-// Precios de ejemplo: cámbialos por los reales.
+// La foto de cada producto es ./imagenes/<id>.jpg (por ejemplo ./imagenes/chicha-mani.jpg).
+// PRECIO DE EJEMPLO: cámbialo por el real.
 export const PRODUCTS: Product[] = [
-  { id: 'mermelada-manzana', name: 'Mermelada de manzana delicia', price: 14, unit: 'frasco de 350 g', desc: 'Con manzana delicia del valle y un toque de canela. La que más piden.', icon: 'frasco' },
-  { id: 'mermelada-fresa', name: 'Mermelada de fresa', price: 15, unit: 'frasco de 350 g', desc: 'Fresa entera cocida a fuego lento, con trozos de fruta. Ideal para el desayuno.', icon: 'fresa' },
-  { id: 'mermelada-aguaymanto', name: 'Mermelada de aguaymanto', price: 16, unit: 'frasco de 350 g', desc: 'Dulce y ácida a la vez. Va muy bien con queso fresco o yogur.', icon: 'aguaymanto' },
-  { id: 'duraznos-almibar', name: 'Duraznos en almíbar', price: 18, unit: 'frasco de 600 g', desc: 'Mitades de durazno en almíbar ligero. Para postres o solos, bien fríos.', icon: 'durazno' },
-  { id: 'encurtido', name: 'Encurtido de verduras', price: 13, unit: 'frasco de 500 g', desc: 'Cebolla, zanahoria, vainita y ají amarillo en vinagre. Acompaña cualquier plato.', icon: 'encurtido' },
-  { id: 'caja-regalo', name: 'Caja de regalo artesanal', price: 40, unit: 'desde, 3 frascos a elección', from: true, desc: 'Arma tu caja con tus sabores favoritos. Pídela con dos días de anticipación.', icon: 'caja' },
+  { id: 'chicha-mani', name: 'Chicha de maní', price: 5, unit: 'botella de 500 ml', desc: 'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.', icon: 'botella' },
 ];
 
 export const PLACES = { portada: 'Botón de la portada', carta: 'Botón de cada producto', flotante: 'Botón flotante' } as const;
@@ -48,12 +46,12 @@ export function prodName(id: string | null | undefined) {
 export function waHref(productId: string) {
   const p = prod(productId);
   const msg = p
-    ? `Hola ${BUSINESS.name}, quiero pedir: ${p.name} (S/ ${p.price}${p.from ? ' en adelante' : ''}). ¿Para qué fecha lo tienen disponible?`
-    : `Hola ${BUSINESS.name}, quiero hacer una consulta sobre sus productos.`;
+    ? `Hola ${BUSINESS.name}, quiero pedir ${p.name.toLowerCase()} (${p.unit}, S/ ${p.price}${p.from ? ' en adelante' : ' c/u'}). Quiero ___ botellas para el día ___.`
+    : `Hola ${BUSINESS.name}, quiero hacer una consulta sobre la chicha de maní.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
-// 51900000000 → +51 900 000 000
+// 51910897377 → +51 910 897 377
 export function waDisplay(n = WHATSAPP_NUMBER) {
   const m = n.match(/^(51)(\d{3})(\d{3})(\d{3})$/);
   return m ? `+${m[1]} ${m[2]} ${m[3]} ${m[4]}` : `+${n}`;

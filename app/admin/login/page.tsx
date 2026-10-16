@@ -1,11 +1,10 @@
-import Header, { DemoStrip } from '@/components/Header';
+import Header from '@/components/Header';
 import LoginForm from './LoginForm';
 import { hasSupabase } from '@/lib/supabase/config';
 
 export default function LoginPage() {
   return (
     <>
-      <DemoStrip />
       <Header home="/" />
       <main className="wrap">
         <div className="login">

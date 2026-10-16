@@ -1,8 +1,8 @@
-# El Puqui · web de pedidos por WhatsApp
+# San Luyo · chicha de maní por WhatsApp
 
-Demo de **ChenteIA** para negocios de Mala–Cañete. *El Puqui es un negocio ficticio y el número de WhatsApp es de prueba.*
+Web de **San Luyo** (Ica), hecha por **ChenteIA**. Prueba de venta de chicha de maní en botella de medio litro, desde el lunes 19 de octubre de 2026. WhatsApp: +51 910 897 377.
 
-- `/` → web pública: portada, carta de 6 productos, "Cómo pedir", reseñas con capturas de WhatsApp y botón flotante. Cada clic a WhatsApp se guarda (producto, botón, fecha, día y hora de Lima).
+- `/` → web pública: portada, la chicha con su precio, "Cómo pedir", reseñas con capturas de WhatsApp y botón flotante. Cada clic a WhatsApp se guarda (producto, botón, fecha, día y hora de Lima).
 - `/admin` → panel del dueño (login de Supabase). No hay ningún enlace a él desde la web pública.
 
 **Stack:** Next.js 16 (App Router) · Supabase (Postgres + Auth + Storage) · Vercel.
@@ -63,7 +63,7 @@ El repositorio es `ChenteIA/Web_de_venta`. Si empiezas desde cero en otra carpet
 ```bash
 git init
 git add .
-git commit -m "El Puqui: web pública + panel"
+git commit -m "San Luyo: web pública + panel"
 git branch -M main
 git remote add origin https://github.com/ChenteIA/Web_de_venta.git
 git push -u origin main
@@ -77,7 +77,7 @@ git push -u origin main
 2. Framework: **Next.js**, detectado solo. No cambies los comandos.
 3. En **Environment Variables** agrega las tres variables de la tabla de arriba.
 4. **Deploy**. Cada `git push` a `main` vuelve a desplegar.
-5. En Supabase → **Authentication → URL Configuration** pon tu dominio de Vercel como *Site URL* (por ejemplo `https://el-puqui.vercel.app`).
+5. En Supabase → **Authentication → URL Configuration** pon tu dominio de Vercel como *Site URL* (por ejemplo `https://san-luyo.vercel.app`).
 
 > Si cambias una variable `NEXT_PUBLIC_*` en Vercel, vuelve a desplegar: esas variables se fijan en el build.
 
@@ -91,7 +91,7 @@ git clone --depth 1 https://github.com/dqev/reicon /tmp/reicon
 node scripts/reicon-icons.mjs /tmp/reicon
 ```
 
-Uso: `<Icon name="calendar" />`. Toma el color del texto. Las ilustraciones de los productos (frascos, caja de regalo) siguen siendo SVG propios, porque Reicon no tiene iconos de frascos ni frutas.
+Uso: `<Icon name="calendar" />`. Toma el color del texto. La botella y los maníes son ilustraciones SVG propias (`components/Art.tsx`), porque Reicon no tiene esos dibujos.
 
 ## Notas
 
@@ -99,3 +99,6 @@ Uso: `<Icon name="calendar" />`. Toma el color del texto. Las ilustraciones de l
 - **Reseñas:** el bucket es privado. La web solo puede leer las imágenes de reseñas **visibles** (se sirven con URL firmada), y al ocultar una deja de verse al instante. Antes de subirlas, el panel las reduce a WebP de 1080 px. No subas capturas inventadas y tapa el número del cliente.
 - **Ventas:** registrar una venta desde un clic lo marca como vendido, y eliminarla lo desmarca (trigger). Un clic solo admite una venta.
 - **Datos de ejemplo:** se guardan con `demo = true` y se borran con un botón sin tocar los datos reales.
+- **Fecha de inicio:** `LAUNCH` en `lib/site.ts`. Antes de ese día la portada muestra "Empezamos el lunes 19 de octubre"; desde ese día el aviso desaparece solo.
+- **Precio:** S/ 5 es un precio de ejemplo. Cámbialo en `PRODUCTS` (`lib/site.ts`).
+- **Demo anterior:** las fotos de El Puqui están en `imagenes/archivo-el-puqui/` y los videos en `videos/`.

@@ -226,7 +226,7 @@ export default function Panel() {
   async function generateDemo() {
     setBusy('demo');
     setStatus('Generando datos de ejemplo…');
-    const weights = [5, 3, 2, 3, 3, 2];
+    const weights = PRODUCTS.map(() => 1);
     const pick = <T,>(arr: T[], ws: number[]) => { let r = Math.random() * ws.reduce((a, b) => a + b, 0); for (let i = 0; i < arr.length; i++) { r -= ws[i]; if (r <= 0) return arr[i]; } return arr[arr.length - 1]; };
     const nowHour = new Date(Date.now() - 5 * 3600e3).getUTCHours();
     const rows: { product: string; place: Place; ts: string; demo: boolean }[] = [];

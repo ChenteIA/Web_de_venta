@@ -1,5 +1,5 @@
 -- =====================================================================
--- El Puqui · Esquema completo para Supabase
+-- San Luyo · Esquema completo para Supabase
 -- Pégalo entero en Supabase → SQL Editor → New query → Run.
 -- Se puede ejecutar más de una vez sin romper nada.
 -- =====================================================================

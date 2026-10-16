@@ -3,14 +3,6 @@ import ThemeToggle from './ThemeToggle';
 import { IMAGES, srcSet } from '@/lib/images';
 import { BUSINESS } from '@/lib/site';
 
-export function DemoStrip() {
-  return (
-    <div className="strip">
-      <div className="wrap">{`Demo de ChenteIA. ${BUSINESS.name} es un negocio ficticio y el número de WhatsApp es de prueba.`}</div>
-    </div>
-  );
-}
-
 export function Brand({ href }: { href: string }) {
   const logo = IMAGES.logo;
   return (

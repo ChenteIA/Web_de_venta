@@ -1,16 +1,16 @@
-import { JarsArt, PieArt, ProductIcon } from '@/components/Art';
+import { BottleArt, PeanutsArt, ProductIcon } from '@/components/Art';
 import CopyButton from '@/components/CopyButton';
-import Header, { DemoStrip } from '@/components/Header';
+import Header from '@/components/Header';
 import ReviewsGallery, { type PublicReview } from '@/components/ReviewsGallery';
 import WaLink from '@/components/WaLink';
 import Reveal from '@/components/Reveal';
 import WaTracker from '@/components/WaTracker';
 import Icon from '@/components/icons';
 import { IMAGES, largest, srcSet } from '@/lib/images';
-import { BUSINESS, PRODUCTS, prodName, waDisplay } from '@/lib/site';
+import { BUSINESS, LAUNCH, PRODUCTS, prodName, waDisplay } from '@/lib/site';
 import { hasSupabase, REVIEWS_BUCKET } from '@/lib/supabase/config';
 import { supabaseAnon } from '@/lib/supabase/server';
-import { dayShort } from '@/lib/time';
+import { dayShort, today } from '@/lib/time';
 
 // Las reseñas cambian desde el panel: se leen en cada visita.
 export const dynamic = 'force-dynamic';
@@ -45,20 +45,22 @@ export default async function Home() {
   const reviews = await loadReviews();
   const portada = IMAGES.portada;
   const ancha = IMAGES.portadaAncha;
+  const soon = today() < LAUNCH.day;
 
   const heroText = (
     <>
-      <h1>Mermeladas y conservas artesanales, hechas en Ica con fruta del valle.</h1>
-      <p className="lede">Frascos preparados en tandas pequeñas y sin conservantes. Elige lo que quieres, tócale al botón y coordinamos tu pedido por WhatsApp.</p>
+      {soon && <p className="launch">Empezamos {LAUNCH.label}. Ya puedes separar tu botella.</p>}
+      <h1>Chicha de maní casera, hecha en Ica.</h1>
+      <p className="lede">Botellas de medio litro, preparadas en casa en tandas pequeñas. Tócale al botón y coordinamos tu pedido por WhatsApp.</p>
       <div className="actions">
         <WaLink product="general" place="portada">Pedir por WhatsApp</WaLink>
-        <a className="btn btn-ghost" href="#carta">Ver la carta</a>
+        <a className="btn btn-ghost" href="#carta">Ver la chicha</a>
       </div>
     </>
   );
   const heroFacts = (
     <div className="facts">
-      <div><Icon name="calendar" className="fi" /><b>Pedidos con un día de anticipación</b><span>Las cajas de regalo, con dos.</span></div>
+      <div><Icon name="calendar" className="fi" /><b>Pide con un día de anticipación</b><span>Así te la tenemos fresca.</span></div>
       <div><Icon name="truck" className="fi" /><b>Recojo o delivery</b><span>En la ciudad de Ica.</span></div>
       <div><Icon name="clock" className="fi" /><b>Atendemos 24/7</b><span>Escríbenos a cualquier hora.</span></div>
       <div><Icon name="wallet" className="fi" /><b>Pago al confirmar</b><span>Yape, Plin o efectivo.</span></div>
@@ -67,9 +69,8 @@ export default async function Home() {
 
   return (
     <>
-      <DemoStrip />
       <Header>
-        <a href="#carta">La carta</a>
+        <a href="#carta">La chicha</a>
         <a href="#como-pedir">Cómo pedir</a>
         <a href="#resenas">Reseñas</a>
       </Header>
@@ -90,7 +91,7 @@ export default async function Home() {
                     sizes="100vw"
                     width={(portada || ancha)!.width}
                     height={(portada || ancha)!.height}
-                    alt={`Frascos de mermelada y conservas de ${BUSINESS.name} sobre una mesa de madera`}
+                    alt={`Chicha de maní ${BUSINESS.name}`}
                     fetchPriority="high"
                   />
                 </picture>
@@ -108,7 +109,7 @@ export default async function Home() {
                 {heroText}
                 {heroFacts}
               </div>
-              <div className="pie-art" role="img" aria-label="Ilustración de frascos de mermelada y conserva"><JarsArt /></div>
+              <div className="pie-art" role="img" aria-label="Ilustración de una botella de chicha de maní con un vaso servido"><BottleArt /></div>
             </div>
           </section>
         )}
@@ -116,10 +117,10 @@ export default async function Home() {
         <section className="band alt" id="carta">
           <div className="wrap">
             <div className="sec-head" data-reveal="">
-              <h2>La carta</h2>
-              <p>Precios en soles. Cada botón abre WhatsApp con tu pedido ya escrito.</p>
+              <h2>Nuestra chicha</h2>
+              <p>Precio en soles. El botón abre WhatsApp con tu pedido ya escrito: solo pon cuántas botellas quieres.</p>
             </div>
-            <div className="menu">
+            <div className={PRODUCTS.length === 1 ? 'menu single' : 'menu'}>
               {PRODUCTS.map((p, idx) => {
                 const photo = IMAGES.products[p.id];
                 return (
@@ -148,7 +149,7 @@ export default async function Home() {
           <div className="wrap">
             <div className="sec-head" data-reveal=""><h2>Cómo pedir</h2></div>
             <ol className="steps">
-              <li data-reveal="" style={{ '--i': 0 } as React.CSSProperties}><span className="n">1</span><b>Elige y toca el botón</b><span>Se abre WhatsApp con el producto y el precio. Solo agrega la fecha que lo necesitas.</span></li>
+              <li data-reveal="" style={{ '--i': 0 } as React.CSSProperties}><span className="n">1</span><b>Elige y toca el botón</b><span>Se abre WhatsApp con la chicha y el precio. Solo agrega cuántas botellas quieres y para cuándo.</span></li>
               <li data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><span className="n">2</span><b>Confirmamos y pagas</b><span>Te respondemos con la disponibilidad. Pagas con Yape, Plin o en efectivo al recoger.</span></li>
               <li data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><span className="n">3</span><b>Recoges o te lo llevamos</b><span>Recojo en el local o delivery en Ica, a la hora que acordemos.</span></li>
             </ol>
@@ -170,18 +171,19 @@ export default async function Home() {
             {reviews.length ? (
               <ReviewsGallery reviews={reviews} />
             ) : (
-              <div className="empty" data-reveal=""><b>Pronto compartiremos lo que nos escriben</b><span>Si ya probaste algo nuestro, cuéntanos por WhatsApp.</span></div>
+              <div className="empty" data-reveal=""><b>Pronto compartiremos lo que nos escriben</b><span>Si ya probaste nuestra chicha, cuéntanos qué tal por WhatsApp.</span></div>
             )}
           </div>
         </section>
 
         <footer className="site">
-          <div className="foot-art" aria-hidden="true"><PieArt plate={false} /></div>
+          <div className="foot-art" aria-hidden="true"><PeanutsArt /></div>
           <div className="wrap">
             <div><b>{BUSINESS.name}</b><p>{BUSINESS.tagline}</p></div>
             <div><h3><Icon name="map-point" />Dónde estamos</h3><p>{BUSINESS.address}</p></div>
             <div><h3><Icon name="clock" />Horario</h3><p>{BUSINESS.hours}</p></div>
             <div><h3><Icon name="whatsapp" />WhatsApp</h3><div className="copy-row"><span className="num">{waDisplay()}</span><CopyButton text={waDisplay()} /></div></div>
+            <p className="credit">Web hecha por ChenteIA</p>
           </div>
         </footer>
 

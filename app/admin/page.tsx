@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import Header, { DemoStrip } from '@/components/Header';
+import Header from '@/components/Header';
 import Icon from '@/components/icons';
 import { supabaseServer } from '@/lib/supabase/server';
 import { hasSupabase } from '@/lib/supabase/config';
@@ -17,7 +17,6 @@ export default async function AdminPage() {
 
   return (
     <>
-      <DemoStrip />
       <Header home="/admin">
         <a className="view-toggle" href="/"><Icon name="arrow-right-up" />Ver la web</a>
         <SignOut />
