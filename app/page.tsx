@@ -4,6 +4,7 @@ import ReviewsGallery, { type PublicReview } from '@/components/ReviewsGallery';
 import WaLink from '@/components/WaLink';
 import Reveal from '@/components/Reveal';
 import WaTracker from '@/components/WaTracker';
+import Icon from '@/components/icons';
 import OrderPicker from '@/components/OrderPicker';
 import StageSync from '@/components/StageSync';
 import { IMAGES, largest, srcSet, type ImgSet } from '@/lib/images';
@@ -60,7 +61,7 @@ function Photo({ set, alt, sizes, className, eager }: { set: ImgSet | null | und
 }
 
 // Franja de toldo: barras rojas y de papel, hechas con bloques (sin degradados).
-const STRIPES = Array.from({ length: 40 });
+const STRIPES = Array.from({ length: 72 });
 
 export default async function Home() {
   const reviews = await loadReviews();
@@ -171,13 +172,26 @@ export default async function Home() {
         </div>
 
         <section className="contact" id="contacto" aria-labelledby="h-contacto">
-          <h2 id="h-contacto" className="contact-say" data-reveal="">Escríbenos por WhatsApp para separar, preguntar o coordinar tu entrega.</h2>
-          <a className="contact-number num" data-wa="" data-product="general" data-place="flotante" target="_blank" rel="noopener" href={waHref('general')} data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>
-            {waDisplay()}
-          </a>
-          <div className="contact-foot" data-reveal="" style={{ '--i': 2 } as React.CSSProperties}>
-            <p>{BUSINESS.address} · Recojo o delivery en la ciudad</p>
-            <div className="copy-row"><span>Atendemos 24/7 · Yape, Plin o efectivo</span><CopyButton text={waDisplay()} /></div>
+          <div className="awning awning-thin" aria-hidden="true">{STRIPES.map((_, i) => <i key={i} />)}</div>
+          <div className="contact-inner">
+            <div className="contact-head">
+              <h2 id="h-contacto" data-reveal="">Escríbenos por WhatsApp</h2>
+              <p data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>
+                {soon ? 'Para separar tu botella, preguntar algo o coordinar la entrega.' : 'Para pedir, preguntar algo o coordinar la entrega.'}
+              </p>
+            </div>
+            <a className="contact-number num" data-wa="" data-product="general" data-place="flotante" target="_blank" rel="noopener" href={waHref('general')} aria-label={`Abrir WhatsApp con el ${waDisplay()}`} data-reveal="" style={{ '--i': 2 } as React.CSSProperties}>
+              {waDisplay()}
+            </a>
+            <div className="contact-actions" data-reveal="" style={{ '--i': 3 } as React.CSSProperties}>
+              <WaLink product="general" place="flotante">Abrir WhatsApp</WaLink>
+              <CopyButton text={waDisplay()} label="Copiar número" />
+            </div>
+            <dl className="contact-facts">
+              <div data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><dt><Icon name="map-point" />Dónde</dt><dd>{BUSINESS.address}. Recojo o delivery en la ciudad.</dd></div>
+              <div data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><dt><Icon name="clock" />Horario</dt><dd>Atendemos 24/7, todos los días.</dd></div>
+              <div data-reveal="" style={{ '--i': 3 } as React.CSSProperties}><dt><Icon name="wallet" />Pago</dt><dd>Yape, Plin o efectivo.</dd></div>
+            </dl>
           </div>
         </section>
 

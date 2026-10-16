@@ -399,20 +399,34 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 .review figcaption { font-size: var(--t-small); color: var(--muted); }
 .review figcaption b { color: var(--ink); }
 
-/* Contacto: el número de WhatsApp como letra gigante, en el color de la tinta */
+/* Contacto: franja de toldo, título, el número en letra gigante con sus dos acciones y tres datos */
 .contact {
-  --c-bg: #2B1B18; --c-ink: #F8F2EE;
-  background: var(--c-bg); color: var(--c-ink); min-height: 64svh; display: grid; grid-template-rows: auto 1fr auto; gap: 32px;
-  padding-block: 40px calc(32px + env(safe-area-inset-bottom, 0px));
-  padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px));
-  margin-top: var(--section);
+  --c-bg: #2B1B18; --c-ink: #F8F2EE; --c-soft: #D9C9C2; --c-tile: #3A2622;
+  background: var(--c-bg); color: var(--c-ink); margin-top: var(--section);
 }
-.sl .contact-say { font-family: var(--f-body); font-size: var(--t-lead); font-weight: var(--w-regular); letter-spacing: 0; line-height: 1.4; max-width: 30ch; }
-.contact-number { align-self: end; font-family: var(--f-display); font-size: clamp(44px, 10vw, 170px); line-height: 0.95; letter-spacing: -0.03em; color: var(--c-ink); text-decoration: none; white-space: nowrap; transition: color 200ms ease; }
-.contact-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 16px; }
+.awning-thin { height: 14px; }
+.contact-inner {
+  display: flex; flex-direction: column; gap: 28px;
+  padding-block: 48px calc(48px + env(safe-area-inset-bottom, 0px));
+  padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px));
+}
+.contact-head { display: flex; flex-direction: column; gap: 10px; }
+.sl .contact-head h2 { font-size: var(--t-head); color: var(--c-ink); }
+.contact-head p { font-size: var(--t-lead); color: var(--c-soft); max-width: 34ch; }
+.contact-number { font-family: var(--f-display); font-size: clamp(44px, 10vw, 150px); line-height: 0.95; letter-spacing: -0.03em; color: var(--c-ink); text-decoration: none; white-space: nowrap; transition: color 200ms ease; }
+.contact-actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.contact-actions > * { justify-content: center; padding-inline: 10px; white-space: nowrap; gap: 6px; }
+.contact .awning i:nth-child(odd) { background: #A61D27; } /* el fondo del contacto es oscuro en ambos temas */
+.contact-actions .btn { min-height: 52px; }
+.contact-actions button { display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: var(--r-pill); border: 0; background: var(--c-ink); color: var(--c-bg); font-size: 16px; font-weight: var(--w-medium); transition: transform 160ms var(--ease-out), background-color 150ms ease; }
+.contact-actions button svg { width: 18px; height: 18px; flex-shrink: 0; }
+.contact-actions button:active { transform: scale(0.97); }
+.contact-facts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 12px 0 0; }
+.contact-facts > div { background: var(--c-tile); border-radius: var(--r); padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.contact-facts dt { display: flex; align-items: center; gap: 8px; font-weight: var(--w-strong); font-size: 17px; }
+.contact-facts dt svg { width: 20px; height: 20px; color: var(--crust); flex-shrink: 0; }
+.contact-facts dd { margin: 0; color: var(--c-soft); font-size: 17px; line-height: 1.45; }
 .copy-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.copy-row button { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px; border-radius: var(--r-pill); border: 0; background: #F8F2EE; color: #2B1B18; font-size: 14px; font-weight: var(--w-medium); }
-.copy-row button svg { width: 15px; height: 15px; }
 
 /* Pie: la última foto a sangre, con el nombre a todo lo ancho */
 .final { position: relative; isolation: isolate; min-height: 88svh; display: flex; flex-direction: column; justify-content: space-between; color: #F8F2EE; background: #1d130f; overflow: hidden;
@@ -436,6 +450,7 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .cell-wa:hover { background: var(--leaf-hover); }
   .cell-soft:hover { background: var(--line); }
   .contact-number:hover { color: var(--crust); }
+  .contact-actions button:hover { background: var(--crust); }
 }
 
 /* Computadora y tableta horizontal: dos columnas; la foto queda fija mientras la columna avanza */
@@ -445,7 +460,6 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .stage-frame { height: calc(100svh - 64px - 2 * var(--gutter)); }
   .reading { grid-column: 1; grid-row: 1; }
   .plate-photo { display: none; }
-  .contact { min-height: 72svh; }
   .card-hero { margin-top: 0; min-height: calc(100svh - 64px - 2 * var(--gutter)); display: flex; flex-direction: column; }
   .awning { height: 56px; }
   .card-body { gap: 20px; }
@@ -457,16 +471,18 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .words { padding-bottom: 0; }
   .itinerary { padding: 56px clamp(24px, 3.4vw, 56px) 64px; }
   .cells { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .contact { padding-block: 48px 40px; padding-inline: 48px; }
   .final { padding: 40px 48px 36px; }
   .final-photo { object-position: 50% 82%; }
 }
 @media (min-width: 760px) {
   /* El encabezado usa los mismos bordes que la página, no una columna centrada */
   body:has(.sl) .top .wrap { max-width: none; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
-  /* Contacto: la frase y el número juntos, sin una pantalla vacía en medio */
-  .contact { min-height: 0; grid-template-rows: auto auto auto; gap: 40px; padding-block: 88px 40px; }
-  .contact-number { align-self: start; }
+  /* Contacto: título a la izquierda, número a todo lo ancho, datos en tres columnas */
+  .contact-inner { padding: 72px 48px 56px; gap: 32px; }
+  .awning-thin { height: 20px; }
+  .contact-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+  .contact-actions { display: flex; gap: 10px; }
+  .contact-actions > * { padding-inline: 22px; }
   .card-body { padding-inline: clamp(24px, 4vw, 48px); }
 }
 @media (min-width: 760px) and (max-width: 1100px) {
