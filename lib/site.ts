@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
   { id: 'chicha-mani', name: 'Chicha de maní', price: 5, unit: 'botella de 500 ml', desc: 'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.', icon: 'botella' },
 ];
 
-export const PLACES = { portada: 'Botón de la portada', carta: 'Botón de cada producto', flotante: 'Botón flotante' } as const;
+export const PLACES = { portada: 'Botón de la portada', carta: 'Botón de la chicha', flotante: 'Botón flotante o de contacto' } as const;
 export type Place = keyof typeof PLACES;
 
 export function prod(id: string | null | undefined) {
@@ -63,6 +63,22 @@ export function waHref(productId: string) {
     ? `Hola ${BUSINESS.name}, quiero pedir ${p.name.toLowerCase()} (${p.unit}, S/ ${p.price}${p.from ? ' en adelante' : ' c/u'}). Quiero ___ botellas para el día ___.`
     : `Hola ${BUSINESS.name}, quiero hacer una consulta sobre la chicha de maní.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+// Mensaje con la cantidad elegida en la web (sección "La chicha").
+export function orderText(productId: string, qty: number, presale: boolean) {
+  const p = prod(productId);
+  if (!p) return '';
+  const n = Math.max(1, Math.round(qty));
+  const what = n === 1 ? `1 botella de ${p.name.toLowerCase()}` : `${n} botellas de ${p.name.toLowerCase()}`;
+  const detail = `(${p.unit.replace('botella de ', '')}, S/ ${p.price} c/u = S/ ${p.price * n})`;
+  return presale
+    ? `Hola ${BUSINESS.name}, quiero separar ${what} ${detail} para recibir${n === 1 ? 'la' : 'las'} desde ${LAUNCH.label}.`
+    : `Hola ${BUSINESS.name}, quiero pedir ${what} ${detail}. ¿Para cuándo ${n === 1 ? 'la' : 'las'} tienen?`;
+}
+
+export function waOrderHref(productId: string, qty: number, presale: boolean) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(orderText(productId, qty, presale))}`;
 }
 
 // 51910897377 → +51 910 897 377

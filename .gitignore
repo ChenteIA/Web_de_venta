@@ -7,3 +7,6 @@ out/
 next-env.d.ts
 .vercel
 .DS_Store
+
+# taste-skill: capturas del revisor (se regeneran)
+.taste-skill/inspect/
