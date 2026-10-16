@@ -1,0 +1,110 @@
+{
+  "pageH": 3830,
+  "header": {
+    "x": 0,
+    "y": 0,
+    "w": 360,
+    "h": 64
+  },
+  "stage": {
+    "x": 12,
+    "y": 76,
+    "w": 336,
+    "h": 230.390625
+  },
+  "hero": {
+    "x": 12,
+    "y": 294.390625,
+    "w": 336,
+    "h": 461.09375
+  },
+  "heroBtn": {
+    "x": 76.1875,
+    "y": 619.484375,
+    "w": 207.625,
+    "h": 48
+  },
+  "plate": {
+    "x": 12,
+    "y": 755.484375,
+    "w": 336,
+    "h": 890.328125
+  },
+  "plateTitle": {
+    "x": 16,
+    "y": 1175.484375,
+    "w": 328,
+    "h": 40.796875
+  },
+  "picker": {
+    "x": 16,
+    "y": 1392.3125,
+    "w": 328,
+    "h": 253.5
+  },
+  "qtys": {
+    "x": 16,
+    "y": 1392.3125,
+    "w": 328,
+    "h": 44.5
+  },
+  "qty6": {
+    "x": 155.9375,
+    "y": 1392.3125,
+    "w": 10.8125,
+    "h": 44.5
+  },
+  "cellWa": {
+    "x": 16,
+    "y": 1517.8125,
+    "w": 328,
+    "h": 60
+  },
+  "itinerary": {
+    "x": 12,
+    "y": 1701.8125,
+    "w": 336,
+    "h": 761.234375
+  },
+  "slip": {
+    "x": 26,
+    "y": 1885.046875,
+    "w": 308,
+    "h": 546
+  },
+  "resenas": {
+    "x": 12,
+    "y": 2463.046875,
+    "w": 336,
+    "h": 260.59375
+  },
+  "contact": {
+    "x": 0,
+    "y": 2779.640625,
+    "w": 360,
+    "h": 669.859375
+  },
+  "number": {
+    "x": 20,
+    "y": 2997.828125,
+    "w": 320,
+    "h": 41.796875
+  },
+  "final": {
+    "x": 0,
+    "y": 3449.5,
+    "w": 360,
+    "h": 380
+  },
+  "fab": {
+    "x": 288,
+    "y": 568,
+    "width": 56,
+    "height": 56
+  },
+  "messages": {
+    "1": "Hola San Luyo, quiero separar 1 botella de chicha de maní (500 ml, S/ 5 c/u = S/ 5) para recibirla desde el lunes 19 de octubre.",
+    "3": "Hola San Luyo, quiero separar 3 botellas de chicha de maní (500 ml, S/ 5 c/u = S/ 15) para recibirlas desde el lunes 19 de octubre.",
+    "6": "Hola San Luyo, quiero separar 6 botellas de chicha de maní (500 ml, S/ 5 c/u = S/ 30) para recibirlas desde el lunes 19 de octubre."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "reels",
+      "confirmed_in": [
+        "san-luyo-web"
+      ],
+      "updated_at": "2026-10-16T14:25:55.680Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "san-luyo-web"
+      ],
+      "updated_at": "2026-10-16T14:25:55.767Z"
+    },
+    "language": {
+      "value": "es",
+      "confirmed_in": [
+        "san-luyo-web"
+      ],
+      "updated_at": "2026-10-16T14:25:55.853Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "san-luyo-web"
+      ],
+      "updated_at": "2026-10-16T14:25:55.917Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "san-luyo-web"
+      ],
+      "updated_at": "2026-10-16T14:25:55.980Z"
+    }
+  },
+  "sightings": {}
+}
