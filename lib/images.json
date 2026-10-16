@@ -28,5 +28,48 @@
     ]
   },
   "favicon": true,
-  "products": {}
+  "products": {
+    "mermelada-aguaymanto": {
+      "width": 1200,
+      "height": 896,
+      "srcs": [
+        {
+          "w": 400,
+          "src": "/img/productos/mermelada-aguaymanto-400.webp"
+        },
+        {
+          "w": 800,
+          "src": "/img/productos/mermelada-aguaymanto-800.webp"
+        }
+      ]
+    },
+    "mermelada-fresa": {
+      "width": 1200,
+      "height": 896,
+      "srcs": [
+        {
+          "w": 400,
+          "src": "/img/productos/mermelada-fresa-400.webp"
+        },
+        {
+          "w": 800,
+          "src": "/img/productos/mermelada-fresa-800.webp"
+        }
+      ]
+    },
+    "mermelada-manzana": {
+      "width": 1200,
+      "height": 896,
+      "srcs": [
+        {
+          "w": 400,
+          "src": "/img/productos/mermelada-manzana-400.webp"
+        },
+        {
+          "w": 800,
+          "src": "/img/productos/mermelada-manzana-800.webp"
+        }
+      ]
+    }
+  }
 }
