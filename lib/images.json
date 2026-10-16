@@ -1,7 +1,61 @@
 {
-  "portada": null,
-  "portadaAncha": null,
-  "logo": null,
-  "favicon": false,
-  "products": {}
+  "portada": {
+    "width": 896,
+    "height": 1200,
+    "srcs": [
+      {
+        "w": 640,
+        "src": "/img/portada-640.webp"
+      },
+      {
+        "w": 896,
+        "src": "/img/portada-896.webp"
+      }
+    ]
+  },
+  "portadaAncha": {
+    "width": 1376,
+    "height": 768,
+    "srcs": [
+      {
+        "w": 960,
+        "src": "/img/portada-ancha-960.webp"
+      },
+      {
+        "w": 1376,
+        "src": "/img/portada-ancha-1376.webp"
+      }
+    ]
+  },
+  "logo": {
+    "width": 512,
+    "height": 512,
+    "srcs": [
+      {
+        "w": 64,
+        "src": "/img/logo-64.webp"
+      },
+      {
+        "w": 128,
+        "src": "/img/logo-128.webp"
+      }
+    ]
+  },
+  "favicon": true,
+  "products": {
+    "chicha-mani": {
+      "width": 1200,
+      "height": 896,
+      "srcs": [
+        {
+          "w": 400,
+          "src": "/img/productos/chicha-mani-400.webp"
+        },
+        {
+          "w": 800,
+          "src": "/img/productos/chicha-mani-800.webp"
+        }
+      ]
+    }
+  }
 }
