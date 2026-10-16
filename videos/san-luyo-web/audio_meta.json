@@ -1,0 +1,10 @@
+{
+  "bgm": { "path": "assets/musica.mp3", "source": "host", "volume": 0.6 },
+  "voices": [],
+  "sfx": [
+    { "frame": 3, "file": "assets/sfx/toque.mp3", "offset_s": 2.8, "duration_s": 0.12, "volume": 0.5, "source": "host" },
+    { "frame": 3, "file": "assets/sfx/toque.mp3", "offset_s": 4.8, "duration_s": 0.12, "volume": 0.5, "source": "host" },
+    { "frame": 3, "file": "assets/sfx/enviado.mp3", "offset_s": 5.6, "duration_s": 0.2, "volume": 0.45, "source": "host" },
+    { "frame": 5, "file": "assets/sfx/toque.mp3", "offset_s": 1.4, "duration_s": 0.12, "volume": 0.5, "source": "host" }
+  ]
+}

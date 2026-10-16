@@ -5,25 +5,48 @@
     @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
     #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
     .page { position: absolute; left: 0; top: 0; width: 1080px; height: 11490px; }
-    .page img { display: block; width: 1080px; height: 11490px; }
+    .page > img { display: block; width: 1080px; height: 11490px; }
     .head { position: absolute; left: 0; top: 0; width: 1080px; height: 192px; }
     .fab { position: absolute; left: 864px; top: 1704px; width: 168px; height: 168px; border-radius: 50%; }
-    .chip { position: absolute; left: 540px; top: 236px; transform: translateX(-50%); padding: 22px 46px; border-radius: 999px; background: #2B1B18; color: #FAF4F1; font-size: 46px; font-weight: 560; white-space: nowrap; }
+    .chip { position: absolute; left: 540px; top: 236px; padding: 22px 46px; border-radius: 999px; background: #2B1B18; color: #FAF4F1; font-size: 46px; font-weight: 560; white-space: nowrap; opacity: 0; }
+    .ring { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: rgba(250, 244, 241, 0.35); border: 7px solid #2B1B18; opacity: 0; }
     #e02-bg { position: absolute; inset: 0; background: #FFFFFF; }
     #e02-mark { position: absolute; left: 240px; top: 1300px; width: 600px; height: 10px; border-radius: 5px; background: #A61D27; transform-origin: 0 50%; }
+    #e02-pulse { position: absolute; left: 228px; top: 1338px; width: 624px; height: 144px; border-radius: 999px; border: 8px solid #2E6B3B; opacity: 0; }
   </style>
   <div id="root" data-composition-id="02-entrada" data-width="1080" data-height="1920" data-duration="6.0">
     <div id="e02-bg" class="clip" data-start="0" data-duration="6" data-track-index="0"></div>
-    <div id="e02-page" class="page" style="transform: translateY(-519px)"><img src="assets/page-full.jpg" alt="La web de San Luyo en el celular" width="1080" height="11490"></div>
+    <div id="e02-page" class="page" style="transform: translateY(0px)"><img src="assets/page-full.jpg" alt="La web de San Luyo en el celular" width="1080" height="11490"></div>
     <img id="e02-head" class="head" src="assets/header.png" alt="">
     <img id="e02-fab" class="fab" src="assets/fab.png" alt="">
     <div id="e02-mark"></div>
+    <div id="e02-pulse"></div>
     <div id="e02-chip" class="chip">La entrada</div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
-
+      const page = document.getElementById("e02-page");
+      const view = { s: 0 };
+      function apply() { page.style.transform = "translateY(" + (-view.s) + "px)"; }
+      apply();
+      function scrollTo(target, t, dur, ease) { tl.to(view, { s: target, duration: dur, ease: ease || "power2.inOut", onUpdate: apply }, t); }
+      function chip(sel, tin, tout) {
+        tl.fromTo(sel, { opacity: 0, y: 24, xPercent: -50 }, { opacity: 1, y: 0, xPercent: -50, duration: 0.45, ease: "power3.out" }, tin);
+        tl.to(sel, { opacity: 0, y: -12, xPercent: -50, duration: 0.35, ease: "power2.in" }, tout);
+      }
+      function tap(sel, t) {
+        tl.fromTo(sel, { opacity: 0.95, scale: 0.4 }, { opacity: 0, scale: 1.7, duration: 0.55, ease: "power2.out", immediateRender: false }, t);
+      }
+      // Escena 1 (0.0–2.0s): la portada quieta, arriba del todo
+      // Escena 2 (2.0–4.0s): scroll suave hasta centrar la tarjeta de entrada
+      scrollTo(519, 1.6, 1.8, "power2.inOut");
+      chip("#e02-chip", 2.4, 5.3);
+      // Escena 3 (4.0–6.0s): subrayado de la preventa y el botón late
+      tl.fromTo("#e02-mark", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 3.7);
+      tl.to("#e02-mark", { opacity: 0, duration: 0.3, ease: "power2.in" }, 5.65);
+      tl.fromTo("#e02-pulse", { opacity: 0.9, scale: 1 }, { opacity: 0, scale: 1.12, duration: 0.55, ease: "power2.out", immediateRender: false }, 4.5);
+      tl.fromTo("#e02-pulse", { opacity: 0.9, scale: 1 }, { opacity: 0, scale: 1.12, duration: 0.7, ease: "power2.out", immediateRender: false }, 5.1);
       tl.to({}, { duration: 0.01 }, 5.99);
       window.__timelines = window.__timelines || {};
       window.__timelines["02-entrada"] = tl;

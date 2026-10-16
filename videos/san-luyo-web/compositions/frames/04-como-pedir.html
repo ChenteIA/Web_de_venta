@@ -5,25 +5,48 @@
     @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
     #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
     .page { position: absolute; left: 0; top: 0; width: 1080px; height: 11490px; }
-    .page img { display: block; width: 1080px; height: 11490px; }
+    .page > img { display: block; width: 1080px; height: 11490px; }
     .head { position: absolute; left: 0; top: 0; width: 1080px; height: 192px; }
     .fab { position: absolute; left: 864px; top: 1704px; width: 168px; height: 168px; border-radius: 50%; }
-    .chip { position: absolute; left: 540px; top: 236px; transform: translateX(-50%); padding: 22px 46px; border-radius: 999px; background: #2B1B18; color: #FAF4F1; font-size: 46px; font-weight: 560; white-space: nowrap; }
+    .chip { position: absolute; left: 540px; top: 236px; padding: 22px 46px; border-radius: 999px; background: #2B1B18; color: #FAF4F1; font-size: 46px; font-weight: 560; white-space: nowrap; opacity: 0; }
+    .ring { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: rgba(250, 244, 241, 0.35); border: 7px solid #2B1B18; opacity: 0; }
     #c04-bg { position: absolute; inset: 0; background: #FFFFFF; }
-    #c04-hl { position: absolute; left: 108px; top: 789px; width: 864px; height: 402px; border-radius: 20px; background: rgba(226, 168, 75, 0.22); }
+    .hl { position: absolute; left: 108px; width: 864px; border-radius: 20px; background: rgba(226, 168, 75, 0.24); opacity: 0; }
   </style>
   <div id="root" data-composition-id="04-como-pedir" data-width="1080" data-height="1920" data-duration="7.0">
     <div id="c04-bg" class="clip" data-start="0" data-duration="7" data-track-index="0"></div>
-    <div id="c04-page" class="page" style="transform: translateY(-5340px)"><img src="assets/page-full.jpg" alt="La web de San Luyo en el celular" width="1080" height="11490"></div>
+    <div id="c04-page" class="page" style="transform: translateY(-4790px)"><img src="assets/page-full.jpg" alt="La web de San Luyo en el celular" width="1080" height="11490"><div id="c04-h1" class="hl" style="top: 5697px; height: 402px"></div><div id="c04-h2" class="hl" style="top: 6129px; height: 402px"></div><div id="c04-h3" class="hl" style="top: 6561px; height: 306px"></div></div>
     <img id="c04-head" class="head" src="assets/header.png" alt="">
     <img id="c04-fab" class="fab" src="assets/fab.png" alt="">
-    <div id="c04-hl"></div>
     <div id="c04-chip" class="chip">Así de simple</div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
-
+      const page = document.getElementById("c04-page");
+      const view = { s: 4790 };
+      function apply() { page.style.transform = "translateY(" + (-view.s) + "px)"; }
+      apply();
+      function scrollTo(target, t, dur, ease) { tl.to(view, { s: target, duration: dur, ease: ease || "power2.inOut", onUpdate: apply }, t); }
+      function chip(sel, tin, tout) {
+        tl.fromTo(sel, { opacity: 0, y: 24, xPercent: -50 }, { opacity: 1, y: 0, xPercent: -50, duration: 0.45, ease: "power3.out" }, tin);
+        tl.to(sel, { opacity: 0, y: -12, xPercent: -50, duration: 0.35, ease: "power2.in" }, tout);
+      }
+      function tap(sel, t) {
+        tl.fromTo(sel, { opacity: 0.95, scale: 0.4 }, { opacity: 0, scale: 1.7, duration: 0.55, ease: "power2.out", immediateRender: false }, t);
+      }
+      // Escena 1 (0.0–1.6s): el título "Cómo pedir"
+      chip("#c04-chip", 0.6, 2.2);
+      // Escena 2 (1.6–5.6s): scroll lento por la nota; cada paso se resalta al pasar
+      scrollTo(5340, 1.4, 1.6, "power2.inOut");
+      scrollTo(5420, 3.0, 2.6, "sine.inOut");
+      tl.to("#c04-h1", { opacity: 1, duration: 0.3 }, 2.0);
+      tl.to("#c04-h1", { opacity: 0, duration: 0.3 }, 3.0);
+      tl.to("#c04-h2", { opacity: 1, duration: 0.3 }, 3.0);
+      tl.to("#c04-h2", { opacity: 0, duration: 0.3 }, 4.1);
+      tl.to("#c04-h3", { opacity: 1, duration: 0.3 }, 4.1);
+      // Escena 3 (5.6–7.0s): la barra final queda a la vista; el botón flotante se aparta
+      tl.to("#c04-fab", { opacity: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, 4.6);
       tl.to({}, { duration: 0.01 }, 6.99);
       window.__timelines = window.__timelines || {};
       window.__timelines["04-como-pedir"] = tl;
