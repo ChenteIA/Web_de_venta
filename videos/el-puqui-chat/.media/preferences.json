@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "instagram-feed",
+      "confirmed_in": [
+        "el-puqui-chat"
+      ],
+      "updated_at": "2026-10-16T01:08:51.745Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "el-puqui-chat"
+      ],
+      "updated_at": "2026-10-16T01:08:51.804Z"
+    },
+    "storyboard": {
+      "value": "no",
+      "confirmed_in": [
+        "el-puqui-chat"
+      ],
+      "updated_at": "2026-10-16T01:08:51.878Z"
+    }
+  },
+  "sightings": {}
+}

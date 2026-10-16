@@ -1,0 +1,1407 @@
+{
+  "version": 1,
+  "historyId": "762e06ca-fba5-41bb-a1fe-7f5d697f86fb",
+  "currentRevision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "BRIEF.md": {
+      "hash": "dc78b3c9e351c05a1150de3a5cd63142c533eb64598445c8f54ad59268357eec",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/dc/dc78b3c9e351c05a1150de3a5cd63142c533eb64598445c8f54ad59268357eec"
+    },
+    "CLAUDE.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "STORYBOARD.md": {
+      "hash": "c84d6beb9c32da4d788237a5544b30ec3d3cc51b314793d403bf563737905a0e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/c8/c84d6beb9c32da4d788237a5544b30ec3d3cc51b314793d403bf563737905a0e"
+    },
+    "assets/caja-regalo.jpg": {
+      "hash": "db365872525325bfa3b4543479073976b5e1b2170be5dccc2caef28257f9679e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/db/db365872525325bfa3b4543479073976b5e1b2170be5dccc2caef28257f9679e"
+    },
+    "assets/duraznos-almibar.jpg": {
+      "hash": "41f698ab7b14437b1ce2e8a5fccdebcfe10060746cb17a955921244b38818645",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/41/41f698ab7b14437b1ce2e8a5fccdebcfe10060746cb17a955921244b38818645"
+    },
+    "assets/encurtido.jpg": {
+      "hash": "1b95a3441995837ad4442ceefd722b91e23f0f8dccde5fd4ca0298347656ec4d",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/1b/1b95a3441995837ad4442ceefd722b91e23f0f8dccde5fd4ca0298347656ec4d"
+    },
+    "assets/fonts/figtree-latin.woff2": {
+      "hash": "8330490a01c60c196eae00b823de8102275aaa5862e7b76a7af21b8745338928",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/83/8330490a01c60c196eae00b823de8102275aaa5862e7b76a7af21b8745338928"
+    },
+    "assets/fonts/gloock-latin.woff2": {
+      "hash": "b862aac1a16f7dafbf1d2f0115a78f3d216c8a8a83ecd154eb4afb54ade82245",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/b8/b862aac1a16f7dafbf1d2f0115a78f3d216c8a8a83ecd154eb4afb54ade82245"
+    },
+    "assets/logo.png": {
+      "hash": "71a2924c8436d0f3e4b80154922ec752469baa43de85b84c1fab10b799782125",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/71/71a2924c8436d0f3e4b80154922ec752469baa43de85b84c1fab10b799782125"
+    },
+    "assets/mermelada-aguaymanto.jpg": {
+      "hash": "e7f110e5e5715228c096bec995049dcdc5218806e12a893681b47a5924f2b2a6",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/e7/e7f110e5e5715228c096bec995049dcdc5218806e12a893681b47a5924f2b2a6"
+    },
+    "assets/mermelada-fresa.jpg": {
+      "hash": "f4c7657961f790aee27e4d8a0a23448562f54c381b72d313155f0ade108a4945",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/f4/f4c7657961f790aee27e4d8a0a23448562f54c381b72d313155f0ade108a4945"
+    },
+    "assets/mermelada-manzana.jpg": {
+      "hash": "143c84efb9f76b4c4f93a816b0f3f03b4f54e407f446b9e1edff0f7f59058c82",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/14/143c84efb9f76b4c4f93a816b0f3f03b4f54e407f446b9e1edff0f7f59058c82"
+    },
+    "assets/portada-ancha.jpg": {
+      "hash": "000aeeef4b04d549fe2b23833a68a0a7c8a61a19d861a5e380066099f5baec43",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/00/000aeeef4b04d549fe2b23833a68a0a7c8a61a19d861a5e380066099f5baec43"
+    },
+    "assets/sfx/enviado.mp3": {
+      "hash": "721a4a858d13e989fce83df1a40be2f0f2cca949f2c8c0331ec4852e769cce2a",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/72/721a4a858d13e989fce83df1a40be2f0f2cca949f2c8c0331ec4852e769cce2a"
+    },
+    "assets/sfx/notificacion.mp3": {
+      "hash": "98ba030dfecddf3fc857d12c342e53c50b7b4adc0156ff2273e125f82e25e91e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/98/98ba030dfecddf3fc857d12c342e53c50b7b4adc0156ff2273e125f82e25e91e"
+    },
+    "assets/sfx/recibido.mp3": {
+      "hash": "32e557dac34eefe6b6f004e928ce6346e6c3ab076b64385d74de7d2987db9662",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/32/32e557dac34eefe6b6f004e928ce6346e6c3ab076b64385d74de7d2987db9662"
+    },
+    "audio_meta.json": {
+      "hash": "7ff9be944df9185355fef28b02606ed1766b70cb763e01b40a18e178c61fc679",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/7f/7ff9be944df9185355fef28b02606ed1766b70cb763e01b40a18e178c61fc679"
+    },
+    "capture/AGENTS.md": {
+      "hash": "fe2de4ebb5e34df9b37f18a896d66152cf39dca318f573ea869aabfc8040b917",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/fe/fe2de4ebb5e34df9b37f18a896d66152cf39dca318f573ea869aabfc8040b917"
+    },
+    "capture/CLAUDE.md": {
+      "hash": "fe2de4ebb5e34df9b37f18a896d66152cf39dca318f573ea869aabfc8040b917",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/fe/fe2de4ebb5e34df9b37f18a896d66152cf39dca318f573ea869aabfc8040b917"
+    },
+    "capture/assets/images/caja-regalo.jpg": {
+      "hash": "db365872525325bfa3b4543479073976b5e1b2170be5dccc2caef28257f9679e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/db/db365872525325bfa3b4543479073976b5e1b2170be5dccc2caef28257f9679e"
+    },
+    "capture/assets/images/duraznos-almibar.jpg": {
+      "hash": "41f698ab7b14437b1ce2e8a5fccdebcfe10060746cb17a955921244b38818645",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/41/41f698ab7b14437b1ce2e8a5fccdebcfe10060746cb17a955921244b38818645"
+    },
+    "capture/assets/images/encurtido.jpg": {
+      "hash": "1b95a3441995837ad4442ceefd722b91e23f0f8dccde5fd4ca0298347656ec4d",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/1b/1b95a3441995837ad4442ceefd722b91e23f0f8dccde5fd4ca0298347656ec4d"
+    },
+    "capture/assets/images/logo.png": {
+      "hash": "71a2924c8436d0f3e4b80154922ec752469baa43de85b84c1fab10b799782125",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/71/71a2924c8436d0f3e4b80154922ec752469baa43de85b84c1fab10b799782125"
+    },
+    "capture/assets/images/mermelada-aguaymanto.jpg": {
+      "hash": "e7f110e5e5715228c096bec995049dcdc5218806e12a893681b47a5924f2b2a6",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/e7/e7f110e5e5715228c096bec995049dcdc5218806e12a893681b47a5924f2b2a6"
+    },
+    "capture/assets/images/mermelada-fresa.jpg": {
+      "hash": "f4c7657961f790aee27e4d8a0a23448562f54c381b72d313155f0ade108a4945",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/f4/f4c7657961f790aee27e4d8a0a23448562f54c381b72d313155f0ade108a4945"
+    },
+    "capture/assets/images/mermelada-manzana.jpg": {
+      "hash": "143c84efb9f76b4c4f93a816b0f3f03b4f54e407f446b9e1edff0f7f59058c82",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/14/143c84efb9f76b4c4f93a816b0f3f03b4f54e407f446b9e1edff0f7f59058c82"
+    },
+    "capture/assets/images/portada-ancha.jpg": {
+      "hash": "000aeeef4b04d549fe2b23833a68a0a7c8a61a19d861a5e380066099f5baec43",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/00/000aeeef4b04d549fe2b23833a68a0a7c8a61a19d861a5e380066099f5baec43"
+    },
+    "capture/assets/images/portada.jpg": {
+      "hash": "8c29d9b30d867dc35a79fa600c21eccd24430614a579a35f3a82fb293a82983b",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8c/8c29d9b30d867dc35a79fa600c21eccd24430614a579a35f3a82fb293a82983b"
+    },
+    "capture/assets/svgs/contact-sheet.jpg": {
+      "hash": "aa4f580de330905851f4f90a01a6afdc007a00af6bf4405c64e53c33487022fe",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/aa/aa4f580de330905851f4f90a01a6afdc007a00af6bf4405c64e53c33487022fe"
+    },
+    "capture/assets/svgs/logo-b1208fa9.svg": {
+      "hash": "9cca3350849afd1cd19d3c0d7f7a8add99a23df1651728a43de883c946153793",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/9c/9cca3350849afd1cd19d3c0d7f7a8add99a23df1651728a43de883c946153793"
+    },
+    "capture/assets/svgs/svg-166df1ea-2.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-166df1ea-3.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-166df1ea-4.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-166df1ea-5.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-166df1ea-6.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-166df1ea-7.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-166df1ea-8.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-166df1ea.svg": {
+      "hash": "8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8d/8dadeb1f655f8ea6eccac5caca74e67ec2917fafa04878968f05e0b071978798"
+    },
+    "capture/assets/svgs/svg-87379a94.svg": {
+      "hash": "9f9073c61dc21a53c7bd8ac847246d8faa901c40266011fc26cbc49ca27f9fd6",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/9f/9f9073c61dc21a53c7bd8ac847246d8faa901c40266011fc26cbc49ca27f9fd6"
+    },
+    "capture/extracted/animations.json": {
+      "hash": "bc1d56b33243a9b41a6424bd9d156e8f9a1d21446413c29a6fa5da75e44b386e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/bc/bc1d56b33243a9b41a6424bd9d156e8f9a1d21446413c29a6fa5da75e44b386e"
+    },
+    "capture/extracted/asset-descriptions.md": {
+      "hash": "bbd7281655f52f674321dabc47ec769cc02100bb9b0b96756535c92762466f7e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/bb/bbd7281655f52f674321dabc47ec769cc02100bb9b0b96756535c92762466f7e"
+    },
+    "capture/extracted/design-styles.json": {
+      "hash": "2eb9a36f2eb116d3461a74ee98bbab4a802e0542c2cd053882786aec1b189d36",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/2e/2eb9a36f2eb116d3461a74ee98bbab4a802e0542c2cd053882786aec1b189d36"
+    },
+    "capture/extracted/fonts-manifest.json": {
+      "hash": "059fb0176682257cd1878bb25d424a06dd8b431799d10b2b68f4398db82353ba",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/05/059fb0176682257cd1878bb25d424a06dd8b431799d10b2b68f4398db82353ba"
+    },
+    "capture/extracted/icons-manifest.json": {
+      "hash": "bf4e4817cb4c4be40cc0fc97bd755910b2f3b229a59d772aa95461b141625b2d",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/bf/bf4e4817cb4c4be40cc0fc97bd755910b2f3b229a59d772aa95461b141625b2d"
+    },
+    "capture/extracted/page.html": {
+      "hash": "1149b9e55a4ee76c95f4c335eba682c4f25de1fda5720dd1182f1fdc729b4528",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/11/1149b9e55a4ee76c95f4c335eba682c4f25de1fda5720dd1182f1fdc729b4528"
+    },
+    "capture/extracted/response.json": {
+      "hash": "97fa47bce911b18406caf6d6a1c946fc751353cca043a2c97f63e61e6821072e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/97/97fa47bce911b18406caf6d6a1c946fc751353cca043a2c97f63e61e6821072e"
+    },
+    "capture/extracted/tokens.json": {
+      "hash": "decd0eb95faaa8fcc9facafa0ecd3c955efe182f653f5775b8fc7dc14b8348b3",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/de/decd0eb95faaa8fcc9facafa0ecd3c955efe182f653f5775b8fc7dc14b8348b3"
+    },
+    "capture/extracted/visible-text.txt": {
+      "hash": "a8d2142fb9f4be599155020418f66a6df328b87d54e00389b81da87e23a94dd7",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/a8/a8d2142fb9f4be599155020418f66a6df328b87d54e00389b81da87e23a94dd7"
+    },
+    "capture/meta.json": {
+      "hash": "43348ec725fb07ddaabbc69742217e610551cdea9f34955739424224d9a1a923",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/43/43348ec725fb07ddaabbc69742217e610551cdea9f34955739424224d9a1a923"
+    },
+    "capture/screenshots/contact-sheet.jpg": {
+      "hash": "20e0ef03ba8cc57e2cad5bb5b003e7c370b31564f8041e00675c24365adbbcb8",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/20/20e0ef03ba8cc57e2cad5bb5b003e7c370b31564f8041e00675c24365adbbcb8"
+    },
+    "capture/screenshots/scroll-066.png": {
+      "hash": "706d411ff3a69798d42ab915b88996b470bccc9225a188cc29b0efe04d56c855",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/70/706d411ff3a69798d42ab915b88996b470bccc9225a188cc29b0efe04d56c855"
+    },
+    "capture/screenshots/scroll-098.png": {
+      "hash": "ad332b0632a49edf8a2f9eb1a910316d4bfd2c1e1b8d356fd3cc437268b64c2e",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/ad/ad332b0632a49edf8a2f9eb1a910316d4bfd2c1e1b8d356fd3cc437268b64c2e"
+    },
+    "capture/screenshots/scroll-100.png": {
+      "hash": "d12aef17fe588fcebef8619fa2c5a141f2de32e9eba1461a2eee6b716cdd97db",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/d1/d12aef17fe588fcebef8619fa2c5a141f2de32e9eba1461a2eee6b716cdd97db"
+    },
+    "compositions/frames/01-hook.html": {
+      "hash": "c196b5feb312fdb8fbcf7b27ac6c08ced97007356fd110a9389fbd41785a000b",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/c1/c196b5feb312fdb8fbcf7b27ac6c08ced97007356fd110a9389fbd41785a000b"
+    },
+    "compositions/frames/02-pedido.html": {
+      "hash": "f6363b109f4ab67a747a1b22de6e5fb28213f33c7f1fc0abb9b46b686e567cf3",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/f6/f6363b109f4ab67a747a1b22de6e5fb28213f33c7f1fc0abb9b46b686e567cf3"
+    },
+    "compositions/frames/03-confirmado.html": {
+      "hash": "9cac303121218b529bf994eb3d82bfd3bfb71a8d9bb3d23f9a0e24a723c741c9",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/9c/9cac303121218b529bf994eb3d82bfd3bfb71a8d9bb3d23f9a0e24a723c741c9"
+    },
+    "compositions/frames/04-carta.html": {
+      "hash": "31e1ec8a83033ba842eb0e4e46b618f084d77f0c19bda6c767d4b99419b0439f",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/31/31e1ec8a83033ba842eb0e4e46b618f084d77f0c19bda6c767d4b99419b0439f"
+    },
+    "compositions/frames/05-cta.html": {
+      "hash": "3be6f7e7c4ffdc56b82b9a3f813e53b008c8af1a6b5c3c123a23aeaaafa49792",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/3b/3be6f7e7c4ffdc56b82b9a3f813e53b008c8af1a6b5c3c123a23aeaaafa49792"
+    },
+    "frame.md": {
+      "hash": "ffaaee187e4a0caec325094d7532bfebd7a411512dae28643d4eade54dd02fc0",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/ff/ffaaee187e4a0caec325094d7532bfebd7a411512dae28643d4eade54dd02fc0"
+    },
+    "hyperframes.json": {
+      "hash": "44d4e8dcefebce0a13f5afa82aa270b0b19a1d3f82e434f92616010cee775dc4",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/44/44d4e8dcefebce0a13f5afa82aa270b0b19a1d3f82e434f92616010cee775dc4"
+    },
+    "index.html": {
+      "hash": "96dd9c8bf891772e37b901d95fceafb8cb6c99c24f5821ff76cd04681ee53c18",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/96/96dd9c8bf891772e37b901d95fceafb8cb6c99c24f5821ff76cd04681ee53c18"
+    },
+    "meta.json": {
+      "hash": "f4dc97a50811986894aaee0605a067f387b98d9b1ab309587e2918d7e28dfd16",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/f4/f4dc97a50811986894aaee0605a067f387b98d9b1ab309587e2918d7e28dfd16"
+    },
+    "package.json": {
+      "hash": "8c7d6cd81da0c6f5b74d4bf9c16027ec66a5d4291be780c17279d6fc5aee712b",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/8c/8c7d6cd81da0c6f5b74d4bf9c16027ec66a5d4291be780c17279d6fc5aee712b"
+    },
+    "capture/screenshots/full-page.png": {
+      "hash": "248f7ad32029d7d22c28a2008d4966a58f3f4de09e736e7acd31dd379ee488f9",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/24/248f7ad32029d7d22c28a2008d4966a58f3f4de09e736e7acd31dd379ee488f9"
+    },
+    "capture/screenshots/scroll-000.png": {
+      "hash": "0bb637d9fdf7e0371d32bd4188845102567169fcdc64cf81691b15e744b341c7",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/0b/0bb637d9fdf7e0371d32bd4188845102567169fcdc64cf81691b15e744b341c7"
+    },
+    "capture/screenshots/scroll-033.png": {
+      "hash": "0ded4357e3ac6356bb6af6bae585dd98c34ef1e1260fa6a28c214a69b84066d5",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/0d/0ded4357e3ac6356bb6af6bae585dd98c34ef1e1260fa6a28c214a69b84066d5"
+    },
+    "assets/vendor/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    }
+  },
+  "revisions": {
+    "ebfc98d4-9efa-46b5-91bf-42bb84c0417f": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792113468975,
+      "endedAt": 1792113469002,
+      "files": {
+        "assets/vendor/gsap.min.js": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+        },
+        "compositions/frames/01-hook.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/3e/3e8e20a6346d7f1ac4301745cbf55dd7b9456abb394d375d515f44c2d6d6fa0b",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/c1/c196b5feb312fdb8fbcf7b27ac6c08ced97007356fd110a9389fbd41785a000b"
+        },
+        "compositions/frames/02-pedido.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/fe/fef388a4b4cc224266c5c2effd47b2be0a305c0a2e5ec02c71522e3ff67448bf",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/f6/f6363b109f4ab67a747a1b22de6e5fb28213f33c7f1fc0abb9b46b686e567cf3"
+        },
+        "compositions/frames/03-confirmado.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/7a/7a78a1bd8a603fad7a8802298e5e4cd2853237b8810aa2f173da56b3d437f494",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/a8/a87993ee1ba3bb871ca184550d3d6e17ca715e0a1704382236762fad070f64fd"
+        },
+        "compositions/frames/04-carta.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/a7/a7c4a7fe99f7c80d723cd07d532af413a7e462c71cba8a6a39b4f9d712066370",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/31/31e1ec8a83033ba842eb0e4e46b618f084d77f0c19bda6c767d4b99419b0439f"
+        },
+        "compositions/frames/05-cta.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/a4/a459153c6d68702533dbbda5947b590e8047ff45b0f51850514d6fe938211e7e",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/3b/3be6f7e7c4ffdc56b82b9a3f813e53b008c8af1a6b5c3c123a23aeaaafa49792"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/fa/fa5ab1ee7e217ba9ec967f05b54f6004b099e45a98c4140ad78b176c61b79cca",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/96/96dd9c8bf891772e37b901d95fceafb8cb6c99c24f5821ff76cd04681ee53c18"
+        }
+      }
+    },
+    "a759e603-466f-463c-b3e3-ab20ebd79dda": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792113537419,
+      "endedAt": 1792113537421,
+      "files": {
+        "compositions/frames/03-confirmado.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/a8/a87993ee1ba3bb871ca184550d3d6e17ca715e0a1704382236762fad070f64fd",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/c7/c703f7a7a3c8f409d076767d5d7978c9767f3a24dc4d841d32b61d9bdb5ac477"
+        }
+      }
+    },
+    "92d9bc3d-9071-427e-b60f-878eb575f852": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792113560732,
+      "endedAt": 1792113560733,
+      "files": {
+        "compositions/frames/03-confirmado.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/c7/c703f7a7a3c8f409d076767d5d7978c9767f3a24dc4d841d32b61d9bdb5ac477",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/3f/3fad7b84215b47a18ac15b43a8798edde598908632c028bb6abc63b97ef035af"
+        }
+      }
+    },
+    "b78c6359-19ae-43ae-97d1-259e316e2bf9": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792113594414,
+      "endedAt": 1792113594415,
+      "files": {
+        "compositions/frames/03-confirmado.html": {
+          "before": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/3f/3fad7b84215b47a18ac15b43a8798edde598908632c028bb6abc63b97ef035af",
+          "after": "/root/.cache/hyperframes/history/762e06ca-fba5-41bb-a1fe-7f5d697f86fb/blobs/9c/9cac303121218b529bf994eb3d82bfd3bfb71a8d9bb3d23f9a0e24a723c741c9"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+      "id": "de6aff84-fff2-4b3f-91cd-dd1a8b1ef531"
+    },
+    "revisions": {
+      "ebfc98d4-9efa-46b5-91bf-42bb84c0417f": [
+        {
+          "id": "7f3eda84-20f7-4ec1-9697-48b44a0e5811",
+          "scope": "project",
+          "report": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/checks/7f3eda84-20f7-4ec1-9697-48b44a0e5811.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792113481033,
+          "contentHash": "42ff95d065b06d5ab6ef1ee8394fcc80aacf811ae3ea1dcc645bdd61b296cf63",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "92d9bc3d-9071-427e-b60f-878eb575f852": [
+        {
+          "id": "cfca5294-d536-489d-927f-7a3181c5cb54",
+          "scope": "project",
+          "report": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/checks/cfca5294-d536-489d-927f-7a3181c5cb54.json",
+          "metadata": {
+            "ok": false,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792113572017,
+          "contentHash": "23ddd159704c272b5b994bea77e0fe4bb8a05e9257a115c57652104cc5255afb",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "b78c6359-19ae-43ae-97d1-259e316e2bf9": [
+        {
+          "id": "de6aff84-fff2-4b3f-91cd-dd1a8b1ef531",
+          "scope": "project",
+          "report": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/checks/de6aff84-fff2-4b3f-91cd-dd1a8b1ef531.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792113605895,
+          "contentHash": "5fd4edeec134a0a95b2ec1dc38931763c346f13184db9bfe846ed87065270016",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "71ee809c-209c-46b2-b0d4-a0dd9648b1ef",
+        "scope": "project",
+        "report": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/checks/71ee809c-209c-46b2-b0d4-a0dd9648b1ef.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792113436948,
+        "contentHash": "a4a315f4e1e7610f639f9276c945762d4b6dca29b042a38d75704d9684867b3b",
+        "revision": null,
+        "inputFingerprint": "c0e39584758407c4062483a7f50180742d41f0dc62bc5bb3e84f58a2d406d876",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+      "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-9"
+    },
+    "revisions": {
+      "ebfc98d4-9efa-46b5-91bf-42bb84c0417f": [
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-0",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-00-at-1.75s.png",
+          "time": 1.75,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500824,
+          "contentHash": "ad53131eeb30328c05a7e3090c4235ad4d073f43a69f87a44fe3f6edb61a1887",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-1",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-01-at-2.9s.png",
+          "time": 2.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "d18c549b2211515b63887970e3a0e7124118f8595be42c536819a3259a1ce6e3",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-2",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-02-at-3.4s.png",
+          "time": 3.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "d18c549b2211515b63887970e3a0e7124118f8595be42c536819a3259a1ce6e3",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-3",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-03-at-3.7s.png",
+          "time": 3.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "0c6d2aa34db10ad161738aa27f86f60633e80a246582210c5e1aa25b24c91628",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-4",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-04-at-7.5s.png",
+          "time": 7.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "64ef4358bb0ee45c656ade0f5b7111cfddc2fcf88c50792ea3966134d778bc99",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-5",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-05-at-10.9s.png",
+          "time": 10.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "42dbe3de2b8ae169c9351104e3e18cceb4abd5caeaf49328e6f6ef82ae935509",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-6",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-06-at-11.4s.png",
+          "time": 11.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "42dbe3de2b8ae169c9351104e3e18cceb4abd5caeaf49328e6f6ef82ae935509",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-7",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-07-at-11.7s.png",
+          "time": 11.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "1bcb0d29d8d2ff1700d95841780c0e4bfc1aac158cc1a8447943457f1d19a727",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-8",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-08-at-13.2s.png",
+          "time": 13.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "bd6e5de1bedd7e70aa276f0d3af2bafefca9649cea8ca30cb39a0747a71fafbe",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-9",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-09-at-15.2s.png",
+          "time": 15.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "0ebc53032bcd9a493a615f63a5e12d1264faf70d8f84816d3bd33ffe59135d2c",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-10",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-10-at-17.5s.png",
+          "time": 17.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "78637f75a409903dc7597005b39c92ca8c0e81c254c17f49ac70e3ac446702f0",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-11",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-11-at-18.4s.png",
+          "time": 18.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "78637f75a409903dc7597005b39c92ca8c0e81c254c17f49ac70e3ac446702f0",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-12",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-12-at-18.7s.png",
+          "time": 18.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "0909abfdc3cc6fb9a116cdad6eea503314810d78af0574f67cfa09cf8edc10b0",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-13",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-13-at-22s.png",
+          "time": 22,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "345c072b48e55fd41eecf694c93bcbe4abccf1926d217ed5bbb0d3ded8f506ae",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-14",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-14-at-24.6s.png",
+          "time": 24.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "1c3c4f81a055d1548c6243376654b87229236c8289846a7a0c6d87754f0b85ed",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-15",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-15-at-24.9s.png",
+          "time": 24.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "1c3c4f81a055d1548c6243376654b87229236c8289846a7a0c6d87754f0b85ed",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-16",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-16-at-25.2s.png",
+          "time": 25.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "7d9442ea792363f1bd62e63c81a47c25526f0f37fb78f3cff749a2b2452594a4",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-17",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-17-at-27.5s.png",
+          "time": 27.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "0597e7dee40e981f81dae3e2e549ff28407f98a77ccae7bbc7310a454cee6625",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-18",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-18-at-29s.png",
+          "time": 29,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "0a0203c56768fd4868b8ea3d0f9233e49c6175f08a81efa2e60d66ab755a8b0e",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9d1f9400-7171-41e4-ad83-cf8995d522a1-19",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/24dab09c-4d38-4a64-b2de-073081b86635/frame-19-at-29.1s.png",
+          "time": 29.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113500825,
+          "contentHash": "0a0203c56768fd4868b8ea3d0f9233e49c6175f08a81efa2e60d66ab755a8b0e",
+          "revision": "ebfc98d4-9efa-46b5-91bf-42bb84c0417f",
+          "inputFingerprint": "b2c83868e72c92c2a021b6a99e11747d67ea038e0ed8cf07b005694b8602579a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "a759e603-466f-463c-b3e3-ab20ebd79dda": [
+        {
+          "scope": "full",
+          "id": "89cafae9-4270-4cbf-a113-7ca56d466fcb-0",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/c8c82751-b705-4a24-bde1-c97fbfe0a592/frame-00-at-16.2s.png",
+          "time": 16.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113541770,
+          "contentHash": "40213230ab0aca4fa35a7566775d7f598edc9dc6ccfed207867cd06d9c36237b",
+          "revision": "a759e603-466f-463c-b3e3-ab20ebd79dda",
+          "inputFingerprint": "623614468b62802438c233872dbad9691abf017d0fd2258b481fae5c10a8bc66",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "89cafae9-4270-4cbf-a113-7ca56d466fcb-1",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/c8c82751-b705-4a24-bde1-c97fbfe0a592/frame-01-at-17.5s.png",
+          "time": 17.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113541770,
+          "contentHash": "e31d012e8c297d1a9e70ae3e2b09d6b9880d313f94db850831a6d9dde1737119",
+          "revision": "a759e603-466f-463c-b3e3-ab20ebd79dda",
+          "inputFingerprint": "623614468b62802438c233872dbad9691abf017d0fd2258b481fae5c10a8bc66",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "89cafae9-4270-4cbf-a113-7ca56d466fcb-2",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/c8c82751-b705-4a24-bde1-c97fbfe0a592/frame-02-at-18.4s.png",
+          "time": 18.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113541770,
+          "contentHash": "e31d012e8c297d1a9e70ae3e2b09d6b9880d313f94db850831a6d9dde1737119",
+          "revision": "a759e603-466f-463c-b3e3-ab20ebd79dda",
+          "inputFingerprint": "623614468b62802438c233872dbad9691abf017d0fd2258b481fae5c10a8bc66",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "89cafae9-4270-4cbf-a113-7ca56d466fcb-3",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/c8c82751-b705-4a24-bde1-c97fbfe0a592/frame-03-at-29s.png",
+          "time": 29,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113541770,
+          "contentHash": "0a0203c56768fd4868b8ea3d0f9233e49c6175f08a81efa2e60d66ab755a8b0e",
+          "revision": "a759e603-466f-463c-b3e3-ab20ebd79dda",
+          "inputFingerprint": "623614468b62802438c233872dbad9691abf017d0fd2258b481fae5c10a8bc66",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "89cafae9-4270-4cbf-a113-7ca56d466fcb-4",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/c8c82751-b705-4a24-bde1-c97fbfe0a592/frame-04-at-29.1s.png",
+          "time": 29.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113541770,
+          "contentHash": "0a0203c56768fd4868b8ea3d0f9233e49c6175f08a81efa2e60d66ab755a8b0e",
+          "revision": "a759e603-466f-463c-b3e3-ab20ebd79dda",
+          "inputFingerprint": "623614468b62802438c233872dbad9691abf017d0fd2258b481fae5c10a8bc66",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "92d9bc3d-9071-427e-b60f-878eb575f852": [
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-0",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-00-at-1.75s.png",
+          "time": 1.75,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "ad53131eeb30328c05a7e3090c4235ad4d073f43a69f87a44fe3f6edb61a1887",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-1",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-01-at-7.5s.png",
+          "time": 7.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "64ef4358bb0ee45c656ade0f5b7111cfddc2fcf88c50792ea3966134d778bc99",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-2",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-02-at-9.5s.png",
+          "time": 9.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "f235348ee0069a5bb4353b9d8884146a3a2486eace36cfd6f3272baa0ba27d49",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-3",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-03-at-15.6s.png",
+          "time": 15.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "578f0d557ffac9090b2337382fa22a544f39497e31b1809a798d86b61cc87149",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-4",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-04-at-17.5s.png",
+          "time": 17.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "fefdb710fca2bf4ee341109322cd270a99c57e6d4b7df4f02e31825772a984ae",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-5",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-05-at-22s.png",
+          "time": 22,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "345c072b48e55fd41eecf694c93bcbe4abccf1926d217ed5bbb0d3ded8f506ae",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-6",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-06-at-24.6s.png",
+          "time": 24.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "1c3c4f81a055d1548c6243376654b87229236c8289846a7a0c6d87754f0b85ed",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-7",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-07-at-27.8s.png",
+          "time": 27.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "8ec22cc791652eb076b4fd63766c5a08f41e4f8e9d08e2d698c2eda33f54997f",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-8",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-08-at-29s.png",
+          "time": 29,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "33d313b38b3dbbd3cffeff1cf0b6c2c7df22d5a55ddef59f30e665d32ebed61e",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "84e55b6b-4c69-4872-b1e4-af6926507dc2-9",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/8da6d817-d431-4954-ad40-93c0ebdb74ee/frame-09-at-29.1s.png",
+          "time": 29.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113579418,
+          "contentHash": "33d313b38b3dbbd3cffeff1cf0b6c2c7df22d5a55ddef59f30e665d32ebed61e",
+          "revision": "92d9bc3d-9071-427e-b60f-878eb575f852",
+          "inputFingerprint": "ea3fdd0060ebd0dd1f85606d635f61d5f1e640277a25d5327f9c413a8546ffe2",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "b78c6359-19ae-43ae-97d1-259e316e2bf9": [
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-0",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-00-at-1.75s.png",
+          "time": 1.75,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617267,
+          "contentHash": "ad53131eeb30328c05a7e3090c4235ad4d073f43a69f87a44fe3f6edb61a1887",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-1",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-01-at-5.5s.png",
+          "time": 5.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "23daaeae27e0aeec688719eb6ac2c75ff6013db37065fd14601bd4b014e4e1f2",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-2",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-02-at-9.5s.png",
+          "time": 9.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "f235348ee0069a5bb4353b9d8884146a3a2486eace36cfd6f3272baa0ba27d49",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-3",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-03-at-13.2s.png",
+          "time": 13.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "bd6e5de1bedd7e70aa276f0d3af2bafefca9649cea8ca30cb39a0747a71fafbe",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-4",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-04-at-15.6s.png",
+          "time": 15.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "578f0d557ffac9090b2337382fa22a544f39497e31b1809a798d86b61cc87149",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-5",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-05-at-17.5s.png",
+          "time": 17.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "fefdb710fca2bf4ee341109322cd270a99c57e6d4b7df4f02e31825772a984ae",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-6",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-06-at-22s.png",
+          "time": 22,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "345c072b48e55fd41eecf694c93bcbe4abccf1926d217ed5bbb0d3ded8f506ae",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-7",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-07-at-24.6s.png",
+          "time": 24.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "1c3c4f81a055d1548c6243376654b87229236c8289846a7a0c6d87754f0b85ed",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-8",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-08-at-28.5s.png",
+          "time": 28.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "bf5f825a8ee86af9abe6175d6e58f560f0f068ece67a633d940cd645c7d1f9db",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9a1c4b63-1aa7-4ca6-8711-64d5e2f6898b-9",
+          "image": "/home/user/Web_de_venta/videos/el-puqui-chat/.hyperframes/artifacts/snapshots/3530b266-b012-4ee5-8be6-f22fadaf0026/frame-09-at-29.1s.png",
+          "time": 29.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792113617268,
+          "contentHash": "0a0203c56768fd4868b8ea3d0f9233e49c6175f08a81efa2e60d66ab755a8b0e",
+          "revision": "b78c6359-19ae-43ae-97d1-259e316e2bf9",
+          "inputFingerprint": "076a5fd5f13d12316a6b9c5b50861c40d4dd0552bd9fc74668b691d323ee6ca8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  }
+}
