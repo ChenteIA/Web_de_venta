@@ -2,6 +2,7 @@
 //   portada.jpg        → portada (vertical: celular)
 //   portada-ancha.jpg  → portada a pantalla completa en computadora (horizontal 16:9)
 //   logo.png     → logo del encabezado + favicon
+//   cierre-ica.jpg → foto del pie de página (Huacachina), horizontal 16:9
 //   <id>.jpg     → foto del producto con ese id (ver lib/site.ts)
 // Si falta una imagen, la web usa la ilustración SVG de la demo.
 import { existsSync } from 'node:fs';
@@ -15,7 +16,7 @@ const OUT = path.join(ROOT, 'public', 'img');
 const MANIFEST = path.join(ROOT, 'lib', 'images.json');
 const EXT = /\.(jpe?g|png|webp|avif)$/i;
 
-const manifest = { portada: null, portadaAncha: null, logo: null, favicon: false, products: {} };
+const manifest = { portada: null, portadaAncha: null, cierre: null, logo: null, favicon: false, products: {} };
 
 async function variants(file, name, widths, quality = 78) {
   const img = sharp(file).rotate();
@@ -49,6 +50,8 @@ async function main() {
       manifest.portadaAncha = await variants(file, 'portada-ancha', [960, 1440, 1920], 76);
     } else if (base === 'portada') {
       manifest.portada = await variants(file, 'portada', [640, 960, 1440], 74);
+    } else if (base === 'cierre-ica') {
+      manifest.cierre = await variants(file, 'cierre-ica', [960, 1440, 1920], 74);
     } else if (base === 'logo') {
       manifest.logo = await variants(file, 'logo', [64, 128], 90);
       await sharp(file).resize(32, 32, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toFile(path.join(ROOT, 'public', 'favicon-32.png'));

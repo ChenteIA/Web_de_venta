@@ -182,7 +182,7 @@ export default async function Home() {
         </section>
 
         <footer className="final">
-          <Photo set={ancha} alt="" sizes="100vw" className="final-photo" />
+          <Photo set={IMAGES.cierre || ancha} alt={IMAGES.cierre ? "El oasis de Huacachina, rodeado de dunas, en Ica" : ""} sizes="100vw" className="final-photo" />
           <div className="final-top" data-reveal="">
             <nav aria-label="Pie de página">
               <a href="#chicha">La chicha</a>

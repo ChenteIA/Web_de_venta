@@ -8,6 +8,7 @@ Los prompts para generarlas con IA están en `PROMPTS.md`.
 | `portada.jpg` | Portada en celular, vertical (si falta, se muestra la ilustración de la botella) |
 | `portada-ancha.jpg` | Portada en computadora, horizontal 16:9 |
 | `logo.png` | Logo del encabezado y favicon (si falta, se usa el maní SVG) |
+| `cierre-ica.jpg` | Foto del pie de página: el oasis de Huacachina (horizontal 16:9) |
 | `chicha-mani.jpg` | Foto de la chicha de maní en la sección "Nuestra chicha" |
 
 Se convierten a WebP en varios tamaños dentro de `public/img/`.
