@@ -318,7 +318,6 @@
         {
           "id": "0f16f880-945f-43e7-bbc0-5bde25522d16",
           "scope": "project",
-          "report": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/checks/0f16f880-945f-43e7-bbc0-5bde25522d16.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -340,14 +339,15 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         }
       ],
       "cf9fa83f-097c-4718-97af-cc446697315b": [
         {
           "id": "f985c650-c2a6-4ae6-b0cf-0a3a78ca6cc7",
           "scope": "project",
-          "report": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/checks/f985c650-c2a6-4ae6-b0cf-0a3a78ca6cc7.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -369,7 +369,9 @@
           "revision": "cf9fa83f-097c-4718-97af-cc446697315b",
           "inputFingerprint": "895e173a02ae88220847059abf90c029637562a717f1716be1cd2634dc2bd4b9",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         }
       ],
       "8041627c-ebca-4f22-899c-bc3d576ce879": [
@@ -442,7 +444,6 @@
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-0",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-00-at-1.6s.png",
           "time": 1.6,
           "metadata": {
             "width": 1080,
@@ -457,12 +458,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-1",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-01-at-3.8s.png",
           "time": 3.8,
           "metadata": {
             "width": 1080,
@@ -477,12 +479,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-2",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-02-at-5.5s.png",
           "time": 5.5,
           "metadata": {
             "width": 1080,
@@ -497,12 +500,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-3",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-03-at-8.2s.png",
           "time": 8.2,
           "metadata": {
             "width": 1080,
@@ -517,12 +521,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-4",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-04-at-11s.png",
           "time": 11,
           "metadata": {
             "width": 1080,
@@ -537,12 +542,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-5",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-05-at-13.5s.png",
           "time": 13.5,
           "metadata": {
             "width": 1080,
@@ -557,12 +563,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-6",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-06-at-16.5s.png",
           "time": 16.5,
           "metadata": {
             "width": 1080,
@@ -577,12 +584,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-7",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-07-at-18.6s.png",
           "time": 18.6,
           "metadata": {
             "width": 1080,
@@ -597,12 +605,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-8",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-08-at-19.6s.png",
           "time": 19.6,
           "metadata": {
             "width": 1080,
@@ -617,12 +626,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-9",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-09-at-21.2s.png",
           "time": 21.2,
           "metadata": {
             "width": 1080,
@@ -637,12 +647,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-10",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-10-at-22.5s.png",
           "time": 22.5,
           "metadata": {
             "width": 1080,
@@ -657,12 +668,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-11",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-11-at-24.5s.png",
           "time": 24.5,
           "metadata": {
             "width": 1080,
@@ -677,12 +689,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-12",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-12-at-26.8s.png",
           "time": 26.8,
           "metadata": {
             "width": 1080,
@@ -697,12 +710,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-13",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-13-at-28.5s.png",
           "time": 28.5,
           "metadata": {
             "width": 1080,
@@ -717,12 +731,13 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "78ad974a-e943-46f1-b1bb-600ab7b10f81-14",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/bf5b2ed5-ca0c-4ed8-92c7-dc33c3aaab42/frame-14-at-29.1s.png",
           "time": 29.1,
           "metadata": {
             "width": 1080,
@@ -737,14 +752,15 @@
           "revision": "1a0a3882-08d4-4e62-95a1-5cbaaa095054",
           "inputFingerprint": "f741e867d2a2b80d90e3556c9b089f69d68e282b38822868e2e11843328cfbda",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         }
       ],
       "cf9fa83f-097c-4718-97af-cc446697315b": [
         {
           "scope": "full",
           "id": "00c572bf-8c91-4110-8b94-3dd7b14a6b55-0",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/636a65af-a1e0-4eec-b104-a6bcf42c2480/frame-00-at-5.5s.png",
           "time": 5.5,
           "metadata": {
             "width": 1080,
@@ -759,12 +775,13 @@
           "revision": "cf9fa83f-097c-4718-97af-cc446697315b",
           "inputFingerprint": "895e173a02ae88220847059abf90c029637562a717f1716be1cd2634dc2bd4b9",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "00c572bf-8c91-4110-8b94-3dd7b14a6b55-1",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/636a65af-a1e0-4eec-b104-a6bcf42c2480/frame-01-at-8.2s.png",
           "time": 8.2,
           "metadata": {
             "width": 1080,
@@ -779,12 +796,13 @@
           "revision": "cf9fa83f-097c-4718-97af-cc446697315b",
           "inputFingerprint": "895e173a02ae88220847059abf90c029637562a717f1716be1cd2634dc2bd4b9",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "00c572bf-8c91-4110-8b94-3dd7b14a6b55-2",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/636a65af-a1e0-4eec-b104-a6bcf42c2480/frame-02-at-13.5s.png",
           "time": 13.5,
           "metadata": {
             "width": 1080,
@@ -799,12 +817,13 @@
           "revision": "cf9fa83f-097c-4718-97af-cc446697315b",
           "inputFingerprint": "895e173a02ae88220847059abf90c029637562a717f1716be1cd2634dc2bd4b9",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "00c572bf-8c91-4110-8b94-3dd7b14a6b55-3",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/636a65af-a1e0-4eec-b104-a6bcf42c2480/frame-03-at-16.5s.png",
           "time": 16.5,
           "metadata": {
             "width": 1080,
@@ -819,12 +838,13 @@
           "revision": "cf9fa83f-097c-4718-97af-cc446697315b",
           "inputFingerprint": "895e173a02ae88220847059abf90c029637562a717f1716be1cd2634dc2bd4b9",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         },
         {
           "scope": "full",
           "id": "00c572bf-8c91-4110-8b94-3dd7b14a6b55-4",
-          "image": "/home/user/Web_de_venta/videos/el-puqui-web/.hyperframes/artifacts/snapshots/636a65af-a1e0-4eec-b104-a6bcf42c2480/frame-04-at-29.1s.png",
           "time": 29.1,
           "metadata": {
             "width": 1080,
@@ -839,7 +859,9 @@
           "revision": "cf9fa83f-097c-4718-97af-cc446697315b",
           "inputFingerprint": "895e173a02ae88220847059abf90c029637562a717f1716be1cd2634dc2bd4b9",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "93b62e91-4bf6-4525-a843-0a63bce72b75"
         }
       ],
       "8041627c-ebca-4f22-899c-bc3d576ce879": [
@@ -1086,5 +1108,18 @@
       ]
     },
     "unversioned": []
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "93b62e91-4bf6-4525-a843-0a63bce72b75",
+      "completedAt": 1792115911925,
+      "output": "/home/user/Web_de_venta/videos/el-puqui-web/renders/video.mp4",
+      "status": "completed",
+      "revision": "8041627c-ebca-4f22-899c-bc3d576ce879"
+    },
+    "retainedRevisions": [
+      "8041627c-ebca-4f22-899c-bc3d576ce879"
+    ]
+  },
+  "pendingArtifactCleanup": []
 }
