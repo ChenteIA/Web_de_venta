@@ -16,8 +16,8 @@ export default function ReviewsGallery({ reviews }: { reviews: PublicReview[] })
   return (
     <>
       <div className="reviews">
-        {reviews.map((r) => (
-          <figure className="review" key={r.id}>
+        {reviews.map((r, i) => (
+          <figure className="review" key={r.id} data-reveal="" style={{ '--i': i % 4 } as React.CSSProperties}>
             <button type="button" onClick={() => open(r)} aria-label={`Ampliar captura de ${r.who}`}>
               <img loading="lazy" decoding="async" src={r.url} alt={`Captura de un mensaje de WhatsApp de ${r.who}`} />
             </button>

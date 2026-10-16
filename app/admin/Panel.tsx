@@ -550,8 +550,8 @@ export default function Panel() {
                 <option value="otro">Otro producto</option>
               </select>
             </label>
-            <label className="field">Cantidad<input ref={qtyRef} type="number" min={1} step={1} value={fQty} required onChange={(e) => { const q = Number(e.target.value); setFQty(q); autoAmount(fProduct, q); }} /></label>
-            <label className="field">Monto (S/)<input type="number" min={0} step="0.5" value={fAmount} required onChange={(e) => { setFAmount(e.target.value); setAmountTouched(true); }} /></label>
+            <label className="field">Cantidad<input ref={qtyRef} type="number" inputMode="numeric" min={1} step={1} value={fQty} required onChange={(e) => { const q = Number(e.target.value); setFQty(q); autoAmount(fProduct, q); }} /></label>
+            <label className="field">Monto (S/)<input type="number" inputMode="decimal" min={0} step="0.5" value={fAmount} required onChange={(e) => { setFAmount(e.target.value); setAmountTouched(true); }} /></label>
             <label className="field">Fecha<input type="date" value={fDay} max={t} required onChange={(e) => setFDay(e.target.value)} /></label>
             <div className="field wide" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
               <button type="submit" className="btn btn-dark btn-sm">Guardar venta</button>
@@ -623,7 +623,7 @@ export default function Panel() {
         <div className="card-head"><div><h2>Reseñas de WhatsApp</h2><p className="sub">Sube capturas de los mensajes de clientes contentos. Aparecen en la web al instante.</p></div></div>
         <form className="f" ref={rvForm} onSubmit={uploadReviews} autoComplete="off">
           <label className="field wide">Capturas<input name="files" type="file" accept="image/png,image/jpeg,image/webp" multiple required style={{ padding: '8px 12px' }} /><span className="hint">Antes de subirla, tapa o recorta el número de teléfono del cliente.</span></label>
-          <label className="field">Nombre a mostrar<input name="customer" type="text" maxLength={40} placeholder="Ej.: María G." /></label>
+          <label className="field">Nombre a mostrar<input name="customer" type="text" autoCapitalize="words" enterKeyHint="done" maxLength={40} placeholder="Ej.: María G." /></label>
           <label className="field">Producto
             <select name="product" defaultValue="general">
               <option value="general">Sin producto específico</option>

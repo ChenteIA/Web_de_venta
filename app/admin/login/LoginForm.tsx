@@ -25,8 +25,8 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={onSubmit}>
-      <label className="field">Correo<input name="email" type="email" autoComplete="email" required /></label>
-      <label className="field">Contraseña<input name="password" type="password" autoComplete="current-password" required /></label>
+      <label className="field">Correo<input name="email" type="email" inputMode="email" autoComplete="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="next" required /></label>
+      <label className="field">Contraseña<input name="password" type="password" autoComplete="current-password" enterKeyHint="go" required /></label>
       <button type="submit" className="btn btn-dark" disabled={busy}>{busy ? 'Ingresando…' : 'Ingresar'}</button>
       <p className="err" role="alert">{error}</p>
     </form>

@@ -3,6 +3,7 @@ import CopyButton from '@/components/CopyButton';
 import Header, { DemoStrip } from '@/components/Header';
 import ReviewsGallery, { type PublicReview } from '@/components/ReviewsGallery';
 import WaLink from '@/components/WaLink';
+import Reveal from '@/components/Reveal';
 import WaTracker from '@/components/WaTracker';
 import { IMAGES, largest, srcSet } from '@/lib/images';
 import { BUSINESS, PRODUCTS, prodName, waDisplay } from '@/lib/site';
@@ -88,15 +89,15 @@ export default async function Home() {
 
         <section className="band alt" id="carta">
           <div className="wrap">
-            <div className="sec-head">
+            <div className="sec-head" data-reveal="">
               <h2>La carta</h2>
               <p>Precios en soles. Cada botón abre WhatsApp con tu pedido ya escrito.</p>
             </div>
             <div className="menu">
-              {PRODUCTS.map((p) => {
+              {PRODUCTS.map((p, idx) => {
                 const photo = IMAGES.products[p.id];
                 return (
-                  <article className="item" key={p.id}>
+                  <article className="item" key={p.id} data-reveal="" style={{ '--i': idx % 3 } as React.CSSProperties}>
                     {photo ? (
                       <div className="art photo">
                         <img src={largest(photo)} srcSet={srcSet(photo)} sizes="(max-width: 700px) 92vw, 380px" width={photo.width} height={photo.height} alt={p.name} loading="lazy" decoding="async" />
@@ -119,18 +120,18 @@ export default async function Home() {
 
         <section className="band" id="como-pedir">
           <div className="wrap">
-            <div className="sec-head"><h2>Cómo pedir</h2></div>
+            <div className="sec-head" data-reveal=""><h2>Cómo pedir</h2></div>
             <ol className="steps">
-              <li><span className="n">1</span><b>Elige y toca el botón</b><span>Se abre WhatsApp con el producto y el precio. Solo agrega la fecha que lo necesitas.</span></li>
-              <li><span className="n">2</span><b>Confirmamos y pagas</b><span>Te respondemos con la disponibilidad. Pagas con Yape, Plin o en efectivo al recoger.</span></li>
-              <li><span className="n">3</span><b>Recoges o te lo llevamos</b><span>Recojo en el local o delivery en Mala y San Antonio, a la hora que acordemos.</span></li>
+              <li data-reveal="" style={{ '--i': 0 } as React.CSSProperties}><span className="n">1</span><b>Elige y toca el botón</b><span>Se abre WhatsApp con el producto y el precio. Solo agrega la fecha que lo necesitas.</span></li>
+              <li data-reveal="" style={{ '--i': 1 } as React.CSSProperties}><span className="n">2</span><b>Confirmamos y pagas</b><span>Te respondemos con la disponibilidad. Pagas con Yape, Plin o en efectivo al recoger.</span></li>
+              <li data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><span className="n">3</span><b>Recoges o te lo llevamos</b><span>Recojo en el local o delivery en Mala y San Antonio, a la hora que acordemos.</span></li>
             </ol>
           </div>
         </section>
 
         <section className="band alt" id="resenas">
           <div className="wrap">
-            <div className="sec-head">
+            <div className="sec-head" data-reveal="">
               <h2>Lo que nos escriben</h2>
               {reviews.length ? (
                 <p>
@@ -143,7 +144,7 @@ export default async function Home() {
             {reviews.length ? (
               <ReviewsGallery reviews={reviews} />
             ) : (
-              <div className="empty"><b>Pronto compartiremos lo que nos escriben</b><span>Si ya probaste algo nuestro, cuéntanos por WhatsApp.</span></div>
+              <div className="empty" data-reveal=""><b>Pronto compartiremos lo que nos escriben</b><span>Si ya probaste algo nuestro, cuéntanos por WhatsApp.</span></div>
             )}
           </div>
         </section>
@@ -161,6 +162,7 @@ export default async function Home() {
         <WaLink product="general" place="flotante" className="btn btn-wa fab" label="Escríbenos por WhatsApp"><span>Escríbenos</span></WaLink>
       </main>
       <WaTracker />
+      <Reveal />
     </>
   );
 }

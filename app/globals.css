@@ -62,7 +62,6 @@ button { cursor: pointer; }
 .brand b { font-family: var(--f-display); font-weight: 400; font-size: 24px; line-height: 1; }
 .top nav { display: flex; align-items: center; gap: 6px 22px; flex-wrap: wrap; justify-content: flex-end; }
 .top nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 15px; }
-.top nav a:hover { color: var(--apple); }
 .view-toggle { min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; font-weight: 600; }
 .view-toggle[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 @media (max-width: 720px) { .top nav a { display: none; } }
@@ -71,9 +70,7 @@ button { cursor: pointer; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; border: 0; font-weight: 700; font-size: 16px; text-decoration: none; }
 .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 .btn-wa { background: var(--leaf); color: var(--leaf-ink); }
-.btn-wa:hover { background: var(--leaf-hover); color: var(--leaf-ink); }
 .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
-.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
 .btn-sm { min-height: 40px; padding: 0 14px; font-size: 14px; }
 .btn-dark { background: var(--ink); color: var(--bg); }
 .btn-danger { background: transparent; color: var(--apple); border: 1.5px solid var(--apple); }
@@ -146,7 +143,7 @@ footer.site p { opacity: 0.85; }
 @media (max-width: 520px) { .fab span { display: none; } .fab { width: 56px; height: 56px; padding: 0; } .fab svg { width: 26px; height: 26px; } }
 
 /* Lightbox */
-dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 520px); max-height: 92vh; }
+dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 520px); max-height: 92vh; overscroll-behavior: contain; }
 dialog.lightbox::backdrop { background: rgba(20, 10, 8, 0.78); }
 dialog.lightbox img { display: block; max-width: 100%; max-height: 82vh; border-radius: var(--r); }
 dialog.lightbox .close { display: block; margin: 12px auto 0; }
@@ -179,7 +176,6 @@ dialog.lightbox .close { display: block; margin: 12px auto 0; }
 .chart text { fill: var(--muted); font-size: 12px; font-family: var(--f-body); font-variant-numeric: tabular-nums; }
 .chart .grid { stroke: var(--line); stroke-width: 1; }
 .chart .hit { fill: transparent; }
-.chart .hit:hover { fill: var(--surface-2); }
 .tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); padding: 8px 10px; border-radius: 8px; font-size: 13px; line-height: 1.4; white-space: nowrap; transform: translate(-50%, calc(-100% - 8px)); }
 .tip[hidden] { display: none !important; }
 .table-wrap { overflow-x: auto; }
@@ -219,12 +215,10 @@ form.f { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,
 .confirm { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; }
 .linkbtn { background: none; border: 0; padding: 0; min-height: 32px; color: var(--apple); font-weight: 600; font-size: 14px; text-decoration: underline; }
 .locked { max-width: 520px; margin: 64px auto; text-align: center; display: flex; flex-direction: column; gap: 12px; }
-@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 
 /* ============ AÑADIDOS DEL PROYECTO ============ */
 html, body { margin: 0; padding: 0; }
 img { max-width: 100%; }
-html { scroll-behavior: smooth; }
 
 /* Logo como imagen */
 .brand img { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
@@ -241,7 +235,6 @@ html { scroll-behavior: smooth; }
 /* Ilustración del pie de página (masa dorada) */
 footer.site { position: relative; overflow: hidden; }
 footer.site .foot-art { position: absolute; right: -40px; bottom: -110px; width: 220px; height: 220px; opacity: 0.9; pointer-events: none; }
-footer.site .wrap { padding-bottom: 130px; }
 footer.site .foot-art svg { width: 100%; height: 100%; display: block; }
 footer.site .wrap { position: relative; }
 footer.site .legal { grid-column: 1 / -1; font-size: 13px; opacity: 0.7; }
@@ -267,3 +260,110 @@ footer.site .legal { grid-column: 1 / -1; font-size: 13px; opacity: 0.7; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
 .toolbar .spacer { flex: 1; }
 @media (max-width: 720px) { .top nav a.view-toggle { display: inline-flex; } }
+
+/* ============ MÓVIL NATIVO (skill mobile-native) ============ */
+html {
+  -webkit-tap-highlight-color: transparent; /* sin destello gris/azul al tocar */
+  -webkit-text-size-adjust: 100%;            /* sin inflar fuentes en horizontal */
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* iOS hace zoom en campos de menos de 16 px */
+input, textarea, select, .field input, .field select { font-size: 16px; }
+
+/* Toques sin retraso y sin seleccionar el texto de los botones */
+button, .btn, .view-toggle, .theme-btn, [role="button"] {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+a { touch-action: manipulation; }
+
+/* El pie de página no queda bajo la barra de inicio del iPhone */
+footer.site .wrap { padding-bottom: calc(130px + env(safe-area-inset-bottom, 0px)); }
+
+/* Hover solo en dispositivos con mouse (en táctil se queda "pegado") */
+@media (hover: hover) and (pointer: fine) {
+  .top nav a:hover { color: var(--apple); }
+  .btn-wa:hover { background: var(--leaf-hover); color: var(--leaf-ink); }
+  .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+  .chart .hit:hover { fill: var(--surface-2); }
+  .view-toggle:hover, .theme-btn:hover, .rv-admin .acts button:hover { border-color: var(--ink); }
+  .seg button:hover { color: var(--ink); }
+  .copy-row button:hover { background: var(--strip-fg); color: var(--strip-bg); }
+}
+
+/* ============ ANIMACIÓN (skill animate) ============ */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Respuesta al presionar: 160 ms ease-out, scale 0.97 */
+.btn, .view-toggle, .theme-btn, .seg button, .rv-admin .acts button, .copy-row button, .review button {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+.btn:active, .view-toggle:active, .theme-btn:active, .seg button:active, .rv-admin .acts button:active, .copy-row button:active {
+  transform: scale(0.97);
+}
+.review button:active { transform: scale(0.98); }
+.top nav a { transition: color 150ms ease; }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.btn:disabled:active { transform: none; }
+
+/* Lightbox de reseñas: modal centrado, 250 ms, entra y sale igual */
+dialog.lightbox {
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 250ms var(--ease-out),
+    transform 250ms var(--ease-out),
+    overlay 250ms allow-discrete,
+    display 250ms allow-discrete;
+}
+dialog.lightbox[open] { opacity: 1; transform: scale(1); }
+dialog.lightbox::backdrop {
+  opacity: 0;
+  transition: opacity 250ms var(--ease-out), overlay 250ms allow-discrete, display 250ms allow-discrete;
+}
+dialog.lightbox[open]::backdrop { opacity: 1; }
+@starting-style {
+  dialog.lightbox[open] { opacity: 0; transform: scale(0.96); }
+  dialog.lightbox[open]::backdrop { opacity: 0; }
+}
+
+/* Portada: entrada escalonada una sola vez al cargar (300 ms, 60 ms entre elementos) */
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.hero h1, .hero .lede, .hero .actions, .hero .facts, .hero .pie-art, .hero .hero-photo {
+  animation: rise 300ms var(--ease-out) both;
+}
+.hero .lede { animation-delay: 60ms; }
+.hero .actions { animation-delay: 120ms; }
+.hero .facts { animation-delay: 180ms; }
+.hero .pie-art, .hero .hero-photo { animation-name: fade; animation-duration: 400ms; animation-delay: 120ms; }
+
+/* Carta, pasos y reseñas: aparecen al llegar con el scroll, una sola vez (ver components/Reveal.tsx) */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 50ms);
+}
+.js-reveal [data-reveal][data-visible] { opacity: 1; transform: translateY(0); }
+
+/* Movimiento reducido: menos y más suave — se conserva el fundido, se quita el desplazamiento */
+@media (prefers-reduced-motion: reduce) {
+  .hero h1, .hero .lede, .hero .actions, .hero .facts, .hero .pie-art, .hero .hero-photo { animation-name: fade; animation-delay: 0ms; }
+  .js-reveal [data-reveal] { transform: none; transition: opacity 200ms ease; transition-delay: 0ms; }
+  .btn:active, .view-toggle:active, .theme-btn:active, .seg button:active, .rv-admin .acts button:active, .copy-row button:active, .review button:active { transform: none; }
+  dialog.lightbox, dialog.lightbox[open] { transform: none; }
+}
+
+/* Al saltar a una sección (#carta, #como-pedir…), el título no queda tapado por el encabezado fijo */
+section[id] { scroll-margin-top: 64px; }
