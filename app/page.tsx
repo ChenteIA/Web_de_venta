@@ -75,8 +75,6 @@ export default async function Home() {
   const products = await loadProducts();
   const reviews = await loadReviews(products);
   const soon = isPresale();
-  const first = products[0];
-  const firstPhoto = first ? productPhoto(first) : null;
   const navLabel = products.length === 1 ? 'La chicha' : 'Productos';
   // "500 ml o de 1 litro" y "(desde S/ 3)" para la portada, a partir de la carta real.
   const sizeList = [...new Set(products.map((p) => unitParts(p.unit || '').detail).filter(Boolean))];
@@ -99,14 +97,18 @@ export default async function Home() {
           {/* La foto que no se mueve: cambia con un fundido lento según la sección que se lee */}
           <div className="stage">
             <div className="stage-frame">
-              <div className="layer on" data-layer="0"><Photo set={portada} alt={`Dos botellas y un vaso de chicha de maní ${BUSINESS.name} con maníes`} sizes="(min-width: 760px) 50vw, 100vw" eager /></div>
-              <div className="layer" data-layer="1"><ProductImg photo={firstPhoto} alt={first ? first.name : ""} sizes="(min-width: 760px) 50vw, 100vw" /></div>
-              <div className="layer" data-layer="2"><Photo set={ancha} alt="Botellas de chicha de maní, un vaso y maníes tostados sobre una mesa de madera" sizes="(min-width: 760px) 50vw, 100vw" /></div>
+              <div className="layer on" data-layer="portada"><Photo set={portada} alt={`Dos botellas y un vaso de chicha de maní ${BUSINESS.name} con maníes`} sizes="(min-width: 760px) 50vw, 100vw" eager /></div>
+              {/* Una capa por producto: al llegar a cada tarjeta se ve la foto de ese producto */}
+              {products.map((p) => {
+                const ph = productPhoto(p);
+                return <div className="layer" data-layer={`p-${p.id}`} key={p.id}>{ph ? <ProductImg photo={ph} alt={productLabel(p, products)} sizes="(min-width: 760px) 50vw, 100vw" /> : <div className="layer-art"><BottleArt /></div>}</div>;
+              })}
+              <div className="layer" data-layer="ancha"><Photo set={ancha} alt="Botellas de chicha de maní, un vaso y maníes tostados sobre una mesa de madera" sizes="(min-width: 760px) 50vw, 100vw" /></div>
             </div>
           </div>
 
           <div className="reading">
-            <section className="card-hero" data-stage="0" aria-labelledby="h-hero">
+            <section className="card-hero" data-stage="portada" aria-labelledby="h-hero">
               <div className="awning" aria-hidden="true">{STRIPES.map((_, i) => <i key={i} />)}</div>
               <div className="card-body">
                 {logo && <img className="card-logo" src={largest(logo)} width={96} height={96} alt={`Logo de ${BUSINESS.name}`} />}
@@ -129,7 +131,7 @@ export default async function Home() {
               {products.length ? products.map((p) => {
                 const u = unitParts(p.unit || 'unidad');
                 return (
-                  <section className="plate" key={p.id} data-stage="1" aria-labelledby={`h-${p.id}`}>
+                  <section className="plate" key={p.id} data-stage={`p-${p.id}`} aria-labelledby={`h-${p.id}`}>
                     <div className="plate-photo" data-reveal="">
                       {productPhoto(p) ? <ProductImg photo={productPhoto(p)} alt={productLabel(p, products)} sizes="(min-width: 760px) 40vw, 92vw" /> : <BottleArt />}
                     </div>
@@ -145,7 +147,7 @@ export default async function Home() {
                   </section>
                 );
               }) : (
-                <section className="plate" data-stage="1">
+                <section className="plate" data-stage="ancha">
                   <div className="plate-text">
                     <h2>Pronto, nuevos productos</h2>
                     <p className="desc">Escríbenos por WhatsApp y te contamos qué tenemos hoy.</p>
@@ -154,7 +156,7 @@ export default async function Home() {
               )}
             </div>
 
-            <section className="itinerary" id="como-pedir" data-stage="2" aria-labelledby="h-como">
+            <section className="itinerary" id="como-pedir" data-stage="ancha" aria-labelledby="h-como">
               <div className="itin-head">
                 <h2 id="h-como" data-reveal="">Cómo pedir</h2>
                 <p data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>
@@ -182,7 +184,7 @@ export default async function Home() {
               </div>
             </section>
 
-            <section className="words" id="resenas" data-stage="0" aria-labelledby="h-resenas">
+            <section className="words" id="resenas" data-stage="portada" aria-labelledby="h-resenas">
               <h2 id="h-resenas" data-reveal="">Lo que nos escriben</h2>
               {reviews.length ? (
                 <>

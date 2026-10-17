@@ -430,9 +430,11 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 .stage-frame { position: relative; overflow: hidden; border-radius: var(--r); background: #1d130f; height: 36svh; min-height: 230px; }
 .layer { position: absolute; inset: 0; opacity: 0; transition: opacity 1600ms ease; }
 .layer.on { opacity: 1; }
+.layer-art { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--surface-2); }
+.layer-art svg { width: 70%; height: auto; }
 .layer img { width: 100%; height: 100%; object-fit: cover; display: block; transform-origin: 60% 60%; }
-.layer[data-layer="0"] img { object-position: 50% 78%; }
-.layer[data-layer="2"] img { object-position: 78% 50%; }
+.layer[data-layer="portada"] img { object-position: 50% 78%; }
+.layer[data-layer="ancha"] img { object-position: 78% 50%; }
 @media (prefers-reduced-motion: no-preference) {
   .layer.on img { animation: drift 14s ease-in-out infinite alternate; }
 }
