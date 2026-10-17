@@ -104,6 +104,8 @@ export default async function Home() {
                 const ph = productPhoto(p);
                 return <div className="layer" data-layer={`p-${p.id}`} key={p.id}>{ph ? <ProductImg photo={ph} alt={productLabel(p, products)} sizes="(min-width: 760px) 50vw, 100vw" /> : <div className="layer-art"><BottleArt /></div>}</div>;
               })}
+              {/* Al llegar a "Cómo pedir" (computadora) la foto grande pasa a ser el video del pedido */}
+              <div className="layer layer-video" data-layer="como"><HowToVideo stage /></div>
               <div className="layer" data-layer="ancha"><Photo set={ancha} alt="Botellas de chicha de maní, un vaso y maníes tostados sobre una mesa de madera" sizes="(min-width: 760px) 50vw, 100vw" /></div>
             </div>
           </div>
@@ -157,7 +159,7 @@ export default async function Home() {
               )}
             </div>
 
-            <section className="itinerary" id="como-pedir" data-stage="ancha" aria-labelledby="h-como">
+            <section className="itinerary" id="como-pedir" data-stage="como" aria-labelledby="h-como">
               <div className="itin-head">
                 <h2 id="h-como" data-reveal="">Cómo pedir</h2>
                 <p data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>

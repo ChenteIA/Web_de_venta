@@ -485,6 +485,10 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 
 /* Cómo pedir: itinerario impreso en una nota con borde de corte */
 .itin-media { width: 100%; max-width: 480px; align-self: center; }
+/* En computadora el video va en la foto grande de la derecha; la tarjeta queda como antes */
+@media (min-width: 760px) { .itin-media { display: none; } }
+.layer-video { background: #FAF4F1; display: flex; align-items: center; justify-content: center; }
+.stage-video { display: block; width: 100%; height: 100%; object-fit: contain; }
 .itin-video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; border-radius: var(--r); background: #FAF4F1; object-fit: cover; }
 .itinerary { margin-top: var(--section); background: var(--surface-2); border-radius: var(--r); padding: 36px 20px 44px; display: flex; flex-direction: column; gap: 28px; }
 .itin-head { display: flex; flex-direction: column; gap: 14px; }
