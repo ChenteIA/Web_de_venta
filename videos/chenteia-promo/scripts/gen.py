@@ -248,20 +248,83 @@ write("04-cierre", comp("04-cierre", d4, f'''
       tl.to("#c-wa", {{ scale: 1.04, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 5 }}, {round(START[6] - T_END + 3.4, 2)});'''))
 
 
-# ---------------------------------------------------------------- 05 · Avatar (todo el video): pose según lo que dice
-# Las imágenes miden 768x1376. Tres encuadres: grande abajo al centro, pequeño abajo a la izquierda, grande al cierre.
+# ---------------------------------------------------------------- 05 · Avatar (todo el video): pose según lo que dice, y vivo
+# Las piezas salen de scripts/avatar_vivo.py: cuerpo, cabeza aparte (para moverla), boca en 4 aperturas,
+# ojos medio cerrados y cerrados, y la mano que saluda. Imágenes de 768x1376.
+import wave
+import numpy as np
+VIVO = json.load(open(f"{ROOT}/assets/avatar/vivo/vivo.json"))
 POSES = [("saluda", 0, 4.3), ("senala", 4.3, 18.1), ("presenta", 18.1, 30.3), ("pulgar", 30.3, TOTAL)]
+FPS = 30
+
+# Volumen de la voz cuadro a cuadro (0–1) → apertura de la boca (0–4)
+env = np.zeros(int(TOTAL * FPS) + 1)
+for i in range(len(LINES)):
+    w = wave.open(f"{ROOT}/assets/voz/l{i + 1}.wav")
+    sr = w.getframerate()
+    x = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
+    hop = sr // FPS
+    for k in range(len(x) // hop):
+        rms = float(np.sqrt(np.mean(x[k * hop:(k + 1) * hop] ** 2)) + 1e-6)
+        f = int(round(START[i] * FPS)) + k
+        if f < len(env): env[f] = max(env[f], np.clip((20 * np.log10(rms) + 40) / 24, 0, 1))
+# Abre rápido y cierra un poco más lento, como una boca de verdad
+for f in range(1, len(env)):
+    env[f] = max(env[f], env[f - 1] * 0.55)
+level = np.where(env < 0.12, 0, np.clip(np.ceil(env * 4), 1, 4)).astype(int)
+# Movimiento lento para la cabeza: promedio de ~0.4 s
+slow = np.convolve(env, np.ones(12) / 12, mode="same")
+
+def pose_html(n):
+    m = VIVO[n]
+    hx, hy, hw, hh = m["head"]
+    px, py = m["pivot"]
+    parts = [f'<img class="body" src="assets/avatar/vivo/{n}-cuerpo.png" alt="">']
+    if "hand" in m:
+        bx, by, bw, bh = m["hand"]["box"]; qx, qy = m["hand"]["pivot"]
+        parts.append(f'<img id="hand-{n}" class="hand" src="assets/avatar/vivo/{n}-mano.png" alt="" style="left:{bx}px;top:{by}px;width:{bw}px;height:{bh}px;transform-origin:{qx - bx}px {qy - by}px">')
+    inner = [f'<img src="assets/avatar/vivo/{n}-cabeza.png" alt="" style="left:0;top:0;width:{hw}px;height:{hh}px">']
+    for k, (x, y, w_, h_) in enumerate(m["mouth"], 1):
+        inner.append(f'<img class="m m{k}" src="assets/avatar/vivo/{n}-boca-{k}.png" alt="" style="left:{x - hx}px;top:{y - hy}px;width:{w_}px;height:{h_}px">')
+    for k, (x, y, w_, h_) in enumerate(m["eyes"], 1):
+        inner.append(f'<img class="e e{k}" src="assets/avatar/vivo/{n}-ojos-{k}.png" alt="" style="left:{x - hx}px;top:{y - hy}px;width:{w_}px;height:{h_}px">')
+    parts.append(f'<div class="head" style="left:{hx}px;top:{hy}px;width:{hw}px;height:{hh}px;transform-origin:{px - hx}px {py - hy}px">{"".join(inner)}</div>')
+    return f'<div class="pose" id="a-{n}" role="img" aria-label="Avatar de ChenteIA"><div class="flip">{"".join(parts)}</div></div>'
+
+js = []
+# Boca: solo cuando cambia la apertura
+prev = 0
+for f, lv in enumerate(level):
+    if lv != prev:
+        t = round(f / FPS, 3)
+        js.append(f'tl.set(".m", {{ opacity: 0 }}, {t});' + (f' tl.set(".m{lv}", {{ opacity: 1 }}, {t});' if lv else ""))
+        prev = lv
+# Cabeza: se inclina y asiente con la voz; quieta pero viva en los silencios
+for k in range(int(TOTAL / 0.2)):
+    t = k * 0.2
+    s = float(slow[min(int((t + 0.2) * FPS), len(slow) - 1)])
+    rot = 1.3 * np.sin(2 * np.pi * t / 3.3) + 1.6 * s * np.sin(2 * np.pi * t / 1.15 + 0.7)
+    y = 3.5 * s * (0.6 + 0.4 * np.sin(2 * np.pi * t / 0.8))
+    js.append(f'tl.to(".head", {{ rotation: {rot:.2f}, y: {y:.2f}, duration: 0.2, ease: "sine.inOut" }}, {t:.1f});')
+# Parpadeos cada 2–4 s, fuera de los cambios de pose
+gaps = [2.9, 3.6, 2.3, 4.0, 3.1, 2.6, 3.8, 2.4, 3.3]
+t, k, cuts = 1.4, 0, [p[1] for p in POSES[1:]]
+while t < TOTAL - 0.5:
+    if all(abs(t - c) > 0.35 for c in cuts):
+        js.append(f'tl.set(".e1", {{ opacity: 1 }}, {t:.2f}); tl.set(".e1", {{ opacity: 0 }}, {t + 0.05:.2f}); tl.set(".e2", {{ opacity: 1 }}, {t + 0.05:.2f}); '
+                  f'tl.set(".e2", {{ opacity: 0 }}, {t + 0.12:.2f}); tl.set(".e1", {{ opacity: 1 }}, {t + 0.12:.2f}); tl.set(".e1", {{ opacity: 0 }}, {t + 0.17:.2f});')
+    t += gaps[k % len(gaps)]; k += 1
+
 write("05-avatar", comp("05-avatar", TOTAL, f'''
     #a-box {{ position: absolute; left: 0; top: 0; width: 768px; height: 1376px; transform-origin: 50% 100%; }}
-    #a-box img {{ position: absolute; left: 0; top: 0; width: 768px; height: 1376px; opacity: 0; }}
-    #a-presenta {{ }}
+    #a-box .pose {{ position: absolute; inset: 0; opacity: 0; transform-origin: 50% 100%; }}
+    #a-box .flip {{ position: absolute; inset: 0; }}
+    #a-box img {{ position: absolute; display: block; }}
+    #a-box .body {{ left: 0; top: 0; width: 768px; height: 1376px; }}
+    #a-box .head {{ position: absolute; }}
+    #a-box .m, #a-box .e {{ opacity: 0; }}
     #a-shadow {{ position: absolute; left: 230px; top: 1340px; width: 310px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.45); filter: blur(10px); }}''',
-    '''<div id="a-box"><div id="a-shadow"></div>
-      <img id="a-saluda" src="assets/avatar/saluda.png" alt="Avatar de ChenteIA saludando">
-      <img id="a-senala" src="assets/avatar/senala.png" alt="Avatar señalando la web">
-      <img id="a-presenta" src="assets/avatar/presenta.png" alt="Avatar presentando el panel">
-      <img id="a-pulgar" src="assets/avatar/pulgar.png" alt="Avatar con el pulgar arriba">
-    </div>''',
+    '<div id="a-box"><div id="a-shadow"></div>\n      ' + "\n      ".join(pose_html(n) for n, _, _ in POSES) + '\n    </div>',
     f'''      const box = "#a-box";
       // Encuadres (x, y en px del lienzo; s = escala): grande al centro → pequeño a la izquierda → grande al cierre
       // El origen de la escala es el pie (50% 100%): con y = 584 los pies quedan al borde inferior en cualquier tamaño
@@ -270,14 +333,19 @@ write("05-avatar", comp("05-avatar", TOTAL, f'''
       tl.to(box, {{ x: -154, scale: 0.72, duration: 0.7, ease: "power3.inOut" }}, {T_PHONE - 0.2});
       tl.to(box, {{ x: -120, scale: 0.78, duration: 0.5, ease: "power2.inOut" }}, {T_VAL});
       tl.to(box, {{ x: 156, scale: 0.74, duration: 0.7, ease: "power3.inOut" }}, {T_END - 0.1});
-      // Poses: cambio rápido con un pequeño rebote, como si se moviera
+      // Poses: cambio con un pequeño salto, como si se moviera
       {"".join(f'''tl.set("#a-{n}", {{ opacity: 1 }}, {t0});{"" if t1 >= TOTAL else f''' tl.set("#a-{n}", {{ opacity: 0 }}, {t1});'''}
       ''' for n, t0, t1 in POSES)}
-      tl.set("#a-presenta", {{ scaleX: -1, transformOrigin: "50% 50%" }}, 0); // la mano abierta apunta hacia el teléfono
-      {"".join(f'''tl.fromTo("#a-{n}", {{ y: 18 }}, {{ y: 0, duration: 0.35, ease: "back.out(2)", immediateRender: false }}, {t0});
+      tl.set("#a-presenta .flip", {{ scaleX: -1, transformOrigin: "50% 50%" }}, 0); // la mano abierta apunta hacia el teléfono
+      {"".join(f'''tl.fromTo("#a-{n} .flip", {{ y: 22, scaleY: 0.97 }}, {{ y: 0, scaleY: 1, duration: 0.4, ease: "back.out(2.2)", immediateRender: false }}, {t0});
       ''' for n, t0, t1 in POSES[1:])}
-      // Mientras habla: un balanceo suave (respiración) que no se detiene
-      tl.fromTo("#a-box img", {{ rotate: -0.8, transformOrigin: "50% 100%" }}, {{ rotate: 0.8, duration: 1.3, ease: "sine.inOut", yoyo: true, repeat: {int(TOTAL / 1.3)}, immediateRender: false }}, 0.6);'''))
+      // Respira: un balanceo suave que no se detiene
+      tl.fromTo("#a-box .pose", {{ rotate: -0.9 }}, {{ rotate: 0.9, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: {int(TOTAL / 1.6)}, immediateRender: false }}, 0.6);
+      // Saluda con la mano mientras hace la pregunta
+      tl.fromTo("#hand-saluda", {{ rotate: -7 }}, {{ rotate: 9, duration: 0.34, ease: "sine.inOut", yoyo: true, repeat: 9, immediateRender: false }}, 0.5);
+      tl.to("#hand-saluda", {{ rotate: 0, duration: 0.3, ease: "sine.out" }}, 3.9);
+      // Boca al ritmo de la voz, cabeza que acompaña y parpadeos
+      ''' + "\n      ".join(js)))
 
 
 # ---------------------------------------------------------------- 06 · Subtítulos (frases 2–5; las demás ya se leen en pantalla)
