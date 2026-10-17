@@ -17,7 +17,11 @@ export default function StageSync() {
       { rootMargin: '-45% 0px -45% 0px' },
     );
     sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
+    // En el contacto ya están los botones de WhatsApp: el botón flotante se esconde para no tapar nada.
+    const contact = document.getElementById('contacto');
+    const io2 = new IntersectionObserver(([e]) => document.documentElement.classList.toggle('at-contact', e.isIntersecting), { rootMargin: '0px 0px -30% 0px' });
+    if (contact) io2.observe(contact);
+    return () => { io.disconnect(); io2.disconnect(); };
   }, []);
   return null;
 }

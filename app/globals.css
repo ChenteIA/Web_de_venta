@@ -581,8 +581,23 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .words { padding-bottom: 0; }
   .itinerary { padding: 56px clamp(24px, 3.4vw, 56px) 64px; }
   .cells { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .final { padding: 40px 48px 36px; }
-  .final { min-height: clamp(420px, 56svh, 560px); }
+  /* Contacto + pie llenan juntos una pantalla (menos el encabezado): el contacto toma lo que necesita
+     y la foto de Huacachina el resto. Todo se escala con la altura para que entre en laptops bajas. */
+  .ending { display: flex; flex-direction: column; min-height: calc(100svh - 64px); margin-top: var(--section); }
+  .ending .contact { margin-top: 0; flex: none; }
+  .ending .contact-inner { padding-block: clamp(24px, 5.5svh, 64px); row-gap: clamp(12px, 2.4svh, 24px); }
+  .ending .contact-head { gap: 6px; }
+  .ending .contact-head p { max-width: 52ch; }
+  .ending .contact-number { font-size: clamp(36px, min(4.8vw, 8.5svh), 68px); }
+  .ending .contact-actions .btn, .ending .contact-actions button { min-height: clamp(44px, 6.5svh, 52px); }
+  .ending .contact-facts > div { padding-block: clamp(8px, 1.9svh, 18px); }
+  .ending .awning-thin { height: 14px; }
+  .final { flex: 1 1 auto; min-height: clamp(200px, 30svh, 340px); padding: clamp(20px, 4svh, 40px) 48px clamp(18px, 3.5svh, 36px); gap: 16px; }
+  .final .wordmark { font-size: clamp(48px, min(9vw, 15svh), 150px); }
+  .final-bottom { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; column-gap: 32px; }
+  .final .legal { margin-top: 0; padding-bottom: 0.6em; }
+  /* Mismos bordes que el contacto (columna de 1240 px centrada) */
+  .final { padding-inline: max(48px, calc((100% - 1240px) / 2 + 48px)); }
   .final-photo { object-position: 50% 62%; }
 }
 @media (min-width: 760px) {
@@ -632,3 +647,8 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
   .card-body > *, .awning i { animation: fade 200ms ease both; }
   .layer { transition-duration: 200ms; }
 }
+
+/* El botón flotante se esconde al llegar al contacto (ahí ya están los botones de WhatsApp) */
+.fab { transition: opacity 200ms ease, transform 200ms var(--ease-out), visibility 0s linear 0s; }
+.at-contact .fab { opacity: 0; transform: translateY(12px); visibility: hidden; pointer-events: none; transition: opacity 200ms ease, transform 200ms var(--ease-out), visibility 0s linear 200ms; }
+@media (prefers-reduced-motion: reduce) { .at-contact .fab { transform: none; } }

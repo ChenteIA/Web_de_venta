@@ -202,6 +202,8 @@ export default async function Home() {
           </div>
         </div>
 
+        {/* Contacto + pie: en computadora ocupan juntos exactamente una pantalla */}
+        <div className="ending">
         <section className="contact" id="contacto" aria-labelledby="h-contacto">
           <div className="awning awning-thin" aria-hidden="true">{STRIPES.map((_, i) => <i key={i} />)}</div>
           <div className="contact-inner">
@@ -241,6 +243,7 @@ export default async function Home() {
             <p className="legal">© 2026 {BUSINESS.name} · Web hecha por ChenteIA</p>
           </div>
         </footer>
+        </div>
 
         <WaLink product="general" place="flotante" className="btn btn-wa fab" label="Escríbenos por WhatsApp"><span>Escríbenos</span></WaLink>
       </main>
