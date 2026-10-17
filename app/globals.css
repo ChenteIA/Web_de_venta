@@ -588,10 +588,17 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 @media (min-width: 760px) {
   /* El encabezado usa los mismos bordes que la página, no una columna centrada */
   body:has(.sl) .top .wrap { max-width: none; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
-  /* Contacto: título a la izquierda, número a todo lo ancho, datos en tres columnas */
-  .contact-inner { padding: 72px 48px 56px; gap: 32px; }
+  /* Contacto en dos columnas: título, número (tamaño moderado) y botones a la izquierda; datos a la derecha */
+  .contact-inner {
+    display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); column-gap: clamp(40px, 7vw, 112px); row-gap: 24px;
+    align-items: end; max-width: 1240px; margin-inline: auto; padding: 72px 48px 64px;
+  }
+  .contact-head, .contact-number, .contact-actions { grid-column: 1; }
+  .contact-number { font-size: clamp(40px, 4.8vw, 68px); letter-spacing: -0.02em; }
   .awning-thin { height: 20px; }
-  .contact-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
+  .contact-facts { grid-column: 2; grid-row: 1 / span 3; align-self: end; grid-template-columns: minmax(0, 1fr); gap: 0; margin: 0; }
+  .contact-facts > div { padding-block: 18px; border-top: 1px solid rgba(248, 242, 238, 0.16); }
+  .contact-facts > div:last-child { padding-bottom: 0; }
   .contact-actions { display: flex; gap: 10px; }
   .contact-actions > * { padding-inline: 22px; }
   .card-body { padding-inline: clamp(24px, 4vw, 48px); }
