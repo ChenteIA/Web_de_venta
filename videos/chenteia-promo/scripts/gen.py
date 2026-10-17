@@ -1,6 +1,10 @@
 # Genera el video "ChenteIA · la web de tu negocio" (HyperFrames, 1080x1920, ~43 s, con voz y música).
 # Uso: python3 scripts/gen.py   (escribe compositions/frames/*.html e index.html)
+#      VARIANTE=sin-avatar python3 scripts/gen.py   (versión sin avatar: compositions/frames/sa-*.html y sin-avatar.html;
+#      se renderiza con: npx hyperframes render -c sin-avatar.html)
 import os, json, re, subprocess
+SIN_AVATAR = os.environ.get("VARIANTE") == "sin-avatar"
+PRE = "sa-" if SIN_AVATAR else ""
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W, H = 1080, 1920
@@ -55,7 +59,8 @@ def comp(fid, d, css, body, script):
 
 def write(fid, html):
     os.makedirs(f"{ROOT}/compositions/frames", exist_ok=True)
-    open(f"{ROOT}/compositions/frames/{fid}.html", "w").write(html)
+    if SIN_AVATAR and fid == "05-avatar": return
+    open(f"{ROOT}/compositions/frames/{PRE}{fid}.html", "w").write(html)
 
 
 # ---------------------------------------------------------------- 00 · Fondo (todo el video)
@@ -71,9 +76,10 @@ write("00-fondo", comp("00-fondo", TOTAL, f'''
 
 
 # ---------------------------------------------------------------- 01 · Gancho (0 – 4.3 s)
+G_TOP = 640 if SIN_AVATAR else 300   # sin avatar, la pregunta va al centro de la pantalla
 write("01-gancho", comp("01-gancho", T_PHONE, f'''
-    #g-kick {{ position: absolute; left: 80px; top: 230px; font-size: 40px; font-weight: 700; letter-spacing: 0.04em; color: {ACC}; opacity: 0; }}
-    #g-t {{ position: absolute; left: 80px; right: 80px; top: 300px; font-size: 108px; line-height: 1.02; font-weight: 850; letter-spacing: -0.03em; }}
+    #g-kick {{ position: absolute; left: 80px; top: {G_TOP - 70}px; font-size: 40px; font-weight: 700; letter-spacing: 0.04em; color: {ACC}; opacity: 0; }}
+    #g-t {{ position: absolute; left: 80px; right: 80px; top: {G_TOP}px; font-size: 108px; line-height: 1.02; font-weight: 850; letter-spacing: -0.03em; }}
     #g-t span {{ display: block; opacity: 0; }}
     #g-t em {{ font-style: normal; color: {ACC}; }}''',
     '''<p id="g-kick">ChenteIA · webs para negocios</p>
@@ -87,6 +93,8 @@ write("01-gancho", comp("01-gancho", T_PHONE, f'''
 
 # ---------------------------------------------------------------- 02 · Teléfono: San Luyo para el cliente y para el dueño
 PX, PY, PW, PH = 452, 330, 590, 1210          # marco del teléfono
+PX0 = (W - PW) // 2 - PX if SIN_AVATAR else 0 # sin avatar: empieza centrado y se corre a la derecha al llegar los pasos
+CHIPS_TOP = 720 if SIN_AVATAR else 400
 BZ = 16                                       # bisel
 SW, SH = PW - 2 * BZ, PH - 2 * BZ             # pantalla: 558 x 1178
 K = SW / 780                                  # las capturas miden 780 px de ancho
@@ -135,7 +143,7 @@ write("02-telefono", comp("02-telefono", d2, f'''
     #t-res {{ top: 0; }}
     .hl {{ position: absolute; border-radius: 18px; border: 5px solid {ACC}; opacity: 0; }}
     .ring {{ position: absolute; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; background: rgba(255, 194, 71, 0.35); border: 7px solid {ACC}; opacity: 0; }}
-    .chips {{ position: absolute; left: 50px; top: 400px; width: 400px; }}
+    .chips {{ position: absolute; left: 50px; top: {CHIPS_TOP}px; width: 400px; }}
     .chip {{ position: relative; display: flex; align-items: center; gap: 16px; margin-bottom: 18px; padding: 18px 22px; border-radius: 22px; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.12); font-size: 31px; font-weight: 650; line-height: 1.2; opacity: 0; }}
     .chip b {{ display: flex; align-items: center; justify-content: center; flex: none; width: 50px; height: 50px; border-radius: 50%; background: {ACC}; color: {BG}; font-size: 28px; font-weight: 850; }}''',
     f'''<div id="t-head">
@@ -178,7 +186,8 @@ write("02-telefono", comp("02-telefono", d2, f'''
       apply();
 
       // Escena 1 (0.0–4.2s): el teléfono entra con la web de San Luyo — "Mira esto: es San Luyo"
-      tl.fromTo("#t-phone", {{ y: 700, rotate: 6 }}, {{ y: 0, rotate: 0, duration: 0.8, ease: "power3.out" }}, 0.05);
+      tl.fromTo("#t-phone", {{ x: {PX0}, y: 700, rotate: 6 }}, {{ x: {PX0}, y: 0, rotate: 0, duration: 0.8, ease: "power3.out" }}, 0.05);''' + (f'''
+      tl.to("#t-phone", {{ x: 0, duration: 0.6, ease: "power3.inOut" }}, {L(8.75)});''' if SIN_AVATAR else '') + f'''
       show("#t-portada", 0.05);
       inOut("#t-k1", 0.3, {L(8.3)}); inOut("#t-h1", 0.4, {L(8.3)});
 
@@ -212,10 +221,12 @@ write("02-telefono", comp("02-telefono", d2, f'''
 
 # ---------------------------------------------------------------- 03 · Valores (30.3 – 34.3 s)
 d3 = T_END - T_VAL
+VY = 640 if SIN_AVATAR else 360
+V_ALIGN = "left: 70px; right: 70px; text-align: center" if SIN_AVATAR else "right: 70px; text-align: right"
 write("03-valores", comp("03-valores", d3, f'''
-    .v {{ position: absolute; right: 70px; text-align: right; font-size: 128px; font-weight: 850; letter-spacing: -0.03em; line-height: 1; opacity: 0; }}
-    #v1 {{ top: 360px; }} #v2 {{ top: 520px; color: {ACC}; }} #v3 {{ top: 680px; font-size: 100px; }}
-    #v-sub {{ position: absolute; right: 70px; top: 820px; font-size: 44px; color: {SOFT}; opacity: 0; }}''',
+    .v {{ position: absolute; {V_ALIGN}; font-size: 128px; font-weight: 850; letter-spacing: -0.03em; line-height: 1; opacity: 0; }}
+    #v1 {{ top: {VY}px; }} #v2 {{ top: {VY + 160}px; color: {ACC}; }} #v3 {{ top: {VY + 320}px; font-size: 100px; }}
+    #v-sub {{ position: absolute; {V_ALIGN}; top: {VY + 460}px; font-size: 44px; color: {SOFT}; opacity: 0; }}''',
     '''<p id="v1" class="v">Rápida.</p><p id="v2" class="v">Segura.</p><p id="v3" class="v">A tu medida.</p>
     <p id="v-sub">Hecha para tu negocio</p>''',
     f'''      // Escena 1 (0.3–3.4s): las tres palabras, una por cada idea de la voz
@@ -227,14 +238,15 @@ write("03-valores", comp("03-valores", d3, f'''
 
 # ---------------------------------------------------------------- 04 · Cierre (34.3 – 43 s)
 d4 = TOTAL - T_END
+CY = 450 if SIN_AVATAR else 0   # sin avatar, el cierre baja al centro
 write("04-cierre", comp("04-cierre", d4, f'''
-    #c-brand {{ position: absolute; left: 0; right: 0; top: 210px; text-align: center; font-size: 132px; font-weight: 900; letter-spacing: -0.04em; opacity: 0; }}
+    #c-brand {{ position: absolute; left: 0; right: 0; top: {210 + CY}px; text-align: center; font-size: 132px; font-weight: 900; letter-spacing: -0.04em; opacity: 0; }}
     #c-brand span {{ color: {ACC}; }}
-    #c-line {{ position: absolute; left: 80px; right: 80px; top: 380px; text-align: center; font-size: 54px; font-weight: 650; line-height: 1.2; opacity: 0; }}
-    #c-wa {{ position: absolute; left: 110px; right: 110px; top: 560px; height: 170px; border-radius: 999px; background: {GREEN}; display: flex; align-items: center; justify-content: center; gap: 26px; color: #FFF; opacity: 0; }}
+    #c-line {{ position: absolute; left: 80px; right: 80px; top: {380 + CY}px; text-align: center; font-size: 54px; font-weight: 650; line-height: 1.2; opacity: 0; }}
+    #c-wa {{ position: absolute; left: 110px; right: 110px; top: {560 + CY}px; height: 170px; border-radius: 999px; background: {GREEN}; display: flex; align-items: center; justify-content: center; gap: 26px; color: #FFF; opacity: 0; }}
     #c-wa svg {{ width: 84px; height: 84px; color: #FFF; }}
     #c-wa b {{ font-size: 84px; font-weight: 850; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }}
-    #c-cta {{ position: absolute; left: 0; right: 0; top: 760px; text-align: center; font-size: 44px; color: {SOFT}; opacity: 0; }}''',
+    #c-cta {{ position: absolute; left: 0; right: 0; top: {760 + CY}px; text-align: center; font-size: 44px; color: {SOFT}; opacity: 0; }}''',
     f'''<p id="c-brand">Chente<span>IA</span></p>
     <p id="c-line">Hacemos la web de tu negocio</p>
     <div id="c-wa">{WA}<b>971 114 393</b></div>
@@ -376,9 +388,11 @@ write("06-subtitulos", comp("06-subtitulos", TOTAL, f'''
 
 # ---------------------------------------------------------------- index.html
 SCENES = [("01-gancho", 0, T_PHONE), ("02-telefono", T_PHONE, d2), ("03-valores", T_VAL, d3), ("04-cierre", T_END, d4)]
-els = "\n".join(f'''      <div id="el-{fid}" class="scene" data-composition-id="{fid}" data-composition-src="compositions/frames/{fid}.html" data-start="{st}" data-duration="{round(d, 2)}" data-track-index="1"></div>''' for fid, st, d in SCENES)
+els = "\n".join(f'''      <div id="el-{fid}" class="scene" data-composition-id="{fid}" data-composition-src="compositions/frames/{PRE}{fid}.html" data-start="{st}" data-duration="{round(d, 2)}" data-track-index="1"></div>''' for fid, st, d in SCENES)
 voices = "\n".join(f'''      <audio id="el-voz-{i + 1}" src="assets/voz/l{i + 1}.wav" data-start="{START[i]}" data-duration="{DUR[i]}" data-track-index="{10 + i}" data-volume="1"></audio>''' for i in range(len(LINES)))
-open(f"{ROOT}/index.html", "w").write(f'''<!doctype html>
+AVATAR_EL = f'''      <div id="el-05-avatar" class="scene" data-composition-id="05-avatar" data-composition-src="compositions/frames/05-avatar.html" data-start="0" data-duration="{TOTAL}" data-track-index="2"></div>
+'''
+open(f"{ROOT}/{'sin-avatar.html' if SIN_AVATAR else 'index.html'}", "w").write(f'''<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -393,10 +407,9 @@ open(f"{ROOT}/index.html", "w").write(f'''<!doctype html>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="{W}" data-height="{H}">
-      <div id="el-00-fondo" class="scene" data-composition-id="00-fondo" data-composition-src="compositions/frames/00-fondo.html" data-start="0" data-duration="{TOTAL}" data-track-index="0"></div>
+      <div id="el-00-fondo" class="scene" data-composition-id="00-fondo" data-composition-src="compositions/frames/{PRE}00-fondo.html" data-start="0" data-duration="{TOTAL}" data-track-index="0"></div>
 {els}
-      <div id="el-05-avatar" class="scene" data-composition-id="05-avatar" data-composition-src="compositions/frames/05-avatar.html" data-start="0" data-duration="{TOTAL}" data-track-index="2"></div>
-      <div id="el-06-subtitulos" class="scene" data-composition-id="06-subtitulos" data-composition-src="compositions/frames/06-subtitulos.html" data-start="0" data-duration="{TOTAL}" data-track-index="3"></div>
+{"" if SIN_AVATAR else AVATAR_EL}      <div id="el-06-subtitulos" class="scene" data-composition-id="06-subtitulos" data-composition-src="compositions/frames/{PRE}06-subtitulos.html" data-start="0" data-duration="{TOTAL}" data-track-index="3"></div>
 {voices}
       <audio id="el-musica" src="assets/musica.mp3" data-start="0" data-duration="{TOTAL}" data-track-index="20" data-volume="0.16"></audio>
     </div>

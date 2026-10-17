@@ -1,0 +1,27 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #F5F2EE; font-family: "Figtree", sans-serif; }
+    
+    #f-bg { position: absolute; inset: 0; background: #12151A; }
+    #f-dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.07) 2px, transparent 2px); background-size: 44px 44px; }
+    #f-glow { position: absolute; left: -300px; top: 900px; width: 1200px; height: 1200px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 194, 71, 0.16), rgba(255, 194, 71, 0)); }
+  </style>
+  <div id="root" data-composition-id="00-fondo" data-width="1080" data-height="1920" data-duration="43.0">
+    <div id="f-bg" class="clip" data-start="0" data-duration="43.0" data-track-index="0"></div>
+    <div id="f-dots"></div>
+    <div id="f-glow"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Un brillo cálido detrás del avatar que se mueve muy despacio
+      tl.fromTo("#f-glow", { x: 0, y: 0 }, { x: 160, y: -120, duration: 21.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+      tl.to({}, { duration: 0.01 }, 42.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["00-fondo"] = tl;
+    })();
+  </script>
+</template>
