@@ -12,5 +12,3 @@ Los prompts para generarlas con IA están en `PROMPTS.md`.
 | `chicha-mani.jpg` | Foto de la chicha de maní en la sección "Nuestra chicha" |
 
 Se convierten a WebP en varios tamaños dentro de `public/img/`.
-
-`archivo-el-puqui/` guarda las fotos de la demo anterior (El Puqui). El script no las usa.
