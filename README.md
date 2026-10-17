@@ -91,6 +91,14 @@ git push -u origin main
 
 > Si cambias una variable `NEXT_PUBLIC_*` en Vercel, vuelve a desplegar: esas variables se fijan en el build.
 
+## Seguridad
+
+- **Lo que se ve con F12 es público a propósito:** la URL de Supabase, la *publishable key* y el número de WhatsApp. Esa clave solo permite lo que dejan las políticas RLS de `schema.sql`: leer productos y reseñas visibles, y registrar clics. Todo lo demás (ventas, clics, precios, fotos, invitaciones) exige una sesión de admin. **Nunca** pongas la *secret key* ni la *service_role* en `.env.local` ni en Vercel: la web no las necesita.
+- **Freno de clics:** la web pública puede registrar como máximo 60 clics por minuto (trigger `clicks_throttle`); el resto se rechaza con 429. El admin no tiene límite.
+- **Cabeceras (`next.config.ts`):** política de contenido (CSP) que solo permite scripts, estilos, fuentes y videos propios y conexiones a Supabase; `X-Frame-Options: DENY` (nadie puede meter la web dentro de otra página), `nosniff`, `Referrer-Policy` y `Permissions-Policy`.
+- **Cuentas:** solo se crean con un enlace de invitación (trigger `on_auth_user_invited`). En Supabase → Authentication → Sign In / Providers → Email, pon *Minimum password length* en 8.
+- **Repositorio:** no contiene claves (`.env*` está en `.gitignore`; solo se sube `.env.example`).
+
 ## Iconos
 
 Los iconos de interfaz salen de [Reicon](https://github.com/dqev/reicon) (licencia MIT; basados en Solar Icons de 480 Design, CC BY 4.0). Solo se copian los que se usan, así la web no carga los 2 700:

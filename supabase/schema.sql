@@ -71,6 +71,28 @@ begin
   return new;
 end;
 $$;
+-- Freno contra clics falsos en masa: la web pública puede registrar como máximo 60 clics por minuto
+-- en total (mucho más de lo que genera un negocio real). El admin no tiene límite.
+create or replace function public.clicks_throttle()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if not public.is_admin()
+     and (select count(*) from public.clicks where ts > now() - interval '1 minute') >= 60 then
+    raise exception 'Demasiados clics en poco tiempo' using errcode = '54000';
+  end if;
+  return new;
+end;
+$$;
+revoke all on function public.clicks_throttle() from public, anon, authenticated;
+drop trigger if exists clicks_throttle on public.clicks;
+create trigger clicks_throttle
+  before insert on public.clicks
+  for each row execute function public.clicks_throttle();
+
 drop trigger if exists clicks_before_write on public.clicks;
 create trigger clicks_before_write
   before insert or update of ts on public.clicks

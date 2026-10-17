@@ -16,10 +16,12 @@ export async function POST(req: Request) {
   }
   const product = typeof body.product === 'string' ? body.product : '';
   const place = typeof body.place === 'string' ? body.place : '';
-  if (!VALID_PRODUCT.test(product) || !(place in PLACES)) return NextResponse.json({ ok: false }, { status: 400 });
+  if (!VALID_PRODUCT.test(product) || !Object.hasOwn(PLACES, place)) return NextResponse.json({ ok: false }, { status: 400 });
   if (!hasSupabase) return NextResponse.json({ ok: false, error: 'supabase-not-configured' }, { status: 503 });
 
   const { error } = await supabaseAnon().from('clicks').insert({ product, place });
+  // 54000: el freno de la base contra clics en masa (máx. 60 por minuto)
+  if (error?.code === '54000') return NextResponse.json({ ok: false }, { status: 429 });
   if (error) {
     console.error('[click]', error.message);
     return NextResponse.json({ ok: false }, { status: 500 });
