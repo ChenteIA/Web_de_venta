@@ -8,6 +8,8 @@ Web de **San Luyo** (Ica), hecha por **ChenteIA**. Prueba de venta de chicha de 
   - **Ventas:** registrar ventas (también desde un clic), últimos clics, tabla de ventas y descarga en CSV.
   - **Productos:** cambiar precio, nombre, presentación, descripción y foto; agregar productos nuevos; ocultarlos o eliminarlos. La web los muestra al instante.
   - **Reseñas:** subir capturas de WhatsApp de clientes contentos, mostrarlas, ocultarlas o eliminarlas.
+  - **Accesos:** crear un enlace de invitación de un solo uso (vence en 7 días) para que otra persona cree su usuario y entre al panel; ver quién tiene acceso, anular invitaciones y quitar accesos.
+- `/admin/invitacion?t=…` → página donde la persona invitada crea su usuario (correo y contraseña).
 
 **Stack:** Next.js 16 (App Router) · Supabase (Postgres + Auth + Storage) · Vercel.
 
@@ -58,8 +60,11 @@ No hace falta la *service role key*: todo pasa por las políticas RLS.
    insert into public.admins (user_id)
    select id from auth.users where email = 'tu-correo@ejemplo.com';
    ```
-3. Recomendado: **Authentication → Sign In / Providers → Email** y desactiva **Allow new users to sign up**. Así nadie más puede crear cuentas. Aunque alguien lo hiciera, sin estar en `admins` no ve ningún dato.
-4. Entra a `http://localhost:3000/admin`, inicia sesión y prueba **Generar datos de ejemplo**.
+3. **Authentication → Sign In / Providers → Email**:
+   - Deja **activado** *Allow new users to sign up*. Las invitaciones lo necesitan, y la base de datos rechaza cualquier registro que no traiga un enlace de invitación válido (trigger `on_auth_user_invited`), así que nadie puede crear cuentas por su cuenta.
+   - Recomendado: desactiva *Confirm email*. Así la persona invitada entra directo al panel; si lo dejas activado, primero tendrá que confirmar su correo.
+4. Para dar acceso a otra persona, usa la pestaña **Accesos** del panel: crea el enlace y envíaselo por WhatsApp. Ya no hace falta crear usuarios a mano: una vez que existe un admin, *Add user* desde Supabase también se rechaza (créalos con invitación).
+5. Entra a `http://localhost:3000/admin`, inicia sesión y prueba **Generar datos de ejemplo**.
 
 ## 3. Subir el código a GitHub (cuenta ChenteIA)
 

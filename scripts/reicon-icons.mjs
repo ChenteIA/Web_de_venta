@@ -16,6 +16,7 @@ const ICONS = [
   'refresh', 'stars2', 'download2', 'upload2',    // panel
   'eye', 'eye-closed', 'trash2', 'logout', 'arrow-right-up',
   'pen', 'add-circle', 'chart', 'box', 'bag', 'gallery',  // pestañas y productos del panel
+  'users', 'link', 'user-add',                    // accesos e invitaciones
 ];
 const BRANDS = { whatsapp: 'WhatsApp' };
 

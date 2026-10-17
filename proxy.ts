@@ -6,6 +6,8 @@ export async function proxy(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   const isLogin = request.nextUrl.pathname === '/admin/login';
+  // La página de invitación se abre sin sesión: ahí la persona invitada crea su usuario.
+  const isInvite = request.nextUrl.pathname === '/admin/invitacion';
 
   let response = NextResponse.next({ request });
   let user = null;
@@ -26,7 +28,7 @@ export async function proxy(request: NextRequest) {
     user = data.user;
   }
 
-  if (!user && !isLogin) {
+  if (!user && !isLogin && !isInvite) {
     const to = request.nextUrl.clone();
     to.pathname = '/admin/login';
     to.search = '';

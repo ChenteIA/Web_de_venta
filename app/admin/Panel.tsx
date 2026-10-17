@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BUSINESS, PLACES, PRODUCTS, prodName, soles, type Place, type Product } from '@/lib/site';
 import { normalize, PRODUCT_COLS, PRODUCTS_BUCKET, productPhoto } from '@/lib/products';
 import Icon from '@/components/icons';
+import Access from './Access';
 import { supabaseBrowser } from '@/lib/supabase/client';
 import { REVIEWS_BUCKET } from '@/lib/supabase/config';
 import { dayAdd, dayLong, dayShort, daysBetween, money, pct, timeOf, today } from '@/lib/time';
@@ -11,14 +12,15 @@ type Click = { id: string; product: string; place: Place; ts: string; day: strin
 type Sale = { id: string; product: string; qty: number; amount: number; day: string; click_id: string | null; ts: string; demo: boolean };
 type Review = { id: string; image_path: string; customer: string | null; product: string | null; day: string; ts: string; visible: boolean; url?: string };
 type Range = '1' | '7' | '30' | 'all';
-type Tab = 'resumen' | 'ventas' | 'productos' | 'resenas';
+type Tab = 'resumen' | 'ventas' | 'productos' | 'resenas' | 'accesos';
 const HEAD: Record<Tab, string> = {
   resumen: 'Cuántas personas tocaron el botón de WhatsApp y cuántas terminaron comprando.',
   ventas: 'Anota cada pedido que se concretó y descarga tus ventas.',
   productos: 'Precios, fotos y textos de lo que aparece en la web.',
   resenas: 'Capturas de clientes contentos que se muestran en la web.',
+  accesos: 'Invita a otra persona a administrar la web y revisa quién puede entrar.',
 };
-const TABS: [Tab, string, 'chart' | 'bag' | 'box' | 'gallery'][] = [['resumen', 'Resumen', 'chart'], ['ventas', 'Ventas', 'bag'], ['productos', 'Productos', 'box'], ['resenas', 'Reseñas', 'gallery']];
+const TABS: [Tab, string, 'chart' | 'bag' | 'box' | 'gallery' | 'users'][] = [['resumen', 'Resumen', 'chart'], ['ventas', 'Ventas', 'bag'], ['productos', 'Productos', 'box'], ['resenas', 'Reseñas', 'gallery'], ['accesos', 'Accesos', 'users']];
 type Draft = { id: string; isNew: boolean; name: string; price: string; unit: string; description: string; active: boolean; sort: string; photo_path: string | null };
 
 const HOURS = Array.from({ length: 16 }, (_, i) => i + 7); // 7 a. m. a 10 p. m.
@@ -910,6 +912,8 @@ export default function Panel() {
         </div>
       </div>
       )}
+
+      {tab === 'accesos' && <Access />}
     </main>
   );
 }
