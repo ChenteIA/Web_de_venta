@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "preferences": {
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "san-luyo-como-pedir"
+      ],
+      "updated_at": "2026-10-17T03:15:43.662Z"
+    },
+    "storyboard": {
+      "value": "no",
+      "confirmed_in": [
+        "san-luyo-como-pedir"
+      ],
+      "updated_at": "2026-10-17T03:15:43.720Z"
+    },
+    "destination": {
+      "value": "web-embed",
+      "confirmed_in": [
+        "san-luyo-como-pedir"
+      ],
+      "updated_at": "2026-10-17T03:15:43.770Z"
+    },
+    "aspect": {
+      "value": "1080x1350",
+      "confirmed_in": [
+        "san-luyo-como-pedir"
+      ],
+      "updated_at": "2026-10-17T03:15:43.826Z"
+    },
+    "language": {
+      "value": "es",
+      "confirmed_in": [
+        "san-luyo-como-pedir"
+      ],
+      "updated_at": "2026-10-17T03:15:43.877Z"
+    }
+  },
+  "sightings": {}
+}

@@ -1,0 +1,9 @@
+# Generados / regenerables
+node_modules/
+renders/
+.hyperframes/artifacts/
+.hyperframes/video-state-lock
+capture/screenshots/
+capture/assets/images/
+capture/mobile/page-full.png
+capture/mobile/

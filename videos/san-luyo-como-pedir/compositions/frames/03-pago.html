@@ -1,0 +1,45 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1350px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
+    
+    #g03-bg { position: absolute; inset: 0; background: #FAF4F1; }
+    .awning { position: absolute; left: 0; width: 1080px; overflow: hidden; } .awning i { position: absolute; top: 0; width: 60px; height: 100%; }
+    .step { position: absolute; left: 0; right: 0; top: 104px; display: flex; align-items: center; justify-content: center; gap: 26px; opacity: 0; }
+    .step b { display: flex; align-items: center; justify-content: center; width: 92px; height: 92px; border-radius: 50%; background: #A61D27; color: #FAF4F1; font-family: "Gloock", serif; font-weight: 400; font-size: 56px; line-height: 1; flex: none; }
+    .step span { font-family: "Gloock", serif; font-size: 66px; line-height: 1.05; letter-spacing: -0.01em; color: #2B1B18; white-space: nowrap; }
+    #g03-total { position: absolute; left: 0; right: 0; top: 330px; text-align: center; font-size: 40px; color: #7A635C; opacity: 0; }
+    #g03-total b { display: block; font-family: "Gloock", serif; font-weight: 400; font-size: 190px; line-height: 1.05; color: #A61D27; }
+    .pay { position: absolute; left: 190px; width: 700px; height: 150px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 60px; font-weight: 650; opacity: 0; }
+    #g03-yape { top: 720px; background: #2B1B18; color: #FAF4F1; }
+    #g03-plin { top: 900px; background: #FFFFFF; color: #2B1B18; border: 4px solid #2B1B18; }
+    #g03-cash { top: 1080px; background: #F1E3DC; color: #2B1B18; }
+  </style>
+  <div id="root" data-composition-id="03-pago" data-width="1080" data-height="1350" data-duration="3.0">
+    <div id="g03-bg" class="clip" data-start="0" data-duration="3" data-track-index="0"></div>
+    <div id="g03-awning" class="awning" data-layout-allow-overflow style="top:0px;height:30px"><i style="left:0px;background:#A61D27"></i><i style="left:60px;background:#FAF4F1"></i><i style="left:120px;background:#A61D27"></i><i style="left:180px;background:#FAF4F1"></i><i style="left:240px;background:#A61D27"></i><i style="left:300px;background:#FAF4F1"></i><i style="left:360px;background:#A61D27"></i><i style="left:420px;background:#FAF4F1"></i><i style="left:480px;background:#A61D27"></i><i style="left:540px;background:#FAF4F1"></i><i style="left:600px;background:#A61D27"></i><i style="left:660px;background:#FAF4F1"></i><i style="left:720px;background:#A61D27"></i><i style="left:780px;background:#FAF4F1"></i><i style="left:840px;background:#A61D27"></i><i style="left:900px;background:#FAF4F1"></i><i style="left:960px;background:#A61D27"></i><i style="left:1020px;background:#FAF4F1"></i><i style="left:1080px;background:#A61D27"></i></div>
+    <div id="g03-s4" class="step"><b>4</b><span>Pagas como prefieras</span></div>
+    <p id="g03-total">Total de tu pedido<b>S/ 6</b></p>
+    <div id="g03-yape" class="pay">Yape</div>
+    <div id="g03-plin" class="pay">Plin</div>
+    <div id="g03-cash" class="pay">Efectivo</div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      function stepIn(sel, t) { tl.fromTo(sel, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, t); }
+      function stepOut(sel, t) { tl.to(sel, { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, t); }
+      function tap(sel, t) { tl.fromTo(sel, { opacity: 0.95, scale: 0.4 }, { opacity: 0, scale: 1.8, duration: 0.6, ease: "power2.out", immediateRender: false }, t); }
+      // Escena 1 (0.0–1.0s): el paso 4 y el total del pedido
+      stepIn("#g03-s4", 0.05);
+      tl.fromTo("#g03-total", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, 0.25);
+      // Escena 2 (1.0–3.0s): las tres formas de pago, una por una
+      tl.fromTo(".pay", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", stagger: 0.22 }, 0.85);
+      tl.to({}, { duration: 0.01 }, 2.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["03-pago"] = tl;
+    })();
+  </script>
+</template>

@@ -6,6 +6,7 @@ import Reveal from '@/components/Reveal';
 import WaTracker from '@/components/WaTracker';
 import OrderPicker from '@/components/OrderPicker';
 import StageSync from '@/components/StageSync';
+import HowToVideo from '@/components/HowToVideo';
 import { IMAGES, largest, srcSet, type ImgSet } from '@/lib/images';
 import { productPhoto, type ProductPhoto } from '@/lib/products';
 import { loadProducts } from '@/lib/products-server';
@@ -165,7 +166,10 @@ export default async function Home() {
                     : 'Nos escribes, confirmamos por WhatsApp y al día siguiente te la llevamos.'}
                 </p>
               </div>
-              <div className="slip" data-reveal="" style={{ '--i': 2 } as React.CSSProperties}>
+              <div className="itin-media" data-reveal="" style={{ '--i': 2 } as React.CSSProperties}>
+                <HowToVideo />
+              </div>
+              <div className="slip" data-reveal="" style={{ '--i': 3 } as React.CSSProperties}>
                 <h3>Hoy</h3>
                 <ul>
                   <li><span>Eliges cuántas botellas</span><i aria-hidden="true" /><span>en la web</span></li>

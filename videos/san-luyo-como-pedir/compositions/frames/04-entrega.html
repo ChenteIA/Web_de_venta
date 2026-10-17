@@ -1,0 +1,48 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1350px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
+    
+    #e04-bg { position: absolute; inset: 0; background: #FAF4F1; }
+    .awning { position: absolute; left: 0; width: 1080px; overflow: hidden; } .awning i { position: absolute; top: 0; width: 60px; height: 100%; }
+    .step { position: absolute; left: 0; right: 0; top: 104px; display: flex; align-items: center; justify-content: center; gap: 26px; opacity: 0; }
+    .step b { display: flex; align-items: center; justify-content: center; width: 92px; height: 92px; border-radius: 50%; background: #A61D27; color: #FAF4F1; font-family: "Gloock", serif; font-weight: 400; font-size: 56px; line-height: 1; flex: none; }
+    .step span { font-family: "Gloock", serif; font-size: 66px; line-height: 1.05; letter-spacing: -0.01em; color: #2B1B18; white-space: nowrap; }
+    #e04-photo { position: absolute; left: 140px; top: 280px; width: 800px; height: 600px; border-radius: 40px; object-fit: cover; }
+    #e04-text { position: absolute; left: 0; right: 0; top: 930px; text-align: center; font-size: 50px; line-height: 1.35; opacity: 0; }
+    #e04-text b { font-weight: 700; }
+    #e04-end { position: absolute; inset: 0; background: #FAF4F1; opacity: 0; }
+    #e04-logo { position: absolute; left: 450px; top: 300px; width: 180px; height: 180px; }
+    #e04-cta { position: absolute; left: 70px; right: 70px; top: 560px; text-align: center; font-family: "Gloock", serif; font-weight: 400; font-size: 104px; line-height: 1.05; letter-spacing: -0.02em; }
+    #e04-cta-sub { position: absolute; left: 0; right: 0; top: 820px; text-align: center; font-size: 44px; color: #7A635C; }
+  </style>
+  <div id="root" data-composition-id="04-entrega" data-width="1080" data-height="1350" data-duration="3.4">
+    <div id="e04-bg" class="clip" data-start="0" data-duration="3.4" data-track-index="0"></div>
+    <div id="e04-awning" class="awning" data-layout-allow-overflow style="top:0px;height:30px"><i style="left:0px;background:#A61D27"></i><i style="left:60px;background:#FAF4F1"></i><i style="left:120px;background:#A61D27"></i><i style="left:180px;background:#FAF4F1"></i><i style="left:240px;background:#A61D27"></i><i style="left:300px;background:#FAF4F1"></i><i style="left:360px;background:#A61D27"></i><i style="left:420px;background:#FAF4F1"></i><i style="left:480px;background:#A61D27"></i><i style="left:540px;background:#FAF4F1"></i><i style="left:600px;background:#A61D27"></i><i style="left:660px;background:#FAF4F1"></i><i style="left:720px;background:#A61D27"></i><i style="left:780px;background:#FAF4F1"></i><i style="left:840px;background:#A61D27"></i><i style="left:900px;background:#FAF4F1"></i><i style="left:960px;background:#A61D27"></i><i style="left:1020px;background:#FAF4F1"></i><i style="left:1080px;background:#A61D27"></i></div>
+    <div id="e04-s5" class="step"><b>5</b><span>Te la llevamos</span></div>
+    <img id="e04-photo" src="assets/chicha-mani.jpg" alt="Botella de chicha de maní San Luyo con un vaso servido">
+    <p id="e04-text"><b>Recojo o delivery en Ica</b><br>a la hora que acordemos.</p>
+    <div id="e04-end" data-layout-allow-occlusion><img id="e04-logo" src="assets/logo.png" alt="Logo de San Luyo"><p id="e04-cta">Pide la tuya<br>desde la web</p><p id="e04-cta-sub">Elige arriba y escríbenos</p></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      function stepIn(sel, t) { tl.fromTo(sel, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, t); }
+      function stepOut(sel, t) { tl.to(sel, { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, t); }
+      function tap(sel, t) { tl.fromTo(sel, { opacity: 0.95, scale: 0.4 }, { opacity: 0, scale: 1.8, duration: 0.6, ease: "power2.out", immediateRender: false }, t); }
+      // Escena 1 (0.0–1.9s): el paso 5 con la botella y cómo llega
+      stepIn("#e04-s5", 0.05);
+      tl.fromTo("#e04-photo", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, 0.15);
+      tl.fromTo("#e04-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.55);
+      // Escena 2 (1.9–3.4s): cierre con el logo; queda igual que el inicio para que el bucle empalme
+      tl.to("#e04-end", { opacity: 1, duration: 0.45, ease: "power2.inOut" }, 1.9);
+      tl.fromTo("#e04-cta", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.1);
+      tl.fromTo("#e04-cta-sub", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.4);
+      tl.to({}, { duration: 0.01 }, 3.39);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["04-entrega"] = tl;
+    })();
+  </script>
+</template>

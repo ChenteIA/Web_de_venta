@@ -1,0 +1,30 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1350px; overflow: hidden; color: #2B1B18; font-family: "Figtree", sans-serif; }
+    
+    #pg { position: absolute; left: 0; top: 52px; width: 1080px; height: 14px; opacity: 0; }
+    #pg i { position: absolute; top: 0; width: 100px; height: 12px; border-radius: 6px; background: rgba(43, 27, 24, 0.14); overflow: hidden; }
+    #pg u { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: #A61D27; transform-origin: 0 50%; }
+  </style>
+  <div id="root" data-composition-id="05-progreso" data-width="1080" data-height="1350" data-duration="20.0">
+    <div id="pg"><i id="pg-0" style="left:258px"><u id="pg-f0"></u></i><i id="pg-1" style="left:374px"><u id="pg-f1"></u></i><i id="pg-2" style="left:490px"><u id="pg-f2"></u></i><i id="pg-3" style="left:606px"><u id="pg-f3"></u></i><i id="pg-4" style="left:722px"><u id="pg-f4"></u></i></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // La barra aparece con el paso 1 y cada tramo se llena mientras dura su paso
+      tl.fromTo("#pg", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.6);
+      tl.set("#pg u", { scaleX: 0 }, 0);
+      const ends = [6.6, 10.6, 13.6, 16.6, 18.5];
+      const starts = [2.6, 6.6, 10.6, 13.6, 16.6];
+      starts.forEach((t, i) => tl.to("#pg-f" + i, { scaleX: 1, duration: ends[i] - t, ease: "none" }, t));
+      tl.to("#pg", { opacity: 0, duration: 0.4 }, 18.5);
+      tl.to({}, { duration: 0.01 }, 19.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["05-progreso"] = tl;
+    })();
+  </script>
+</template>

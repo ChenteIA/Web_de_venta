@@ -1,0 +1,495 @@
+{
+  "version": 1,
+  "historyId": "a0097306-e6c4-4a37-8da1-17268820a5be",
+  "currentRevision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "BRIEF.md": {
+      "hash": "abbaa8c8142c0b8840c75982490e024e9575bc5a3436c6796c677c5b8088fb0c",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/ab/abbaa8c8142c0b8840c75982490e024e9575bc5a3436c6796c677c5b8088fb0c"
+    },
+    "CLAUDE.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "assets/chicha-mani.jpg": {
+      "hash": "adcbe2e21b2a5049dfc892a0e6dc068509c03d62d44afe95545e3a7c8f1578a0",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/ad/adcbe2e21b2a5049dfc892a0e6dc068509c03d62d44afe95545e3a7c8f1578a0"
+    },
+    "assets/encabezado.png": {
+      "hash": "e96f9747a663179d023562e7ca4d2551b63bec52f1ff760fee10c9fbd2506423",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/e9/e96f9747a663179d023562e7ca4d2551b63bec52f1ff760fee10c9fbd2506423"
+    },
+    "assets/fonts/figtree-latin.woff2": {
+      "hash": "8330490a01c60c196eae00b823de8102275aaa5862e7b76a7af21b8745338928",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/83/8330490a01c60c196eae00b823de8102275aaa5862e7b76a7af21b8745338928"
+    },
+    "assets/fonts/gloock-latin.woff2": {
+      "hash": "b862aac1a16f7dafbf1d2f0115a78f3d216c8a8a83ecd154eb4afb54ade82245",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/b8/b862aac1a16f7dafbf1d2f0115a78f3d216c8a8a83ecd154eb4afb54ade82245"
+    },
+    "assets/logo.png": {
+      "hash": "041d7781947bec7526a617878f75ad1b0acda56cb876a3e73d50f01072cfebd8",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/04/041d7781947bec7526a617878f75ad1b0acda56cb876a3e73d50f01072cfebd8"
+    },
+    "assets/plato-1.png": {
+      "hash": "48f2f32bae4817a33b9ac0c96b7367dcada2cccb4c8637f4a4cd84be9213e00d",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/48/48f2f32bae4817a33b9ac0c96b7367dcada2cccb4c8637f4a4cd84be9213e00d"
+    },
+    "assets/plato-2.png": {
+      "hash": "fc5b90124512664bd483b53844dbb9e02917e4121b58281cd52eb420e2910e38",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/fc/fc5b90124512664bd483b53844dbb9e02917e4121b58281cd52eb420e2910e38"
+    },
+    "assets/vendor/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    "capture/mobile/encabezado.png": {
+      "hash": "e96f9747a663179d023562e7ca4d2551b63bec52f1ff760fee10c9fbd2506423",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/e9/e96f9747a663179d023562e7ca4d2551b63bec52f1ff760fee10c9fbd2506423"
+    },
+    "capture/mobile/plato-1.png": {
+      "hash": "48f2f32bae4817a33b9ac0c96b7367dcada2cccb4c8637f4a4cd84be9213e00d",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/48/48f2f32bae4817a33b9ac0c96b7367dcada2cccb4c8637f4a4cd84be9213e00d"
+    },
+    "capture/mobile/plato-2.png": {
+      "hash": "fc5b90124512664bd483b53844dbb9e02917e4121b58281cd52eb420e2910e38",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/fc/fc5b90124512664bd483b53844dbb9e02917e4121b58281cd52eb420e2910e38"
+    },
+    "compositions/frames/01-titulo.html": {
+      "hash": "9ef0d370d6b7e37312b2ec2f985e9122c1b567695cc3c9aa0e1287631a401f52",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/9e/9ef0d370d6b7e37312b2ec2f985e9122c1b567695cc3c9aa0e1287631a401f52"
+    },
+    "compositions/frames/02-telefono.html": {
+      "hash": "5a5433d3a08165348b51693ad14b2954eba4529c46f9ca18581e6ec4319d1843",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/5a/5a5433d3a08165348b51693ad14b2954eba4529c46f9ca18581e6ec4319d1843"
+    },
+    "compositions/frames/03-pago.html": {
+      "hash": "2c4e40fc8ccb16bc7f97836fb9d0e17961a64bb504e257ec155e424310c7679f",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/2c/2c4e40fc8ccb16bc7f97836fb9d0e17961a64bb504e257ec155e424310c7679f"
+    },
+    "compositions/frames/04-entrega.html": {
+      "hash": "170d3209fbe3acd4f7b17bb7b164c63908598e6db696a8b180f3bdc86c413b93",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/17/170d3209fbe3acd4f7b17bb7b164c63908598e6db696a8b180f3bdc86c413b93"
+    },
+    "compositions/frames/05-progreso.html": {
+      "hash": "be5a7b47d8ff1173b86291512cc1abfca987b767401c9299c4172f84aa61aa8b",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/be/be5a7b47d8ff1173b86291512cc1abfca987b767401c9299c4172f84aa61aa8b"
+    },
+    "frame.md": {
+      "hash": "ffaaee187e4a0caec325094d7532bfebd7a411512dae28643d4eade54dd02fc0",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/ff/ffaaee187e4a0caec325094d7532bfebd7a411512dae28643d4eade54dd02fc0"
+    },
+    "hyperframes.json": {
+      "hash": "44d4e8dcefebce0a13f5afa82aa270b0b19a1d3f82e434f92616010cee775dc4",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/44/44d4e8dcefebce0a13f5afa82aa270b0b19a1d3f82e434f92616010cee775dc4"
+    },
+    "index.html": {
+      "hash": "d2b7959e331f99da8e44ed113b8648ba9ae231766b849c65857dc579eca173d1",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/d2/d2b7959e331f99da8e44ed113b8648ba9ae231766b849c65857dc579eca173d1"
+    },
+    "meta.json": {
+      "hash": "3e3afc5b2e0f59c532ffac37ee78f4df51e8b06d6818eea3ef494f38493c01cc",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/3e/3e3afc5b2e0f59c532ffac37ee78f4df51e8b06d6818eea3ef494f38493c01cc"
+    },
+    "package.json": {
+      "hash": "143902d433d265526d521feb24c13e8bc1e1c0bbbf93884b01ea731257a999a8",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/14/143902d433d265526d521feb24c13e8bc1e1c0bbbf93884b01ea731257a999a8"
+    },
+    "scripts/capturar.mjs": {
+      "hash": "3e83bba959db74f3bc3c0fbfabd20c108e3bc697b96142e7ad39389dbc9e32c5",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/3e/3e83bba959db74f3bc3c0fbfabd20c108e3bc697b96142e7ad39389dbc9e32c5"
+    },
+    "scripts/gen.py": {
+      "hash": "a3395cabd2ca011e12a1b9b3def0d8f5d05e1df4262ab3a5fc75fab5cef159a9",
+      "content": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/a3/a3395cabd2ca011e12a1b9b3def0d8f5d05e1df4262ab3a5fc75fab5cef159a9"
+    }
+  },
+  "revisions": {
+    "724d88d0-3fed-458c-aa37-535888e4ceb4": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792207181703,
+      "endedAt": 1792207181722,
+      "files": {
+        "compositions/frames/01-titulo.html": {
+          "before": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/66/66143d765cfce423ad3c748840fcf1c76efcdf4be657d0349d78f86dd206e006",
+          "after": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/9e/9ef0d370d6b7e37312b2ec2f985e9122c1b567695cc3c9aa0e1287631a401f52"
+        },
+        "compositions/frames/02-telefono.html": {
+          "before": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/6b/6b73dfd43d64237e938e8fc1420b08f52194f27be8795303ecbe7177f318ac2d",
+          "after": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/5a/5a5433d3a08165348b51693ad14b2954eba4529c46f9ca18581e6ec4319d1843"
+        },
+        "compositions/frames/03-pago.html": {
+          "before": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/f0/f0d09fe3408eec3a5f493607173d6d969e1ec25b538742af4c18a6188226d6f6",
+          "after": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/2c/2c4e40fc8ccb16bc7f97836fb9d0e17961a64bb504e257ec155e424310c7679f"
+        },
+        "compositions/frames/04-entrega.html": {
+          "before": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/c3/c3658386d010f84ff9db79184a1806a02520529156500d6f280b0d517f04aac9",
+          "after": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/17/170d3209fbe3acd4f7b17bb7b164c63908598e6db696a8b180f3bdc86c413b93"
+        },
+        "scripts/gen.py": {
+          "before": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/69/69de79c41cc0d0f1ca982087beec8581b2e6b8dbb5e34fb10a5ade73979c052f",
+          "after": "/root/.cache/hyperframes/history/a0097306-e6c4-4a37-8da1-17268820a5be/blobs/a3/a3395cabd2ca011e12a1b9b3def0d8f5d05e1df4262ab3a5fc75fab5cef159a9"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+      "id": "3f92a165-0476-4364-b9b8-19ede3aad114"
+    },
+    "revisions": {
+      "724d88d0-3fed-458c-aa37-535888e4ceb4": [
+        {
+          "id": "3f92a165-0476-4364-b9b8-19ede3aad114",
+          "scope": "project",
+          "report": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/checks/3f92a165-0476-4364-b9b8-19ede3aad114.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792207190384,
+          "contentHash": "d7164483b5e1c347438f34bb791d2aad50a136109a8c65a2f7755b55aa0bdffa",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "41ff4423-90a8-4469-8728-e652031f0ca8",
+        "scope": "project",
+        "report": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/checks/41ff4423-90a8-4469-8728-e652031f0ca8.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792207172159,
+        "contentHash": "3fe62724d9b7c03dca50c54b75035d09974c2ef934dff8505d8fb6654aa9dfcc",
+        "revision": null,
+        "inputFingerprint": "7566bab50ed59c828f0732c09dc0ece14d9fc6299784a31837cb021a623f7fde",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+      "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-12"
+    },
+    "revisions": {
+      "724d88d0-3fed-458c-aa37-535888e4ceb4": [
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-0",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-00-at-1.8s.png",
+          "time": 1.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "a2c2a14066159a2b6d0393af1401a9cd231b4b633af2e3b47100ee2afe1b8200",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-1",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-01-at-3.4s.png",
+          "time": 3.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "9af119a9306210bcabc36efc67df2f0fd31a72bce3b1eae40354ea901a453d6a",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-2",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-02-at-4.9s.png",
+          "time": 4.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "05fa170b60c63f632b7e4e1b2387e42e0ee1c67e10f8c9d9281ae9a0ba7aa117",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-3",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-03-at-5.3s.png",
+          "time": 5.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "6d2be7845626858ca84e41be7684540a5974491b9f2c3c9207441ff1aeb9e07b",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-4",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-04-at-7.2s.png",
+          "time": 7.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "b29557cdb4117e658aa13db5a7899f31b96b99128c286f06961a9bb8ed643fd0",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-5",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-05-at-8.6s.png",
+          "time": 8.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "4ed3be063482e6510f552450aabc0ca11188933c45c7c7ca63032ea965ebe15d",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-6",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-06-at-9.9s.png",
+          "time": 9.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "6aaf992c48644815a01360477f8bea0c9ee9ae789003cd130bcf7e4dbf7cf93b",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-7",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-07-at-12.4s.png",
+          "time": 12.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "1aeaa0a9d041a1437f594859ed3cc57169b8e29dc04332a1808348d3267a4867",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-8",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-08-at-13.5s.png",
+          "time": 13.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "a7b2479b16eb9321c69ff99c7bcc30a4edfac63d2619678c17d0cadc916e138a",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-9",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-09-at-15.6s.png",
+          "time": 15.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "e764c1782bc3ea9709f2802c68208f1e6774bd7b319d06cbfd6d98568eece233",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-10",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-10-at-17.8s.png",
+          "time": 17.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "59c47b26d3519bd27032750f9f365b2839f3a077a7494c466eae7c5eb4873202",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-11",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-11-at-19.6s.png",
+          "time": 19.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "0582085e604b886319ab6a7a959a19e88a4d3d80d7b56369368be33e9839aaad",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c5659c61-ea77-4a6a-9981-3f91bcf9380e-12",
+          "image": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/.hyperframes/artifacts/snapshots/1a3d619a-5707-4a76-b8d6-e549414f24ad/frame-12-at-19.4s.png",
+          "time": 19.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1350,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792207196739,
+          "contentHash": "0582085e604b886319ab6a7a959a19e88a4d3d80d7b56369368be33e9839aaad",
+          "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4",
+          "inputFingerprint": "e975c55765130f7657903791cef85c0c9982e2af986f92ef0d9e30b0e913a353",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "2a15e722-c54d-4bfe-87f2-e5a576d587e0",
+      "completedAt": 1792207246364,
+      "output": "/home/user/Web_de_venta/videos/san-luyo-como-pedir/renders/video.mp4",
+      "status": "completed",
+      "revision": "724d88d0-3fed-458c-aa37-535888e4ceb4"
+    },
+    "retainedRevisions": [
+      "724d88d0-3fed-458c-aa37-535888e4ceb4"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

@@ -484,6 +484,8 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 .cell:active { transform: scale(0.97); }
 
 /* Cómo pedir: itinerario impreso en una nota con borde de corte */
+.itin-media { width: 100%; max-width: 480px; align-self: center; }
+.itin-video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; border-radius: var(--r); background: #FAF4F1; object-fit: cover; }
 .itinerary { margin-top: var(--section); background: var(--surface-2); border-radius: var(--r); padding: 36px 20px 44px; display: flex; flex-direction: column; gap: 28px; }
 .itin-head { display: flex; flex-direction: column; gap: 14px; }
 .itin-head p { max-width: 30ch; font-size: var(--t-lead); line-height: 1.45; }
