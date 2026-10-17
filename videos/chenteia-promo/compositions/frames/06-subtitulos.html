@@ -1,0 +1,40 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+    @font-face { font-family: "Gloock"; src: url("assets/fonts/gloock-latin.woff2") format("woff2"); font-weight: 400; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; color: #F5F2EE; font-family: "Figtree", sans-serif; }
+    
+    .cap { position: absolute; left: 60px; right: 60px; top: 1580px; text-align: center; font-size: 52px; font-weight: 800; line-height: 1.15; color: #FFF; opacity: 0;
+      text-shadow: 0 3px 0 #000, 0 -3px 0 #000, 3px 0 0 #000, -3px 0 0 #000, 0 6px 18px rgba(0,0,0,0.7); }
+  </style>
+  <div id="root" data-composition-id="06-subtitulos" data-width="1080" data-height="1920" data-duration="43.0">
+    <p id="s0" class="cap">Mira esto:</p><p id="s1" class="cap">es San Luyo,</p><p id="s2" class="cap">una chicha de maní de Ica.</p><p id="s3" class="cap">El cliente entra,</p><p id="s4" class="cap">elige el tamaño y cuántas</p><p id="s5" class="cap">botellas quiere,</p><p id="s6" class="cap">y con un toque te</p><p id="s7" class="cap">llega el pedido listo por WhatsApp,</p><p id="s8" class="cap">con el total calculado.</p><p id="s9" class="cap">Y no es solo la página:</p><p id="s10" class="cap">el dueño tiene su propio panel.</p><p id="s11" class="cap">Desde el celular cambia precios</p><p id="s12" class="cap">y fotos,</p><p id="s13" class="cap">sube reseñas,</p><p id="s14" class="cap">y ve cuántas personas tocaron</p><p id="s15" class="cap">el botón y cuántas compraron.</p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Cada trozo de la frase aparece mientras la voz lo dice
+      tl.set("#s0", { opacity: 1 }, 4.6); tl.set("#s0", { opacity: 0 }, 5.28);
+      tl.set("#s1", { opacity: 1 }, 5.28); tl.set("#s1", { opacity: 0 }, 6.1);
+      tl.set("#s2", { opacity: 1 }, 6.11); tl.set("#s2", { opacity: 0 }, 7.89);
+      tl.set("#s3", { opacity: 1 }, 8.5); tl.set("#s3", { opacity: 0 }, 9.57);
+      tl.set("#s4", { opacity: 1 }, 9.57); tl.set("#s4", { opacity: 0 }, 11.14);
+      tl.set("#s5", { opacity: 1 }, 11.13); tl.set("#s5", { opacity: 0 }, 12.13);
+      tl.set("#s6", { opacity: 1 }, 12.14); tl.set("#s6", { opacity: 0 }, 13.21);
+      tl.set("#s7", { opacity: 1 }, 13.2); tl.set("#s7", { opacity: 0 }, 15.39);
+      tl.set("#s8", { opacity: 1 }, 15.4); tl.set("#s8", { opacity: 0 }, 16.84);
+      tl.set("#s9", { opacity: 1 }, 18.2); tl.set("#s9", { opacity: 0 }, 19.69);
+      tl.set("#s10", { opacity: 1 }, 19.69); tl.set("#s10", { opacity: 0 }, 21.7);
+      tl.set("#s11", { opacity: 1 }, 22.3); tl.set("#s11", { opacity: 0 }, 24.36);
+      tl.set("#s12", { opacity: 1 }, 24.36); tl.set("#s12", { opacity: 0 }, 24.89);
+      tl.set("#s13", { opacity: 1 }, 24.89); tl.set("#s13", { opacity: 0 }, 25.75);
+      tl.set("#s14", { opacity: 1 }, 25.75); tl.set("#s14", { opacity: 0 }, 27.67);
+      tl.set("#s15", { opacity: 1 }, 27.67); tl.set("#s15", { opacity: 0 }, 29.59);
+
+      tl.to({}, { duration: 0.01 }, 42.99);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["06-subtitulos"] = tl;
+    })();
+  </script>
+</template>
