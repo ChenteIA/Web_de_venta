@@ -1,7 +1,7 @@
 # Genera el video "ChenteIA · la web de tu negocio" (HyperFrames, 1080x1920, ~43 s, con voz y música).
 # Uso: python3 scripts/gen.py   (escribe compositions/frames/*.html e index.html)
-#      VARIANTE=sin-avatar python3 scripts/gen.py   (versión sin avatar: compositions/frames/sa-*.html y sin-avatar.html;
-#      se renderiza con: npx hyperframes render -c sin-avatar.html)
+#      VARIANTE=sin-avatar python3 scripts/gen.py   (versión sin avatar: compositions/frames/sa-*.html y scripts/sin-avatar.html;
+#      se renderiza con: scripts/render-sin-avatar.sh)
 import os, json, re, subprocess
 SIN_AVATAR = os.environ.get("VARIANTE") == "sin-avatar"
 PRE = "sa-" if SIN_AVATAR else ""
@@ -392,7 +392,7 @@ els = "\n".join(f'''      <div id="el-{fid}" class="scene" data-composition-id="
 voices = "\n".join(f'''      <audio id="el-voz-{i + 1}" src="assets/voz/l{i + 1}.wav" data-start="{START[i]}" data-duration="{DUR[i]}" data-track-index="{10 + i}" data-volume="1"></audio>''' for i in range(len(LINES)))
 AVATAR_EL = f'''      <div id="el-05-avatar" class="scene" data-composition-id="05-avatar" data-composition-src="compositions/frames/05-avatar.html" data-start="0" data-duration="{TOTAL}" data-track-index="2"></div>
 '''
-open(f"{ROOT}/{'sin-avatar.html' if SIN_AVATAR else 'index.html'}", "w").write(f'''<!doctype html>
+open(f"{ROOT}/{'scripts/sin-avatar.html' if SIN_AVATAR else 'index.html'}", "w").write(f'''<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
