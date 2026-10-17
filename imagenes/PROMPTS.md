@@ -19,6 +19,14 @@ Mientras no haya fotos, la web muestra la ilustración de la botella.
 Photorealistic product photo of a 500 ml clear glass bottle filled with Peruvian peanut chicha (chicha de maní): a creamy, opaque, light beige drink with a soft milky texture, cold with tiny condensation drops on the glass, simple gold metal cap, plain kraft paper label with no writing. Next to it a short glass filled with the same creamy drink, and a small pile of roasted peanuts in their shells and a few shelled peanuts on a rustic wooden table with a natural linen cloth. Warm natural side light from a window, soft shadows, shallow depth of field. Earthy palette with warm beige and gold, a small touch of deep red. Horizontal 4:3, no text, no logos, no people.
 ```
 
+## chicha-mani-litro.jpg — botella de 1 litro, horizontal 4:3 (mínimo 1600 × 1200 px)
+
+Genérala en la misma conversación que `chicha-mani.jpg`, para que las dos fotos se vean como una serie.
+
+```
+Same scene, light and style as the previous product photo, now with a larger 1 liter clear glass bottle filled with the same creamy, opaque, light beige peanut chicha, cold with tiny condensation drops, the same simple gold metal cap and plain kraft paper label with no writing. The bottle is clearly taller and wider than a 500 ml bottle; next to it two short glasses filled with the same drink, ready to share, and roasted peanuts in their shells on the rustic wooden table with the natural linen cloth. Warm natural side light from a window, soft shadows, shallow depth of field. Earthy palette with warm beige and gold, a small touch of deep red. Horizontal 4:3, no text, no logos, no people.
+```
+
 ## portada.jpg — portada en celular, vertical 4:5 (mínimo 1440 × 1800 px)
 
 ```

@@ -33,15 +33,27 @@ export type Product = {
 };
 
 export const PRODUCTS: Product[] = [
-  { id: 'chicha-mani', name: 'Chicha de maní', price: 5, unit: 'botella de 500 ml', description: 'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.' },
+  { id: 'chicha-mani', name: 'Chicha de maní', price: 3, unit: 'botella de 500 ml', description: 'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.', sort: 0 },
+  { id: 'chicha-mani-litro', name: 'Chicha de maní', price: 6, unit: 'botella de 1 litro', description: 'La misma receta en botella grande: para compartir en la mesa o tenerla lista en la refri.', sort: 1 },
 ];
+
+// Si dos productos se llaman igual (la misma chicha en dos tamaños), se distinguen por el tamaño:
+// "Chicha de maní · 1 litro".
+export function productSize(p: Product, list: Product[]) {
+  const same = list.some((x) => x.id !== p.id && x.name.trim().toLowerCase() === p.name.trim().toLowerCase());
+  return same ? unitParts(p.unit || '').detail : '';
+}
+export function productLabel(p: Product, list: Product[]) {
+  const size = productSize(p, list);
+  return size ? `${p.name} · ${size}` : p.name;
+}
 
 export const PLACES = { portada: 'Botón de la portada', carta: 'Botón del producto', flotante: 'Botón flotante o de contacto' } as const;
 export type Place = keyof typeof PLACES;
 
 export function prodName(id: string | null | undefined, list: Product[] = PRODUCTS, markDeleted = false) {
   const p = list.find((x) => x.id === id);
-  if (p) return p.name;
+  if (p) return productLabel(p, list);
   if (id === 'general') return 'Consulta general';
   if (id === 'otro') return 'Otro producto';
   if (!id) return 'Otro';

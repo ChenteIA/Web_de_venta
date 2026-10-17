@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { BUSINESS, PLACES, PRODUCTS, prodName, soles, type Place, type Product } from '@/lib/site';
+import { BUSINESS, PLACES, PRODUCTS, prodName, productLabel, soles, type Place, type Product } from '@/lib/site';
 import { normalize, PRODUCT_COLS, PRODUCTS_BUCKET, productPhoto } from '@/lib/products';
 import Icon from '@/components/icons';
 import Access from './Access';
@@ -723,7 +723,7 @@ export default function Panel() {
           <form className="f" onSubmit={saveSale} autoComplete="off">
             <label className="field wide">Producto
               <select value={fProduct} onChange={(e) => { setFProduct(e.target.value); autoAmount(e.target.value, fQty); }}>
-                {products.map((p) => <option key={p.id} value={p.id}>{p.name} ({soles(p.price)}){p.active === false ? ' · oculto' : ''}</option>)}
+                {products.map((p) => <option key={p.id} value={p.id}>{productLabel(p, products)} ({soles(p.price)}){p.active === false ? ' · oculto' : ''}</option>)}
                 <option value="otro">Otro producto</option>
               </select>
             </label>
@@ -848,7 +848,7 @@ export default function Panel() {
                 <div className={'pr-row' + (p.active === false ? ' off' : '')} key={p.id}>
                   <div className="pr-thumb">{ph ? <img src={ph.src} alt="" loading="lazy" /> : <span>Sin foto</span>}</div>
                   <div className="pr-info">
-                    <b>{p.name}</b>
+                    <b>{productLabel(p, products)}</b>
                     <span className="num">{soles(p.price)}{p.unit ? ` · ${p.unit}` : ''}</span>
                     {p.active === false && <span className="tag">Oculto en la web</span>}
                   </div>
@@ -880,7 +880,7 @@ export default function Panel() {
           <label className="field">Producto
             <select name="product" defaultValue="general">
               <option value="general">Sin producto específico</option>
-              {products.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+              {products.map((p) => <option key={p.id} value={p.id}>{productLabel(p, products)}</option>)}
             </select>
           </label>
           <div className="field wide" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>

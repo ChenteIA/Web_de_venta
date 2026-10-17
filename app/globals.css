@@ -460,6 +460,8 @@ dialog.lightbox[open]::backdrop { opacity: 1; }
 .plate-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 42% 50%; display: block; }
 .plate-text { display: flex; flex-direction: column; gap: 14px; padding-inline: 4px; }
 .plate h2 { font-size: var(--t-display); }
+.plate h2 .h-size { display: block; margin-top: 6px; font-family: var(--f-body); font-size: var(--t-lead); font-weight: var(--w-medium); color: var(--muted); letter-spacing: 0; }
+.plate-photo svg { width: 100%; height: 100%; display: block; }
 .plate .price { font-size: var(--t-lead); }
 .plate .price b { font-family: var(--f-display); font-weight: 400; font-size: var(--t-head); color: var(--apple); margin-right: 6px; }
 .plate .desc { line-height: 1.55; }

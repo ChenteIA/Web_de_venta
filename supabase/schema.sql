@@ -157,10 +157,14 @@ create trigger products_touch
   before update on public.products
   for each row execute function public.products_touch();
 
--- Producto inicial (solo si la tabla está vacía)
+-- Productos iniciales (solo si la tabla está vacía)
 insert into public.products (id, name, price, unit, description, sort)
-select 'chicha-mani', 'Chicha de maní', 5, 'botella de 500 ml',
-       'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.', 0
+select * from (values
+  ('chicha-mani', 'Chicha de maní', 3::numeric, 'botella de 500 ml',
+   'Hecha en casa con maní tostado. Cremosa, dulce en su punto y para tomarla bien helada.', 0),
+  ('chicha-mani-litro', 'Chicha de maní', 6::numeric, 'botella de 1 litro',
+   'La misma receta en botella grande: para compartir en la mesa o tenerla lista en la refri.', 1)
+) as v(id, name, price, unit, description, sort)
 where not exists (select 1 from public.products);
 
 -- ---------------------------------------------------------------------

@@ -7,12 +7,12 @@ const QTYS = [1, 2, 3, 6, 12];
 
 // Elige la cantidad: el total y el mensaje de WhatsApp cambian al instante.
 // Sin JavaScript queda el enlace con 1 unidad, que funciona igual.
-export default function OrderPicker({ product, presale }: { product: Product; presale: boolean }) {
+export default function OrderPicker({ product, presale, label: name = product.name }: { product: Product; presale: boolean; label?: string }) {
   const [qty, setQty] = useState(1);
   const label = countLabel(product.unit, qty);
   return (
     <div className="picker">
-      <div className="qtys" role="radiogroup" aria-label={`Cuántas: ${product.name}`}>
+      <div className="qtys" role="radiogroup" aria-label={`Cuántas: ${name}`}>
         {QTYS.map((n) => (
           <button key={n} type="button" role="radio" aria-checked={qty === n} onClick={() => setQty(n)}>
             {n === 1 ? countLabel(product.unit, 1) : n}

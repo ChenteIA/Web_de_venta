@@ -1,6 +1,6 @@
 # San Luyo · chicha de maní por WhatsApp
 
-Web de **San Luyo** (Ica), hecha por **ChenteIA**. Prueba de venta de chicha de maní en botella de medio litro, desde el lunes 19 de octubre de 2026. WhatsApp: +51 910 897 377.
+Web de **San Luyo** (Ica), hecha por **ChenteIA**. Venta de chicha de maní en botella de medio litro (S/ 3) y de 1 litro (S/ 6), desde el lunes 19 de octubre de 2026. WhatsApp: +51 910 897 377.
 
 - `/` → web pública: portada, la chicha con su precio, "Cómo pedir", reseñas con capturas de WhatsApp y botón flotante. Cada clic a WhatsApp se guarda (producto, botón, fecha, día y hora de Lima).
 - `/admin` → panel del dueño (login de Supabase; solo las cuentas en la tabla `admins`). No hay ningún enlace a él desde la web pública. Pestañas:
@@ -110,5 +110,5 @@ Uso: `<Icon name="calendar" />`. Toma el color del texto. La botella y los maní
 - **Ventas:** registrar una venta desde un clic lo marca como vendido, y eliminarla lo desmarca (trigger). Un clic solo admite una venta.
 - **Datos de ejemplo:** se guardan con `demo = true` y se borran con un botón sin tocar los datos reales.
 - **Preventa:** `LAUNCH` en `lib/site.ts` (lunes 19 de octubre de 2026). Antes de ese día la web está en preventa: aviso "Preventa · Entregas desde el lunes 19", botones "Separar mi botella" y mensaje de WhatsApp para separar. Desde ese día pasa sola a venta normal ("Pedir por WhatsApp").
-- **Productos y precios:** se editan en `/admin` → Productos (S/ 5 es un precio de ejemplo). Si actualizas desde una versión anterior, vuelve a ejecutar `supabase/schema.sql` en el SQL Editor: agrega la tabla `products` y el bucket `productos` sin tocar tus datos. Si la base no responde, la web usa la lista de respaldo de `lib/site.ts`.
+- **Productos y precios:** se editan en `/admin` → Productos. Precios de lanzamiento: medio litro S/ 3 y 1 litro S/ 6; en una base ya creada se cargan con `supabase/precios-2026-10.sql`. Si dos productos tienen el mismo nombre, la web y el panel los distinguen por el tamaño de la presentación. Si actualizas desde una versión anterior, vuelve a ejecutar `supabase/schema.sql` en el SQL Editor: agrega la tabla `products` y el bucket `productos` sin tocar tus datos. Si la base no responde, la web usa la lista de respaldo de `lib/site.ts`.
 - **Demo anterior:** las fotos de El Puqui están en `imagenes/archivo-el-puqui/` y los videos en `videos/`.

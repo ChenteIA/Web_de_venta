@@ -9,7 +9,8 @@ import StageSync from '@/components/StageSync';
 import { IMAGES, largest, srcSet, type ImgSet } from '@/lib/images';
 import { productPhoto, type ProductPhoto } from '@/lib/products';
 import { loadProducts } from '@/lib/products-server';
-import { BUSINESS, isPresale, LAUNCH, prodName, soles, unitParts, waDisplay, waHref, type Product } from '@/lib/site';
+import { BUSINESS, isPresale, LAUNCH, prodName, productLabel, productSize, soles, unitParts, waDisplay, waHref, type Product } from '@/lib/site';
+import { BottleArt } from '@/components/Art';
 import { hasSupabase, REVIEWS_BUCKET } from '@/lib/supabase/config';
 import { supabaseAnon } from '@/lib/supabase/server';
 import { dayShort } from '@/lib/time';
@@ -77,6 +78,10 @@ export default async function Home() {
   const first = products[0];
   const firstPhoto = first ? productPhoto(first) : null;
   const navLabel = products.length === 1 ? 'La chicha' : 'Productos';
+  // "500 ml o de 1 litro" y "(desde S/ 3)" para la portada, a partir de la carta real.
+  const sizeList = [...new Set(products.map((p) => unitParts(p.unit || '').detail).filter(Boolean))];
+  const sizes = sizeList.length > 1 ? `${sizeList.slice(0, -1).join(', ')} o de ${sizeList[sizeList.length - 1]}` : sizeList[0] || '';
+  const fromPrice = products.length ? ` (desde ${soles(Math.min(...products.map((p) => p.price)))})` : '';
   const portada = IMAGES.portada;
   const ancha = IMAGES.portadaAncha;
   const logo = IMAGES.logo;
@@ -108,8 +113,8 @@ export default async function Home() {
                 <h1 id="h-hero">Chicha de maní, hecha en Ica.</h1>
                 <p className="lead">
                   {soon
-                    ? `Preventa abierta: separa tus botellas hoy y te las entregamos desde ${LAUNCH.label}.`
-                    : 'Botellas de medio litro, hechas en casa con maní tostado. Pídela por WhatsApp y coordinamos la entrega.'}
+                    ? `Preventa abierta: separa tus botellas hoy${fromPrice} y te las entregamos desde ${LAUNCH.label}.`
+                    : `Hecha en casa con maní tostado${sizes ? `, en botella de ${sizes}` : ''}. Pídela por WhatsApp y coordinamos la entrega.`}
                 </p>
                 <WaLink product="general" place="portada">{soon ? 'Separar mi botella' : 'Pedir por WhatsApp'}</WaLink>
                 <nav className="card-links" aria-label="En esta página">
@@ -126,14 +131,14 @@ export default async function Home() {
                 return (
                   <section className="plate" key={p.id} data-stage="1" aria-labelledby={`h-${p.id}`}>
                     <div className="plate-photo" data-reveal="">
-                      <ProductImg photo={productPhoto(p)} alt={p.name} sizes="(min-width: 760px) 40vw, 92vw" />
+                      {productPhoto(p) ? <ProductImg photo={productPhoto(p)} alt={productLabel(p, products)} sizes="(min-width: 760px) 40vw, 92vw" /> : <BottleArt />}
                     </div>
                     <div className="plate-text">
-                      <h2 id={`h-${p.id}`} data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>{p.name}</h2>
+                      <h2 id={`h-${p.id}`} data-reveal="" style={{ '--i': 1 } as React.CSSProperties}>{p.name}{productSize(p, products) && <> <span className="h-size">{productSize(p, products)}</span></>}</h2>
                       <p className="price" data-reveal="" style={{ '--i': 2 } as React.CSSProperties}><b className="num">{soles(p.price)}</b>{p.unit ? ` ${u.fem ? 'la' : 'el'} ${p.unit}` : ''}</p>
                       {p.description && <p className="desc" data-reveal="" style={{ '--i': 3 } as React.CSSProperties}>{p.description}</p>}
                       <div data-reveal="" style={{ '--i': 4 } as React.CSSProperties}>
-                        <OrderPicker product={p} presale={soon} />
+                        <OrderPicker product={p} presale={soon} label={productLabel(p, products)} />
                       </div>
                     </div>
                     
